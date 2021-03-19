@@ -1,7 +1,7 @@
 const cool = require('cool-ascii-faces');
 const express = require('express');
 const app = express();
-const port = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.static('public')); // Exposes the folder public in the webapp
 
@@ -10,7 +10,6 @@ app.get('/cool', (req, res) => {
 });
 
 
-app.listen(port, () =>{
-    console.log(`Listening at http://127.0.0.1:${port}`);
+app.listen(PORT, () =>{
+    console.log(`Listening at http://127.0.0.1:${PORT}`);
 });
-
