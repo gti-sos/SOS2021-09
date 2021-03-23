@@ -2,7 +2,7 @@ const express = require('express');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-app.use("/", express.static(path.join(__dirname,"public"))); // Exposes the folder public in the webapp
+app.use(express.static('public')); // Exposes the folder public in the webapp
 
 // Dani
 app.get('/info/performances-by-degrees-us', (req, res) => {
