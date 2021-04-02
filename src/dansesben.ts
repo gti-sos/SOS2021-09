@@ -102,11 +102,18 @@ router
 
     res.sendStatus(200);
 })
+.post('/stats/:center/:field_of_knowledge/:year', (req, res) =>{
+    res.sendStatus(405);
+})
 .delete('/stats', (req, res) =>{
     db = [];
 
     res.sendStatus(200);
 })
+.put('/stats', (req, res) =>{
+    res.sendStatus(405);
+})
+
 
 /// Checks if and Object is a valid DataRow
 function validDataRow(d: DataRow){
