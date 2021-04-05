@@ -81,22 +81,20 @@ router
     res.sendStatus(200);
 })
 .put('/stats/:center/:year/:total', (req, res) =>{
+
     let center: string = req.params.center;
     let year: number = parseInt(req.params.year);
     let total: number = parseInt(req.params.total);
 
     let data: DataRow = req.body;
 
-    if(!validDataRow(data)) {
-        res.sendStatus(400); // Invalid data
-        return;
-    }
-
     // Modify the row that the user chose
     for(let row of db){
         if (row["center"] == center && row["year"] == year && row["total"] == total){
             db[db.indexOf(row)] = req.body;
             break;
+        } else {
+            res.status(400).send("Ha habido un error");
         }
     }
 
