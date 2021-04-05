@@ -75,7 +75,7 @@ router
 
     // Remove the row that the user chose.
     db = db.filter((row) =>{
-        return !(row["center-short"] == center && row["year"] == year && row["total"] == total)
+        return !(row["center"] == center && row["year"] == year && row["total"] == total)
     });
     
     res.sendStatus(200);
@@ -94,7 +94,7 @@ router
 
     // Modify the row that the user chose
     for(let row of db){
-        if (row["center-short"] == center && row["year"] == year && row["total"] == total){
+        if (row["center"] == center && row["year"] == year && row["total"] == total){
             db[db.indexOf(row)] = req.body;
             break;
         }
