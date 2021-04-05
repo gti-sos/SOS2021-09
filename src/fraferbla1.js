@@ -1,15 +1,5 @@
-var express = require("express");
-var bodyParser = require("body-parser");
-var path = require("path");
-var PORT = (process.env.PORT || 1607);
-var BASE_API_PATH = "/api/v1";
-
-var app = express();
-
-app.use(bodyParser.json());
-app.use(express.json());            //Quizás da error
-
-app.use("/", express.static(path.join(__dirname, "public")));
+import express from "express";
+var router = express.Router();
 
 var dbCorte = [];
 
@@ -58,7 +48,7 @@ var datosGuardados = [
 
 
 //5.2: Hacer loadInitialData que cree dos o más recursos (Crea 5)
-app.get(BASE_API_PATH + "/cut-off-marks-by-degrees-us/loadInitialData", (req,res) =>{
+router.get("/loadInitialData", (req,res) =>{
     dbCorte = datosGuardados;
     console.log(`Datos anadidos: <${JSON.stringify(dbCorte,null,2)}>`);
     res.sendStatus(200);
@@ -66,7 +56,7 @@ app.get(BASE_API_PATH + "/cut-off-marks-by-degrees-us/loadInitialData", (req,res
 
 //6.1: devuelve una lista de recursos GET
 
-app.get(BASE_API_PATH + "/cut-off-marks-by-degrees-us",(req,res)=>{
+router.get("/",(req,res)=>{
 	if (dbCorte.length != 0){
 		console.log(`Solicitados datos de notas de corte`);
 		return res.send(JSON.stringify(dbCorte,null,2));
@@ -75,11 +65,11 @@ app.get(BASE_API_PATH + "/cut-off-marks-by-degrees-us",(req,res)=>{
 		return res.sendStatus(404);
 	}
 	return res.send.sendStatus(200);
-	
+
 });
 
 //6.2: Crea un nuevo recurso POST
-app.post(BASE_API_PATH + '/cut-off-marks-by-degrees-us',(req,res)=>{
+router.post('/',(req,res)=>{
 
 	var nuevoObjeto = req.body;
 	console.log(`Elemento creado: <${JSON.stringify(nuevoObjeto,null,2)}>`);
@@ -89,7 +79,7 @@ app.post(BASE_API_PATH + '/cut-off-marks-by-degrees-us',(req,res)=>{
 });
 
 //6.3: Hacemos un GET a un recurso específico
-app.get(BASE_API_PATH + "/cut-off-marks-by-degrees-us/:degree/:year",(req,res)=>{
+router.get("/:degree/:year",(req,res)=>{
 	var degree = req.params.degree;
 	var year = parseInt(req.params.year);
 
@@ -103,7 +93,7 @@ app.get(BASE_API_PATH + "/cut-off-marks-by-degrees-us/:degree/:year",(req,res)=>
 });
 
 //6.4: Eliminar un recurso json DELETE
-app.delete(BASE_API_PATH+ "/cut-off-marks-by-degrees-us/:degree/:year", (req,res)=>{
+router.delete("/:degree/:year", (req,res)=>{
 	var data_deleted = req.params;
 	for (var i = 0; i <  dbCorte.length; i++){
 		if(dbCorte[i].country === data_deleted.country && dbCorte[i].year === parseInt(data_deleted.year)){
@@ -116,7 +106,7 @@ app.delete(BASE_API_PATH+ "/cut-off-marks-by-degrees-us/:degree/:year", (req,res
 });
 
 //6.5 Metemos un nuevo elemento PUT
-app.put(BASE_API_PATH + "/cut-off-marks-by-degrees-us/:degree/:year", function(req,res){
+router.put("/:degree/:year", function(req,res){
 	for(var i in dbCorte){
 		if(dbCorte[i].degree == String(req.params.degree) && dbCorte[i].year == String(req.params.year)){
 			var datoNuevo = req.body;
@@ -132,19 +122,19 @@ app.put(BASE_API_PATH + "/cut-off-marks-by-degrees-us/:degree/:year", function(r
 });
 
 //6.6 Hacemos POST a un recurso
-app.post(BASE_API_PATH +"/cut-off-marks-by-degrees-us/:degree/:year", (req,res) =>{
+router.post("/:degree/:year", (req,res) =>{
 	console.log("This method isnt allowed");
 	return res.sendStatus(405);
 });
 
 //6.7 Hacemos PUT a lista de recursos
-app.put(BASE_API_PATH + "/cut-off-marks-by-degrees-us", (req,res) =>{
+router.put("/", (req,res) =>{
 	console.log("This method isnt allowed");
 	return res.sendStatus(405);
 });
 
 //6.8 DELETE: borra todo los recursos
-app.delete(BASE_API_PATH + "/cut-off-marks-by-degrees-us", (req,res)=>{
+router.delete("/", (req,res)=>{
 	dbCorte.length = 0 ;
 	console.log('Resources have been deleted');
 	return res.sendStatus(200);
@@ -152,11 +142,11 @@ app.delete(BASE_API_PATH + "/cut-off-marks-by-degrees-us", (req,res)=>{
 
 
 /*//GET GENERAL
-app.get(BASE_API_PATH+"/cut-off-marks-by-degrees-us", (req,res)=>{
+router.get(BASE_API_PATH+"", (req,res)=>{
     res.send(JSON.stringify(dbcorte,null,2));
 });
 
-app.post(BASE_API_PATH+"/cut-off-marks-by-degrees-us", (req,res)=>{
+router.post(BASE_API_PATH+"", (req,res)=>{
     var newCorte = req.body;
     console.log(`new contact to be added: <${JSON.stringify(newCorte,null,2)}>`);
 
@@ -165,6 +155,4 @@ app.post(BASE_API_PATH+"/cut-off-marks-by-degrees-us", (req,res)=>{
 });
 */
 
-app.listen(PORT,()=>{
-    console.log(`Server ready at ${PORT}!`);
-})
+module.exports = router;

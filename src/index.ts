@@ -8,8 +8,10 @@ app.use(express.static('public')); // Exposes the folder public in the webapp
 
 // Add the routes especified in the dansesben.js file
 var dansesbenRoutes = require('./dansesben');
-var owo = "JAJAJAJJAJAJAJ";
-app.use('/api/v1/dansesben', dansesbenRoutes);
+app.use('/api/v1/performances-by-degrees-us', dansesbenRoutes);
+
+var franferbla1Routers = require('./fraferbla1');
+app.use('/api/v1/cut-off-marks-by-degrees-us', franferbla1Routers);
 
 // Dani
 app.get('/info/performances-by-degrees-us', (req, res) => {
