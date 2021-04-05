@@ -93,8 +93,6 @@ router
         if (row["center"] == center && row["year"] == year && row["total"] == total){
             db[db.indexOf(row)] = req.body;
             break;
-        } else {
-            res.status(400).send("Ha habido un error");
         }
     }
 
