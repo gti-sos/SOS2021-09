@@ -152,3 +152,4 @@ router.post(BASE_API_PATH+"", (req,res)=>{
     res.sendStatus(201);
 });
 */
+module.exports = router;
