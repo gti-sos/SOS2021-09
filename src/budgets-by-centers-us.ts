@@ -63,7 +63,7 @@ router
     // Get the data from the variables and add them into the row.
     var result: DataRow[] = [];
     db.forEach((row) =>{
-        if(row["center-short"] == center && row["year"] == year && row["total"] == total) result.push(row);
+        if(row["center"] == center && row["year"] == year && row["total"] == total) result.push(row);
     });
     
     res.json(result);
