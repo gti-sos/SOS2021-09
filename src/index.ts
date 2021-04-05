@@ -18,7 +18,7 @@ var franferbla1Routers = require('./fraferbla1');
 app.use('/api/v1/cut-off-marks-by-degrees-us', franferbla1Routers);
 
 // Adri
-var budgetsbycentersus = require('./budgets-by-centers-us');
+var budgetsbycentersus = require('./budgets-by-centers-us.ts');
 app.use('/api/v1/budgets-by-centers-us', budgetsbycentersus);
 
 // ***** RUTAS APIS L07
