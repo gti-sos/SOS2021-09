@@ -136,7 +136,7 @@ router.put("/", (req,res) =>{
 
 //6.8 DELETE: borra todo los recursos
 router.delete("/", (req,res)=>{
-	db_abandono.length = 0 ;
+	db_abandono=[];
 	console.log('Los recursos han sido borrados');
 	return res.sendStatus(200);
 });
