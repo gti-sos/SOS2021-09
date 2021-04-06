@@ -86,7 +86,7 @@ router.get("/:degree/:year",(req,res)=>{
 	console.log(`GET info by degree: <${degree}> and year: <${year}>`);
 	for (var v of dbCorte){
 		if(v.degree === degree && v.year === year) {
-			return res.status(200).json(stat);
+			return res.status(200).send(JSON.stringify(v,null,2));
 		}
 	}
 	return res.sendStatus(404);
