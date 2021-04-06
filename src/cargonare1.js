@@ -5,7 +5,7 @@ var db_abandono = [];
 
 var d_g = [
     {
-        "center": "History",
+        "degree": "History",
         "year": 2018,
         "surrender-counts": 193,
         "new-students": 533,
@@ -13,7 +13,7 @@ var d_g = [
         "center": "FHISTRY"
     },
     {
-        "center": "Computer-Science",
+        "degree": "Computer-Science",
         "year": 2018,
         "surrender-counts": 47,
         "new-students": 237,
@@ -21,7 +21,7 @@ var d_g = [
         "center": "ETSII"
     },
     {
-        "center": "Greography",
+        "degree": "Greography",
         "year": 2018,
         "surrender-counts": 5,
         "new-students": 63,
@@ -29,7 +29,7 @@ var d_g = [
         "center": "FHISTRY"
     },
     {
-        "center": "Art",
+        "degree": "Art",
         "year": 2018,
         "surrender-counts": 68,
         "new-students": 531,
@@ -37,7 +37,7 @@ var d_g = [
         "center": "FBBAA"
     },
     {
-        "center": "Nursering",
+        "degree": "Nursering",
         "year": 2018,
         "surrender-counts": 24,
         "new-students": 134,
@@ -57,15 +57,8 @@ router.get("/loadInitialData", (req,res) =>{
 //6.1: Get->Devuelve una lista de recursos
 
 router.get("/",(req,res)=>{
-	if (db_abandono.length != 0){
 		console.log(`Queremos solicitar datos de los abandonos`);
 		return res.send(JSON.stringify(db_abandono,null,2));
-	} else {
-		console.log("Not found");
-		return res.sendStatus(404);
-	}
-	return res.send.sendStatus(200);
-
 });
 
 

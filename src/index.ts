@@ -1,5 +1,4 @@
-import express from "express";
-
+var express=require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -10,7 +9,7 @@ app.use(express.static('public')); // Exposes the folder public in the webapp
 
 // Dani
 // Add the routes especified in the dansesben.js file
-var dansesbenRoutes = require('./dansesben');
+var dansesbenRoutes = require('./dansesben.ts');
 app.use('/api/v1/performances-by-degrees-us', dansesbenRoutes);
 
 // Fran
