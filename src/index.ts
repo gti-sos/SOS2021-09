@@ -9,19 +9,19 @@ app.use(express.static('public')); // Exposes the folder public in the webapp
 
 // Dani
 // Add the routes especified in the dansesben.js file
-var dansesbenRoutes = require('./dansesben');
+import dansesbenRoutes from './dansesben';
 app.use('/api/v1/performances-by-degrees-us', dansesbenRoutes);
 
 // Fran
-var franferbla1Routers = require('./fraferbla1');
+import franferbla1Routers from './fraferbla1';
 app.use('/api/v1/cut-off-marks-by-degrees-us', franferbla1Routers);
 
 // Adri
-var budgetsbycentersus = require('./budgets-by-centers-us');
+import budgetsbycentersus from './budgets-by-centers-us';
 app.use('/api/v1/budgets-by-centers-us', budgetsbycentersus);
 
 // Carlos
-var cargonare1R = require('./cargonare1');
+import cargonare1R from './cargonare1';
 app.use('/api/v1/surrenders-by-degrees-us', cargonare1R);
 
 // ***** RUTAS APIS L07
@@ -50,7 +50,8 @@ app.get('/info/surrenders-by-degrees-us', (req, res) => {
 
 // ***** HTMLS DINÁMICOS L06
 
-app.listen(PORT, () =>{
+var server = app.listen(PORT, () =>{
     console.log(`Listening at http://127.0.0.1:${PORT}`);
 });
 
+export default server;

@@ -127,4 +127,4 @@ function validDataRow(d: DataRow){
     return true;
 }
 
-module.exports = router;
+export default router;
