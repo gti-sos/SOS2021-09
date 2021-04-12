@@ -4,7 +4,7 @@
   "description": "Este es el repositorio para el proyecto de SOS del grupo 09.",
   "main": "index.js",
   "scripts": {
-    "test": "newman src/tests/*",
+    "test": "nodejs src/tests/run_checks.js",
     "start": "node src/index.js",
     "watch-node": "nodemon src/index.js"
   },
