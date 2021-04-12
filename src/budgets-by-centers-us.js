@@ -1,16 +1,7 @@
-import express from "express";
+var express = require("express");
 var router = express.Router();
 
-interface DataRow {
-    "center": string,
-    "year": number,
-    "fixed-fees": number,
-    "amounts-by-number-of-etc": number,
-    "amounts-by-number-of-proffesors": number,
-    "total": number
-}
-
-var db: DataRow[] = [];
+var db = [];
 
 router
 .get('/loadInitialData', (req, res) => {
@@ -35,7 +26,7 @@ router
     res.json(db);
 })
 .post('/stats', (req, res) => {
-    let entry: (DataRow | DataRow[]) = req.body;
+    let entry = req.body;
     
     if(Array.isArray(entry)){
         entry.forEach((row) =>{
@@ -56,12 +47,12 @@ router
     res.sendStatus(201);
 })
 .get('/stats/:center/:year/:total', (req, res) =>{
-    let center: string = req.params.center;
-    let year: number = parseInt(req.params.year);
-    let total: number = parseInt(req.params.total);
+    let center = req.params.center;
+    let year = parseInt(req.params.year);
+    let total = parseInt(req.params.total);
 
     // Get the data from the variables and add them into the row.
-    var result: DataRow[] = [];
+    var result = [];
     db.forEach((row) =>{
         if(row["center"] == center && row["year"] == year && row["total"] == total) result.push(row);
     });
@@ -69,9 +60,9 @@ router
     res.json(result);
 })
 .delete('/stats/:center/:year/:total', (req, res) =>{
-    let center: string = req.params.center;
-    let year: number = parseInt(req.params.year);
-    let total: number = parseInt(req.params.total);
+    let center = req.params.center;
+    let year = parseInt(req.params.year);
+    let total = parseInt(req.params.total);
 
     // Remove the row that the user chose.
     db = db.filter((row) =>{
@@ -82,11 +73,11 @@ router
 })
 .put('/stats/:center/:year/:total', (req, res) =>{
 
-    let center: string = req.params.center;
-    let year: number = parseInt(req.params.year);
-    let total: number = parseInt(req.params.total);
+    let center = req.params.center;
+    let year = parseInt(req.params.year);
+    let total = parseInt(req.params.total);
 
-    let data: DataRow = req.body;
+    let data = req.body;
 
     // Modify the row that the user chose
     for(let row of db){
@@ -118,7 +109,7 @@ router
 
 
 /// Checks if and Object is a valid DataRow
-function validDataRow(d: DataRow){
+function validDataRow(d){
     if(Object.keys(d).length != 6) return false;
     if (!d["center"]) return false;
     if (!d.year) return false;
@@ -129,4 +120,4 @@ function validDataRow(d: DataRow){
     return true;
 }
 
-export default router;
+module.exports = router;

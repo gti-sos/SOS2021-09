@@ -1,4 +1,4 @@
-import express from "express";
+const express = require("express");
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -9,19 +9,19 @@ app.use(express.static('public')); // Exposes the folder public in the webapp
 
 // Dani
 // Add the routes especified in the dansesben.js file
-import dansesbenRoutes from './dansesben';
+const dansesbenRoutes = require("./dansesben");
 app.use('/api/v1/performances-by-degrees-us', dansesbenRoutes);
 
 // Fran
-import franferbla1Routers from './fraferbla1';
+const franferbla1Routers = require("./fraferbla1");
 app.use('/api/v1/cut-off-marks-by-degrees-us', franferbla1Routers);
 
 // Adri
-import budgetsbycentersus from './budgets-by-centers-us';
+const budgetsbycentersus = require("./budgets-by-centers-us");
 app.use('/api/v1/budgets-by-centers-us', budgetsbycentersus);
 
 // Carlos
-import cargonare1R from './cargonare1';
+const cargonare1R = require("./cargonare1");
 app.use('/api/v1/surrenders-by-degrees-us', cargonare1R);
 
 // ***** RUTAS APIS L07
@@ -54,4 +54,4 @@ var server = app.listen(PORT, () =>{
     console.log(`Listening at http://127.0.0.1:${PORT}`);
 });
 
-export default server;
+module.exports = server;

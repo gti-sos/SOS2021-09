@@ -1,16 +1,7 @@
-import express from "express";
+const express = require("express");
 var router = express.Router();
 
-interface DataRow {
-    "field-of-knowledge": string,
-    "year": number,
-    "performance-percents": string,
-    "credits-passed": number,
-    "credits-enrolled": number,
-    "center": string
-}
-
-var db: DataRow[] = [];
+var db = [];
 
 router
 .get('/loadInitialData', (req, res) => {
@@ -35,7 +26,7 @@ router
     res.json(db);
 })
 .post('/stats', (req, res) => {
-    let data: (DataRow | DataRow[]) = req.body;
+    let data = req.body;
     
     if(Array.isArray(data)){
         data.forEach((row) =>{
@@ -56,12 +47,12 @@ router
     res.sendStatus(201);
 })
 .get('/stats/:center/:field_of_knowledge/:year', (req, res) =>{
-    let center: string = req.params.center;
-    let field_of_knowledge: string = req.params.field_of_knowledge;
-    let year: number = parseInt(req.params.year);
+    let center = req.params.center;
+    let field_of_knowledge = req.params.field_of_knowledge;
+    let year = parseInt(req.params.year);
 
     // Get the data
-    var result: DataRow[] = [];
+    var result = [];
     db.forEach((row) =>{
         if(row["center-short"] == center && row["year"] == year && row["field-of-knowledge"] == field_of_knowledge) result.push(row);
     });
@@ -69,9 +60,9 @@ router
     res.json(result);
 })
 .delete('/stats/:center/:field_of_knowledge/:year', (req, res) =>{
-    let center: string = req.params.center;
-    let field_of_knowledge: string = req.params.field_of_knowledge;
-    let year: number = parseInt(req.params.year);
+    let center = req.params.center;
+    let field_of_knowledge = req.params.field_of_knowledge;
+    let year = parseInt(req.params.year);
 
     // Remove the affected row
     db = db.filter((row) =>{
@@ -81,11 +72,11 @@ router
     res.sendStatus(200);
 })
 .put('/stats/:center/:field_of_knowledge/:year', (req, res) =>{
-    let center: string = req.params.center;
-    let field_of_knowledge: string = req.params.field_of_knowledge;
-    let year: number = parseInt(req.params.year);
+    let center = req.params.center;
+    let field_of_knowledge = req.params.field_of_knowledge;
+    let year = parseInt(req.params.year);
 
-    let data: DataRow = req.body;
+    let data = req.body;
 
     if(!validDataRow(data)) {
         res.sendStatus(400); // Invalid data
@@ -116,7 +107,7 @@ router
 
 
 /// Checks if and Object is a valid DataRow
-function validDataRow(d: DataRow){
+function validDataRow(d){
     if(Object.keys(d).length != 6) return false;
     if (!d["field-of-knowledge"]) return false;
     if (!d.year) return false;
@@ -127,4 +118,4 @@ function validDataRow(d: DataRow){
     return true;
 }
 
-export default router;
+module.exports = router;
