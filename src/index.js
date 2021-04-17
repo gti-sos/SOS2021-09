@@ -17,7 +17,7 @@ const franferbla1Routers = require("./fraferbla1");
 app.use('/api/v1/cut-off-marks-by-degrees-us', franferbla1Routers);
 
 // Adri
-const budgetsbycentersus = require("./budgets-by-centers-us");
+const budgetsbycentersus = require("./budgetsAPI/budgets-by-centers-us");
 app.use('/api/v1/budgets-by-centers-us', budgetsbycentersus);
 
 // Carlos
