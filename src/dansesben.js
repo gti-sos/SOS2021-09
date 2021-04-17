@@ -42,7 +42,6 @@ router
     else
         if(insertIntoDB(data) === -1) res.sendStatus(500);
         else res.sendStatus(201);
-
 })
 .get('/', (req, res) => {
     let offset_param = parseInt(req.query.offset);
@@ -61,8 +60,13 @@ router
     });
 })
 .put('/', (req, res) =>{
-    let document = documentFromParams(req.query);
-    let old_id = req.query._id;
+    let document = documentFromParams(req.body);
+    let old_id = req.body._id;
+
+    if(Array.isArray(document)) {
+        res.sendStatus(400);
+        return;
+    }
 
     if(!isValidData(document))
         db.findOne({_id: old_id}, function (err, doc) {
@@ -70,7 +74,7 @@ router
                 res.sendStatus(500);
             } else {
                 if(doc == null) {
-                    res.sendStatus(401);
+                    res.sendStatus(400);
                     return;
                 }
                 // Merge objects and override old
@@ -99,7 +103,7 @@ router
     let removeAll = req.query.removeAll;
 
     db.count(document, function (err, count) {
-        if(count > 1 && removeAll != "true") {
+        if((count > 1 && removeAll !== "true") || count === 0) {
             res.sendStatus(409);
         }else{
             db.remove(document, { multi: removeAll === "true" }, function (err, numRemoved) {
@@ -110,12 +114,7 @@ router
             });
         }
     });
-
-
 })
-.put('/', (req, res) =>{
-    res.sendStatus(405);
-});
 
 /*
     Utils for the API
@@ -147,9 +146,9 @@ function documentFromParams(params){
 
     if("field-of-knowledge" in params) document["field-of-knowledge"] = params["field-of-knowledge"];
     if("year" in params) document["year"] = parseInt(params["year"]);
-    if("performance-percents" in params) document["performance-percents"] = parseInt(params["performance-percents"]);
+    if("performance-percents" in params) document["performance-percents"] = params["performance-percents"];
     if("credits-passed" in params) document["credits-passed"] = parseInt(params["credits-passed"]);
-    if("credits-enrolled" in params) document["credits-enrolled"] = params["credits-enrolled"];
+    if("credits-enrolled" in params) document["credits-enrolled"] = parseInt(params["credits-enrolled"]);
     if("center" in params) document["center"] = params["center"];
     if("_id" in params) document["_id"] = params["_id"];
 
@@ -160,7 +159,7 @@ function isValidData(d){
     if(!Array.isArray(d)) return validDataRow(d);
 
     for(let element in d){
-        if(!validDataRow(element)) return false;
+        if(!validDataRow(d[element])) return false;
     }
 
     return true;
@@ -173,7 +172,7 @@ function validDataRow(d){
     if (!d["performance-percents"]) return false;
     if (!d["credits-passed"]) return false;
     if (!d["credits-enrolled"]) return false;
-    if (!d["center-short"]) return false;
+    if (!d["center"]) return false;
     return true;
 }
 
