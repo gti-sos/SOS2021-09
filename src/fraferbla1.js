@@ -113,6 +113,7 @@ router.get("/",(req,res)=>{
 //6.2: Crea un nuevo recurso POST
 router.post('/',(req,res)=>{
 
+	console.log("New POST /cut-off-marks-by-degrees-us");
 	var nuevoObjeto = req.body;
 	var degree = req.body.degree;
 	var year = parseInt(req.body.year);
@@ -126,13 +127,7 @@ router.post('/',(req,res)=>{
 		}else{
 			if(data.length == 0){
 
-				if(!nuevoObjeto.degree
-				|| !nuevoObjeto.year
-				|| !nuevoObjeto['cut_off_mark']
-				|| !nuevoObjeto['selectivity_presented_seville']
-				|| !nuevoObjeto['price_admision']
-				|| !nuevoObjeto['faculty']
-				|| Object.keys(nuevoObjeto).length != 6){
+				if(!nuevoObjeto.degree || !nuevoObjeto.year || !nuevoObjeto['cut_off_mark'] || !nuevoObjeto['selectivity_presented_seville'] || !nuevoObjeto['price_admision'] || !nuevoObjeto['faculty'] || Object.keys(nuevoObjeto).length != 6){
 					console.log("Data isnt correct");
 					return res.sendStatus(400);
 				}else{
