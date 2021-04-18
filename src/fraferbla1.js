@@ -132,7 +132,7 @@ router.post('/',(req,res)=>{
 				|| !nuevoObjeto['selectivity_presented_seville']
 				|| !nuevoObjeto['price_admision']
 				|| !nuevoObjeto['faculty']
-				|| Object.keys(nuevoObjeto).length != 5){
+				|| Object.keys(nuevoObjeto).length != 6){
 					console.log("Data isnt correct");
 					return res.sendStatus(400);
 				}else{
