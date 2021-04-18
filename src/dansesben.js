@@ -59,12 +59,13 @@ router
     });
 })
 .put('/', (req, res) =>{
-    let document = documentFromParams(req.body);
-
-    if(Array.isArray(document)) {
+    if(!Array.isArray(req.body) || req.body.length !== 2) {
         res.sendStatus(400);
         return;
     }
+
+    let document = documentFromParams(req.body[0]);
+    let new_document = documentFromParams(req.body[1]);
 
     if(isValidData(document)){
         db.findOne(document, function (err, doc) {
@@ -72,13 +73,15 @@ router
                 console.error(err);
                 res.sendStatus(500);
             }else{
-                db.update({_id: doc["_id"]}, document, {}, function (err, _) {
-                    if(err){
-                        console.error(err);
-                        res.sendStatus(500);
-                    }
-                    else res.sendStatus(200);
-                });
+                if(doc === null) res.sendStatus(400);
+                else
+                    db.update({_id: doc["_id"]}, new_document, {}, function (err, _) {
+                        if(err){
+                            console.error(err);
+                            res.sendStatus(500);
+                        }
+                        else res.sendStatus(200);
+                    });
             }
         });
     }

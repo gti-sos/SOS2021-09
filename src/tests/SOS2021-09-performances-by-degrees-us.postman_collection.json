@@ -48,7 +48,7 @@
 					"script": {
 						"exec": [
 							"pm.test(\"Status Code\", function() {",
-							"    pm.response.to.have.status(200);",
+							"    pm.expect(pm.response.code).to.be.oneOf([200, 201])",
 							"});"
 						],
 						"type": "text/javascript"
@@ -248,13 +248,7 @@
 							"        raw: JSON.stringify({ \"field-of-knowledge\": \"PruebaPOSTMAN2\", \"year\": 5555, \"performance-percents\": \"0\", \"credits-passed\": 1870, \"credits-enrolled\": 2147, \"center\": \"FHISTRY\" })",
 							"    }",
 							"}, function (err, res) {",
-							"    pm.sendRequest({",
-							"        url: pm.variables.get(\"HOST\") + \"/api/v1/performances-by-degrees-us/?field-of-knowledge=PruebaPOSTMAN2&year=5555&performance-percents=0&credits-passed=1870&credits-enrolled=2147&center=FHISTRY&limit=1\",",
-							"        method: 'GET'",
-							"    }, function (err, res) {",
-							"        let new_data = res.json()[0];",
-							"        new_data[\"year\"] = 9999;",
-							"        pm.sendRequest({",
+							"            pm.sendRequest({",
 							"            url: pm.variables.get(\"HOST\") + \"/api/v1/performances-by-degrees-us/\",",
 							"            method: 'PUT',",
 							"            header: {",
@@ -262,14 +256,13 @@
 							"            },",
 							"            body: {",
 							"                mode: 'raw',",
-							"                raw: JSON.stringify(new_data)",
+							"                raw: JSON.stringify([{ \"field-of-knowledge\": \"PruebaPOSTMAN2\", \"year\": 5555, \"performance-percents\": \"0\", \"credits-passed\": 1870, \"credits-enrolled\": 2147, \"center\": \"FHISTRY\" }, { \"field-of-knowledge\": \"FuncionaPOSTMAN\", \"year\": 5555, \"performance-percents\": \"0\", \"credits-passed\": 1870, \"credits-enrolled\": 2147, \"center\": \"FHISTRY\" }])",
 							"            }",
 							"        }, function (err, res) {",
 							"            pm.test(\"Modify one record\", function(){",
 							"                pm.expect(res.code).equals(200);",
 							"            });",
 							"        });",
-							"    });",
 							"});"
 						],
 						"type": "text/javascript"
@@ -281,7 +274,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[{\n    \"year\": 2025,\n    \"_id\": \"AiXxaFP0Gcm9hoLX\"\n}]",
+					"raw": "    [{\n        \"field-of-knowledge\": \"Computer-Science\",\n        \"year\": 2018,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"ETSII\"\n    },\n    {\n        \"field-of-knowledge\": \"Pruebas2222\",\n        \"year\": 2018,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"ETSII\"\n    }\n    ]",
 					"options": {
 						"raw": {
 							"language": "json"
