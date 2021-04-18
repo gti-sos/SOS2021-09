@@ -50,36 +50,29 @@ router
     let offset = isNaN(offset_param) ? 0 : offset_param;
     let limit = isNaN(limit_param) ? 0 : limit_param;
 
-    db.find(documentFromParams(req.query)).skip(offset).limit(limit).exec(function (err, docs) {
+    db.find(documentFromParams(req.query), {_id: 0}).skip(offset).limit(limit).exec(function (err, docs) {
         if(err){
             console.error(err);
             res.sendStatus(500);
         }
         else res.json(docs);
-
     });
 })
 .put('/', (req, res) =>{
     let document = documentFromParams(req.body);
-    let old_id = req.body._id;
 
     if(Array.isArray(document)) {
         res.sendStatus(400);
         return;
     }
 
-    if(!isValidData(document))
-        db.findOne({_id: old_id}, function (err, doc) {
-            if (err) {
+    if(isValidData(document)){
+        db.findOne(document, function (err, doc) {
+            if(err){
+                console.error(err);
                 res.sendStatus(500);
-            } else {
-                if(doc == null) {
-                    res.sendStatus(400);
-                    return;
-                }
-                // Merge objects and override old
-                document = {...doc, ...document};
-                db.update({_id: old_id}, document, {}, function (err, _) {
+            }else{
+                db.update({_id: doc["_id"]}, document, {}, function (err, _) {
                     if(err){
                         console.error(err);
                         res.sendStatus(500);
@@ -88,14 +81,9 @@ router
                 });
             }
         });
+    }
     else{
-        db.update({_id: old_id}, document, {}, function (err, _) {
-            if(err){
-                console.error(err);
-                res.sendStatus(500);
-            }
-            else res.sendStatus(200);
-        });
+        res.sendStatus(400);
     }
 })
 .delete('/', (req, res) =>{
