@@ -122,32 +122,32 @@ function filterOfRequest(req, cuts) {
 	// We mus check for each budget wich field is selected to comparate, if selected,
 	// the metod will check if the value of the budget on that field matches with the value on query.
 	if(req.query.degree != undefined) {
-		if(surrender.degree != req.query.degree)  {
+		if(cut.degree != req.query.degree)  {
 			check = false;
 		}
 	}
 	if(req.query.year != undefined) {
-		if(surrender.year != req.query.year)  {
+		if(cut.year != req.query.year)  {
 			check = false;
 		}
 	}
 	if(req.query.cut_off_mark != undefined) {
-		if(surrender.cut_off_mark != req.query.cut_off_mark)  {
+		if(cut.cut_off_mark != req.query.cut_off_mark)  {
 			check = false;
 		}
 	}
 	if(req.query.selectivity_presented_seville != undefined) {
-		if(surrender.selectivity_presented_seville != req.query.selectivity_presented_seville)  {
+		if(cut.selectivity_presented_seville != req.query.selectivity_presented_seville)  {
 			check = false;
 		}
 	}
 	if(req.query.price_admision != undefined) {
-		if(surrender.price_admision != req.query.price_admision)  {
+		if(cut.price_admision != req.query.price_admision)  {
 			check = false;
 		}
 	}
 	if(req.query.faculty != undefined) {
-		if(surrender.faculty != req.query.faculty)  {
+		if(cut.faculty != req.query.faculty)  {
 			check = false;
 		}
 	}
@@ -175,7 +175,7 @@ function paginationMaker(req, cuts) {
 	const offset = req.query.offset;
 	const limit = req.query.limit;
 
-	if(limit < 1 || offset < 0 || offset > surrenders.length) {
+	if(limit < 1 || offset < 0 || offset > cuts.length) {
 		console.error(`Error in pagination, you have exceded limits`);
 		res.push("ERROR");
 		return res;	
@@ -197,7 +197,7 @@ router.post("/cuts", function(req,res){
 		console.error("ERROR incorrect structure of entry data in POST");
 		res.sendStatus(400); // BAD REQUEST F06.6
 	} else {
-		console.log(`Element (cut) to be inserted: <${JSON.stringify(newSurrender,null,2)}>`);
+		console.log(`Element (cut) to be inserted: <${JSON.stringify(newCut,null,2)}>`);
 
 		dbcuts.find({degree: newCut.degree},(err, cutsFound)=> {
 			if(err) {
@@ -207,7 +207,7 @@ router.post("/cuts", function(req,res){
 
 				if (cutsFound.length == 0) {
 					console.log("New cut (this cut) can be inserted to the DB... inserting"
-					+ JSON.stringify(surrendersFound,null,2));
+					+ JSON.stringify(cutsFound,null,2));
 					dbcuts.insert(newCut);
 					console.log("New cut (this cut) inserted");
 					res.sendStatus(201); // CREATED F06.6
