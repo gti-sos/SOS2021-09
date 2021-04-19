@@ -29,12 +29,12 @@ var initialData = [{
     "total": 120500.20
 
 },{
-        "center": "FCOM",
-        "year": 2018,
-        "fixed_fees": 11003.22,
-        "amounts_by_number_of_etc": 93753.44,
-        "amounts_by_number_of_proffessors": 50700.59,
-        "total": 180600.20
+	"center": "FCOM",
+	"year": 2018,
+	"fixed_fees": 11003.22,
+	"amounts_by_number_of_etc": 93753.44,
+	"amounts_by_number_of_proffessors": 50700.59,
+	"total": 180600.20
 }];
 
 // Index page.
