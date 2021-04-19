@@ -1,10 +1,10 @@
-const { response } = require("express");
+
 var express = require("express");
 var router = express.Router();
 var Datastore = require("nedb");
 var db = new Datastore();
 
-var dbcuts = new Datastore({ filename: './cutsDB '});
+var dbcuts = new Datastore({ filename: './cutsDB'});
 dbcuts.loadDatabase(function (err) {
 
 });
