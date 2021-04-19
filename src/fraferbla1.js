@@ -57,7 +57,7 @@ var initialData = [
 //5.2: loadInitialData
 router.get("/loadInitialData", (req,res) =>{
     dbcuts.insert(initialData);
-    console.log(`Datos anadidos: <${JSON.stringify(dbcuts,null,2)}>`);
+    console.log(`Datos anadidos: <${JSON.stringify(initialData,null,2)}>`);
     res.sendStatus(201); //Created
 });
 
@@ -86,7 +86,7 @@ router.get("/cuts",(req,res)=>{
 
 				// PAGINATION F06.3
 			} else if(req.query.limit != undefined || req.query.offset != undefined) {
-				selectedCuts = paginationMaker(req, selectedCuts);
+				selectedCuts = paginationMaker(req, cutsFound);
 			}
 			  else {
 				selectedCuts = filterOfRequest(req, cutsFound);
