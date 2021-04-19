@@ -57,7 +57,7 @@ var d_g = [
 //5.2: loadInitialData
 router.get("/loadInitialData", (req,res) =>{
     db_ab.insert(d_g);
-    console.log(`Datos anadidos: <${JSON.stringify(db_abandono,null,2)}>`);
+    console.log(`Datos anadidos: <${JSON.stringify(d_g,null,2)}>`);
     res.sendStatus(201); //Created
 });
 
