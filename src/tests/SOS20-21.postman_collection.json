@@ -1,0 +1,291 @@
+{
+	"info": {
+		"_postman_id": "712fa626-93a9-477c-bd8a-e978b969c403",
+		"name": "SOS20-21",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Load Initial Data",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/loadInitialData"
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la lista de Recursos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders"
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la lista de Recursos",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"degree\": \"PruebaEntregable\",\r\n    \"year\": 2021,\r\n    \"surrender_counts\": 1935554,\r\n    \"new_students\": 536663,\r\n    \"surrender_percent\":36322.21,\r\n    \"center\": \"CentroPrueba\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders"
+			},
+			"response": []
+		},
+		{
+			"name": "GET a un Recurso",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders/PruebaEntregable/2021"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a un Recurso",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders/PruebaEntregable/2021"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un Recurso",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"degree\": \"PruebaEntregablePUT\",\r\n    \"year\": 2021,\r\n    \"surrender_counts\": 1935554,\r\n    \"new_students\": 536663,\r\n    \"surrender_percent\":36322.21,\r\n    \"center\": \"CentroPruebaPUT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders/History/2018"
+			},
+			"response": []
+		},
+		{
+			"name": "POST a un Recurso (Debe dar fallo)",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders/History/2018"
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a la lista de Recursos (Debe dar fallo)",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a la lista de Recursos",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders"
+			},
+			"response": []
+		},
+		{
+			"name": "Load Initial Data Para las búsquedas y paginación",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/loadInitialData"
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por 1 campo",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders?degree=History",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					],
+					"query": [
+						{
+							"key": "degree",
+							"value": "History"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por 2 campos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders?new_students=533&surrender_percent=36.21",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					],
+					"query": [
+						{
+							"key": "new_students",
+							"value": "533"
+						},
+						{
+							"key": "surrender_percent",
+							"value": "36.21"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Búsqueda por 3 campos",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders?new_students=237&surrender_percent=19.83&center=ETSII",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					],
+					"query": [
+						{
+							"key": "new_students",
+							"value": "237"
+						},
+						{
+							"key": "surrender_percent",
+							"value": "19.83"
+						},
+						{
+							"key": "center",
+							"value": "ETSII"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginación",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders?limit=2&offset=0",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginación 2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders?limit=2&offset=1",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a la lista de Recursos tras pruebas búsquedas y paginación",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us/surrenders"
+			},
+			"response": []
+		}
+	]
+}
