@@ -172,8 +172,8 @@ function filterOfRequest(req, surrenders) {
 // Pagination method F06.3
 function paginationMaker(req, surrenders) {
 	var res = [];
-	const offset = req.query.offset;
-	const limit = req.query.limit;
+	const offset = parseInt(req.query.offset);
+	const limit = parseInt(req.query.limit);
 
 	if(limit < 1 || offset < 0 || offset > surrenders.length) {
 		console.error(`Error en paginación, has excedido los límites`);
