@@ -4,9 +4,6 @@ var router = express.Router();
 var Datastore = require("nedb");
 
 var dbcuts = new Datastore({ filename: './cutsDB'});
-	dbcuts.loadDatabase(function (err) {
-
-});
 
 var datosGuardados = [
     {
