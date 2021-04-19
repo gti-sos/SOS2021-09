@@ -4,6 +4,10 @@ var router = express.Router();
 var Datastore = requires("nedb");
 var db = new Datastore();
 
+var dbcuts = new Datastore({ filename: './cutsDB '});
+dbcuts.loadDatabase(function (err) {
+
+});
 var dbCorte = [];
 
 var datosGuardados = [
@@ -19,7 +23,7 @@ var datosGuardados = [
         "degree": "History",
         "year": 2018,
         "cut_off_mark": 6.6,
-        "selectivit_presented_seville": 10517,
+        "selectivity_presented_seville": 10517,
         "price_admision": 757,
         "faculty": "FHISTRY"
     },
@@ -52,259 +56,308 @@ var datosGuardados = [
 
 //5.2: Hacer loadInitialData que cree dos o más recursos (Crea 5)
 router.get("/loadInitialData", (req,res) =>{
-	db.remove({},{multi:true},function(err,numRemoved){});
-    db.insert(datosGuardados);
-    res.sendStatus(200);
-	console.log("Initial data loaded:"+JSON.stringify(datosGuardados,null,2));
+	dbcuts.insert(datosGuardados);
+	console.log(`Data added: <${JSON.stringify(datosGuardados,null,2)}>`);
+	res.sendStatus(201);
 });
 
-//6.1: devuelve una lista de recursos GET
+// SEARCHS F06.2 | RETURNS A LIST WITH ALL RESOURCES F04.1
+// Return a specific budget or all budgets as the query deteminates.
+router.get("/cuts",(req,res)=>{
 
-router.get("/",(req,res)=>{
+	var selectedCuts = [];
 	
-	var query = req.query;
-	var offset = query.offset;
-	var limit = query.limit;
-	delete query.offset;
-	delete query.limit;
-
-	if(query.hasOwnProperty("year")){
-		query.year = parseInt(query.year);
-	}
-	if(query.hasOwnProperty("cut_off_mark")){
-		query.cut_off_mark = parseInt(query.cut_off_mark);
-	}
-	if(query.hasOwnProperty("selectivity-presented-seville")){
-		query.selectivity_presented_seville = parseInt(query.selectivity_presented_seville);
-	}
-	if(query.hasOwnProperty("price-admision")){
-		query.price_admision = parseInt(query.price_admision);
-	}
-
-	db.find(query).skip(offset).limit(limit).exec((err, cutsDB) => {
-		if(err){
-			console.error("ERROR accesing DB in GET");
-			res.sendStatus(500);
-		}
-		else{
-			if(cutsDB.length == 0){
-				console.error("No data found");
-				res.sendStatus(404);
-			}
-			else{
-				var dataSend = cutsDB.map((c)=>{
-					return {degree : c.degree, year : c.year, cut_off_mark : c.cut-off-mark, selectivity_presented_seville : c.selectivity_presented_seville, price_admision : c.price_admision, faculty : c.faculty};
-				})
-				if(dataSend.length==1){
-					var objectSend = dataSend[0];
-					res.send(JSON.stringify(objectSend, null, 2));
-					console.log("Data sent:"+JSON.stringify(objectSend, null, 2));
-				}else{
-					res.send(JSON.stringify(dataToSend, null, 2));
-					console.log("Data sent:"+JSON.stringify(dataSend, null, 2));
-				}
-				
-			 }
-		}
-	});
-
-});
-
-//6.2: Crea un nuevo recurso POST
-router.post('/',(req,res)=>{
-
-	console.log("New POST /cut-off-marks-by-degrees-us");
-	var newData = req.body;
-	var degree = req.body.degree;
-	var year = parseInt(req.body.year);
-	
-	db.find({"degree":degree, "year":year}).exec((err,data)=>{
-
-		if(err){
-
-			console.error("ERROR GET");
-			res.sendStatus(500);
-		}else{
-			if(data.length == 0){
-
-				if(!newData.degree || !newData.year || !newData['cut_off_mark'] || !newData['selectivity_presented_seville'] || !newData['price_admision'] || !newData['faculty'] || Object.keys(newData).length != 6){
-					console.log("Data isnt correct");
-					return res.sendStatus(400);
-				}else{
-			
-					console.log("Data input"+JSON.stringify(newData, null, 2));
-					db.insert(newData);
-					res.sendStatus(201);
-				}
-			}else{
-
-				res.sendStatus(409);
-				console.log("Data already exist");
-			}
-		}
-	});
-
-});
-
-//6.3: Hacemos un GET a un recurso específico
-router.get("/:degree/:year",(req,res)=>{
-	var reqDegree = req.params.degree;
-	var reqYear = parseInt(req.params.year);
-
-	db.find({degree: reqDegree, year: reqYear}, {_id: 0}, function(err, data){
+	dbcuts.find({},(err, cutsFound)=> {
 		if(err) {
-			console.error("ERROR in GET");
-			res.sendStatus(500);
+			console.error("ERROR accesing to the DB in GET" + err);
+			res.sendStatus(500); // INTERNAL ERROR. F06.6
 		} else {
-			if(datos.length == 0){
-				console.error("Data NOT found");
-				res.sendStatus(404);
-			}else{
-				var dataSend = datos[0];
-				console.log(`GET to <${reqDegree}>, <${reqYear}>`);
-				res.status(200).send(JSON.stringify(dataSend. null, 2));
+
+			// Check if we want to search an specific budget or if we want all of them.
+			// In case of no filtering has been declared, all budgets will be sended. SEARCHS
+			if(Object.keys(req.query).length == 0) {
+				selectedCuts = cutsFound;
+
+				// PAGINATION F06.3
+			} else if(req.query.limit != undefined || req.query.offset != undefined) {
+				selectedCuts = paginationMaker(req, selectedCuts);
 			}
-		}
+			  else {
+				selectedCuts = filterOfRequest(req, selectedCuts);
+			}
 
-	});
-});
+			// Get off the id.
+			selectedCuts.forEach((t)=>{
+				delete t._id;
+			});
 
-//6.4: Eliminar un recurso json DELETE
-router.delete("/:degree/:year", (req,res)=>{
-	
-	console.log("DELETE /:degree/:year");
-	var reqDegree = req.params.degree;
-	var reqYear = parseInt(req.params.year);
-
-	db.remove({degree:reqDegree,year:reqYear},{multi:true}, (err, out) => {
-
-		if(out == 1){
-
-			console.log("DATA DELETED");
-			res.sendStatus(200);
-		}else{
-
-			console.log("DATA NOT FOUND");
-			res.sendStatus(404);
-		}
-	});
-});
-
-//6.5 Metemos un nuevo elemento PUT
-router.put("/:degree/:year", (req,res) => {
-	
-	var reqDegree = req.params.degree;
-	var reqYear = parseInt(req.params.year);
-	var body = req.body;
-
-	db.find({"degree":reqDegree, "year":reqYear}, (err, data) => {
-
-		if(data.length == 0){
-
-			res.sendStatus(404, "DATA NOT FOUND");
-			console.log("Data not found");
-		}else if(!body.reqDegree || !body.reqYear || !body["cut_off_mark"] || !body["selectivity_presented_seville"] || !body["price_admision"] || !body["faculty"] || Object.keys(body).length != 5){
-
-			console.log("Invalid format");
-			res.sendStatus(400, "FORMAT ISNT VALID");
-		}else{
-
-			db.update({"degree":reqDegree,"year":reqYear}, {$set:body});
-			res.sendStatus(200);
-			console.log("Data is updated");
-		}
-	});
-});
-
-//6.6 Hacemos POST a un recurso
-router.post("/:degree/:year", (req,res) =>{
-	console.log("This method isnt allowed");
-	return res.sendStatus(405);
-});
-
-//6.7 Hacemos PUT a lista de recursos
-// POST a country/year error
-router.post("/:degree", (req,res)=>{
-
-	console.log("NEW POST ...../cut-off-marks-by-degrees-us/degree");
-	res.status(405).send("NOT ALLOWED");
-})
-router.post("/:year", (req,res)=>{
-
-	console.log("NEW POST ...../cut-off-marks-by-degrees-us/year");
-	res.status(405).send("NOT ALLOWED");
-})
-router.post("/:cut_off_mark", (req,res)=>{
-
-	console.log("NEW POST ...../cut-off-marks-by-degrees-us/cut_off_mark");
-	res.status(405).send("NOT ALLOWED");
-})
-router.post("/:selectivity_presented_seville", (req,res)=>{
-
-	console.log("NEW POST ...../cut-off-marks-by-degrees-us/selectivity_presented_seville");
-	res.status(405).send("NOT ALLOWED");
-})
-router.post("/:price_admision", (req,res)=>{
-
-	console.log("NEW POST ...../cut-off-marks-by-degrees-us/price_admision");
-	res.status(405).send("NOT ALLOWED");
-})
-router.post("/:faculty", (req,res)=>{
-
-	console.log("NEW POST ...../cut-off-marks-by-degrees-us/faculty");
-	res.status(405).send("NOT ALLOWED");
-});
-
-router.post("/", (req,res)=>{
-
-	console.log("NEW PUT /cut-off-marks-by-degrees-us");
-	res.status(405).send("NOT ALLOWED");
-})
-
-
-//6.8 DELETE: borra todo los recursos
-router.delete("/", (req,res)=>{
-	
-	db.remove({}, {multi:true}, function (err, num) {
-
-		if(err){
-
-			console.error("Error deleting DB");
-			res.sendStatus(500);
-		}else{
-
-			if(num == 0){
-
-				console.error("Error page not found");
-				res.sendStatus(404);
-			}else{
-
-				res.sendStatus(200);
+			if(selectedCuts.includes("ERROR")) {
+				res.sendStatus(400); // BAD REQUEST, the values of limit and offset are wrong. F06.6
+			} else if(selectedCuts.length == 0) {
+				console.error('No cut has been found');
+				res.sendStatus(404); // NOT FOUND F06.6
+			}
+			else {
+				// RETURNS AN ARRAY F06.11
+				console.log(`Es array?: <${Array.isArray(selectedCuts)}>`);
+				res.status(200).send(JSON.stringify(selectedCuts,null,2)); //OK F06.6
 			}
 		}
 	});
 });
 
-//6.9 GET a un recurso en concreto ERROR
-router.get("/:data",(req,res)=>{
+// Search method F06.2
+function filterOfRequest(req, cuts) {
+	var res = [];
 
-	console.error("BAD REQUEST");
-	res.sendStatus(400).send("Fields entered are incorrect");
+	for(var cut of cuts) {
+	var check = true;
+
+	// We must check for each budget wich field is selected to comparate, if selected,
+	// the metod will check if the value of the budget on that field matches with the value on query.
+	if(req.query.degree != undefined) {
+		if(cut.degree != req.query.degree)  {
+			check = false;
+		}
+	}
+	if(req.query.year != undefined) {
+		if(cut.year != req.query.year)  {
+			check = false;
+		}
+	}
+	if(req.query.cut_off_mark != undefined) {
+		if(cut.cut_off_mark != req.query.cut_off_mark)  {
+			check = false;
+		}
+	}
+	if(req.query.selectivity_presented_seville != undefined) {
+		if(cut.selectivity_presented_seville != req.query.selectivity_presented_seville)  {
+			check = false;
+		}
+	}
+	if(req.query.price_admision != undefined) {
+		if(cut.price_admision != req.query.price_admision)  {
+			check = false;
+		}
+	}
+	if(req.query.faculty != undefined) {
+		if(cut.faculty != req.query.faculty)  {
+			check = false;
+		}
+	}
+
+	if(check) {
+		res.push(cut);
+	}
+	
+	}
+	return res;
+}
+
+// Pagination method F06.3
+function paginationMaker(req, cuts) {
+	var res = [];
+	const offset = req.query.offset;
+	const limit = req.query.limit;
+
+	if(limit < 1 || offset < 0 || offset > cuts.length) {
+		console.error(`Error in pagination, you have exceeded limits`);
+		res.push("ERROR");
+		return res;	
+	}
+	const startIndex = offset;
+	const endIndex = startIndex + limit;
+
+	res = cuts.slice(startIndex, endIndex);
+	return res;
+}
+
+// POST TO RESOURCES LIST F04.1
+router.post("/cuts", function(req,res){
+	var newCut = req.body;
+
+	// WE SHOULD RETURN A 400 CODE WHEN WE DONT RECEIVE A JSON DATA WITH THE EXACTLY DATA STRUCTURE
+	// HOPED. F06.12
+	if(!isValidData(newCut)) {
+		console.error("ERROR incorrect structure of entry data in POST");
+		res.sendStatus(400); // BAD REQUEST F06.6
+	} else {
+		console.log(`Element (cut) to be inserted: <${JSON.stringify(newCut,null,2)}>`);
+
+		dbcuts.find({degree: newCut.degree},(err, cutsFound)=> {
+			if(err) {
+				console.error("ERROR accesing to the DB in POST" + err);
+				res.sendStatus(500); // INTERNAL ERROR F06.6
+			} else {
+
+				if (cutsFound.length == 0) {
+					console.log("New cut (this cut) can be inserted to the DB... inserting"
+					+ JSON.stringify(cutsFound,null,2));
+					dbcuts.insert(newCut);
+					console.log("New cut (this cut) inserted");
+					res.sendStatus(201); // CREATED F06.6
+				} else {
+					console.log("The cut already exists in the DB... Check conflicts");
+					res.sendStatus(409); // CONFLICT F06.6
+				}
+			}
+		});
+	}
 });
 
+// GET TO A RESOURCE F04.3
+router.get("/cuts/:degree/:year", function(req,res){
+	var Rdegree = req.params.degree;
+	var Ryear = parseInt(req.params.year);
 
-/*//GET GENERAL
-router.get(BASE_API_PATH+"", (req,res)=>{
-    res.send(JSON.stringify(dbcorte,null,2));
+	console.log(`Searching for the cut with degree <${Rdegree}> and year <${Ryear}>`);
+
+	// With both of the identificators F06.10
+	dbcuts.find({$and: [{degree: Rdegree}, {year: Ryear}]},{},(err, cutsFound)=> {
+		if(err) {
+			console.error("ERROR accesing to the DB in GET TO A RESOURCE" + err);
+			res.sendStatus(500); // INTERNAL ERROR F06.6
+		} else {
+
+			if(cutsFound.length == 0) {
+				console.error('Any data has been found');
+				res.sendStatus(404); // NOT FOUND F06.6
+			} else {
+				// Get off the id.
+				cutsFound.forEach((t)=>{
+					delete t._id;
+				});
+				// RETURNS AN OBJECT, IN THIS CASE, THE ONLY OBJECT ON THE ARRAY F06.11
+				console.log(`Found the cut with degree <${Rdegree}> and year <${Ryear}> type: <${typeof cutsFound[0]}>`);
+				res.status(200).send(JSON.stringify(cutsFound[0],null,2)); //OK F06.6 
+			}
+		}
+	});
 });
 
-router.post(BASE_API_PATH+"", (req,res)=>{
-    var newCorte = req.body;
-    console.log(`new contact to be added: <${JSON.stringify(newCorte,null,2)}>`);
+// DELETE TO A RESOURCE F04.4
+router.delete("/cuts/:degree/:year", (req,res)=>{
+	var Ddegree = req.params.degree;
+	var Dyear = parseInt(req.params.year);
 
-    dbCorte.push(newCorte);
-    res.sendStatus(201);
+	console.log(`Deleting the cut with degree <${Ddegree}> and year <${Dyear}>...`);
+
+	// With both of the identificators F06.10
+	dbcuts.remove({$and: [{degree: Ddegree}, {year: Dyear}]},(err, numCutsRemoved)=>{
+		if(err) {
+			console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
+			res.sendStatus(500); // INTERNAL ERROR F06.6
+		} else {
+
+			if(numCutsRemoved == 0) {
+				console.error('Any data has been deleted');
+				res.sendStatus(404); // NOT FOUND F06.6
+			} else {
+				console.log(`The cut with degree <${Ddegree}> and year <${Dyear}> has been deleted`)
+				res.sendStatus(200); // OK F06.6
+			}
+		}
+	});
+
 });
-*/
+
+// PUT TO A RESOURCE F04.5
+router.put("/cuts/:degree/:year", function(req,res){
+
+	var Udegree = req.params.degree;
+	var Uyear = parseInt(req.params.year);
+	var updatedCut = req.body;
+
+	// WE SHOULD RETURN A 400 CODE WHEN WE DONT RECEIVE A JSON DATA WITH THE EXACTLY DATA STRUCTURE
+	// HOPED. F06.12
+	if(!isValidData(updatedCut)) {
+		console.error("ERROR incorrect structure of entry data in POST");
+		res.sendStatus(400); // BAD REQUEST F06.6
+	} else {
+		console.log(`Deleting the cut with degree <${Udegree}> and year <${Uyear}>...`);
+
+		// With both of the identificators F06.10
+		dbcuts.update({$and: [{degree: Udegree}, {year: Uyear}]},{
+			degree: updatedCut.degree,
+			year: updatedCut.year,
+			cut_off_mark: updatedCut.cut_off_mark,
+			selectivity_presented_seville: updatedCut.selectivity_presented_seville,
+			price_admision: updatedCut.price_admision,
+			faculty: updatedCut.faculty },(err, numCutsUpdated)=>{
+			
+
+				if(err) {
+					console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
+					res.sendStatus(500); // INTERNAL ERROR F06.6
+				} else {
+		
+					if(numCutsUpdated == 0) {
+						console.error('No data has been updated');
+						res.sendStatus(404); // NOT FOUND F06.6
+					} else {
+						console.log(`The cut with degree <${Udegree}> and year <${Uyear}> has been updated`)
+						res.sendStatus(200); // OK F06.6
+					}
+				}
+		});
+	}
+});
+
+// POST TO A RESOURCE F04.6 SHOULD RETURN AN ERROR.
+router.post("/cuts/:degree/:year", function(req,res){
+	console.log("ERROR, it´s not allowed to make a post to a resource");
+	res.sendStatus(405); // NOT ALLOWED F06.6
+});
+
+// PUT TO THE RESOURCES LIST F04.7 SHOULD RETURN AN ERROR.
+router.put("/cuts", function(req,res){
+	console.log("ERROR, it´s not allowed to make a put to the resource list");
+	res.sendStatus(405); // NOT ALLOWED F06.6
+});
+
+// DELETE TO A RESOURCE F04.8
+router.delete("/cuts", (req,res)=>{
+
+	console.log(`Deleting all cuts...`);
+
+	dbcuts.remove({},{multi: true},(err, numCutsRemoved)=>{
+		if(err) {
+			console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
+			res.sendStatus(500); // INTERNAL ERROR F06.6
+		} else {
+
+			if(numCutsRemoved == 0) {
+				console.error('Any data has been deleted');
+				res.sendStatus(404); // NOT FOUND F06.6
+			} else {
+				console.log(`All cutve has been deleted, a total of <${numCutsRemoved}>`)
+				res.sendStatus(200); // OK F06.6
+			}
+		}
+	});
+});
+
+// WE SHOULD RETURN A 400 CODE WHEN WE DONT RECEIVE A JSON DATA WITH THE EXACTLY DATA STRUCTURE
+// HOPED. F06.12
+function isValidData(obj){
+    if(!Array.isArray(obj)) return validDataEntry(obj);
+
+    for(let element in obj){
+        if(!validDataEntry(obj[element])) return false;
+    }
+
+    return true;
+}
+
+function validDataEntry(obj){
+    if(Object.keys(obj).length !== 6) return false;
+    if (!obj["degree"]) return false;
+    if (!obj.year) return false;
+    if (!obj["cut_off_mark"]) return false;
+    if (!obj.selectivity_presented_seville) return false;
+    if (!obj.price_admision) return false;
+    if (!obj["faculty"]) return false;
+    return true;
+}
 
 module.exports = router;
