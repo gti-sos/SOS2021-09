@@ -86,7 +86,7 @@ router.get("/surrenders",(req,res)=>{
 
 				// PAGINATION F06.3
 			} else if(req.query.limit != undefined || req.query.offset != undefined) {
-				selectedSurrenders = paginationMaker(req, selectedSurrenders);
+				selectedSurrenders = paginationMaker(req, surrendersFound);
 			}
 			  else {
 				selectedSurrenders = filterOfRequest(req, surrendersFound);
@@ -376,11 +376,17 @@ function isValidData(obj){
 function validDataEntry(obj){
     if(Object.keys(obj).length !== 6) return false;
     if (!obj["degree"]) return false;
+	if (!obj.degree) return false;
+	if (!obj["year"]) return false;
     if (!obj.year) return false;
+	if (!obj["surrender_counts"]) return false;
     if (!obj.surrender_counts) return false;
+	if (!obj["new_students"]) return false;
     if (!obj.new_students) return false;
     if (!obj["surrender_percent"]) return false;
+	if (!obj.surrender_percent) return false;
     if (!obj["center"]) return false;
+	if (!obj.center) return false;
     return true;
 
      /*

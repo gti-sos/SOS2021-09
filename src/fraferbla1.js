@@ -1,14 +1,17 @@
-
 var express = require("express");
 var router = express.Router();
-var Datastore = require("nedb");
 
-var dbcuts = new Datastore({ filename: './cutsAPI/cutsDB'});
-	dbcuts.loadDatabase(function (err) {
+//Sacamos el paquete nedb, el paquete de la base de datos
+var Datastore=require("nedb");
 
-});
+var dbcuts=new Datastore({filename: './cutsdb'});
+    dbcuts.loadDatabase(function (err) { //La llamada de vuelta, que es opcional
+        //Ahora los comandos serán ejecutados
+    });
 
-var datosGuardados = [
+var db_abandono = [];
+
+var initialData = [
     {
         "degree": "History",
         "year": 2017,
@@ -51,16 +54,21 @@ var datosGuardados = [
     }
 ];
 
-
-//5.2: Hacer loadInitialData que cree dos o más recursos (Crea 5)
+//5.2: loadInitialData
 router.get("/loadInitialData", (req,res) =>{
-	dbcuts.insert(datosGuardados);
-	console.log(`Data added: <${JSON.stringify(datosGuardados,null,2)}>`);
-	res.sendStatus(201);
+    dbcuts.insert(d_g);
+    console.log(`Datos anadidos: <${JSON.stringify(dbcuts,null,2)}>`);
+    res.sendStatus(201); //Created
 });
 
-// SEARCHS F06.2 | RETURNS A LIST WITH ALL RESOURCES F04.1
-// Return a specific budget or all budgets as the query deteminates.
+
+//6.1: Get->Devuelve una lista de recursos
+
+/*router.get("/",(req,res)=>{
+		console.log(`Queremos solicitar datos de los abandonos`);
+		return res.send(JSON.stringify(db_abandono,null,2));
+});*/
+
 router.get("/cuts",(req,res)=>{
 
 	var selectedCuts = [];
@@ -81,7 +89,7 @@ router.get("/cuts",(req,res)=>{
 				selectedCuts = paginationMaker(req, selectedCuts);
 			}
 			  else {
-				selectedCuts = filterOfRequest(req, selectedCuts);
+				selectedCuts = filterOfRequest(req, cutsFound);
 			}
 
 			// Get off the id.
@@ -92,7 +100,7 @@ router.get("/cuts",(req,res)=>{
 			if(selectedCuts.includes("ERROR")) {
 				res.sendStatus(400); // BAD REQUEST, the values of limit and offset are wrong. F06.6
 			} else if(selectedCuts.length == 0) {
-				console.error('No cut has been found');
+				console.error('No cuts has been found');
 				res.sendStatus(404); // NOT FOUND F06.6
 			}
 			else {
@@ -111,35 +119,35 @@ function filterOfRequest(req, cuts) {
 	for(var cut of cuts) {
 	var check = true;
 
-	// We must check for each budget wich field is selected to comparate, if selected,
+	// We mus check for each budget wich field is selected to comparate, if selected,
 	// the metod will check if the value of the budget on that field matches with the value on query.
 	if(req.query.degree != undefined) {
-		if(cut.degree != req.query.degree)  {
+		if(surrender.degree != req.query.degree)  {
 			check = false;
 		}
 	}
 	if(req.query.year != undefined) {
-		if(cut.year != req.query.year)  {
+		if(surrender.year != req.query.year)  {
 			check = false;
 		}
 	}
 	if(req.query.cut_off_mark != undefined) {
-		if(cut.cut_off_mark != req.query.cut_off_mark)  {
+		if(surrender.cut_off_mark != req.query.cut_off_mark)  {
 			check = false;
 		}
 	}
 	if(req.query.selectivity_presented_seville != undefined) {
-		if(cut.selectivity_presented_seville != req.query.selectivity_presented_seville)  {
+		if(surrender.selectivity_presented_seville != req.query.selectivity_presented_seville)  {
 			check = false;
 		}
 	}
 	if(req.query.price_admision != undefined) {
-		if(cut.price_admision != req.query.price_admision)  {
+		if(surrender.price_admision != req.query.price_admision)  {
 			check = false;
 		}
 	}
 	if(req.query.faculty != undefined) {
-		if(cut.faculty != req.query.faculty)  {
+		if(surrender.faculty != req.query.faculty)  {
 			check = false;
 		}
 	}
@@ -150,6 +158,15 @@ function filterOfRequest(req, cuts) {
 	
 	}
 	return res;
+
+    /*
+        "degree": "History",
+        "year": 2018,
+        "surrender_counts": 193,
+        "new_students": 533,
+        "surrender_percent":36.21,
+        "center": "FHISTRY"
+    */
 }
 
 // Pagination method F06.3
@@ -158,8 +175,8 @@ function paginationMaker(req, cuts) {
 	const offset = req.query.offset;
 	const limit = req.query.limit;
 
-	if(limit < 1 || offset < 0 || offset > cuts.length) {
-		console.error(`Error in pagination, you have exceeded limits`);
+	if(limit < 1 || offset < 0 || offset > surrenders.length) {
+		console.error(`Error in pagination, you have exceded limits`);
 		res.push("ERROR");
 		return res;	
 	}
@@ -180,7 +197,7 @@ router.post("/cuts", function(req,res){
 		console.error("ERROR incorrect structure of entry data in POST");
 		res.sendStatus(400); // BAD REQUEST F06.6
 	} else {
-		console.log(`Element (cut) to be inserted: <${JSON.stringify(newCut,null,2)}>`);
+		console.log(`Element (cut) to be inserted: <${JSON.stringify(newSurrender,null,2)}>`);
 
 		dbcuts.find({degree: newCut.degree},(err, cutsFound)=> {
 			if(err) {
@@ -190,7 +207,7 @@ router.post("/cuts", function(req,res){
 
 				if (cutsFound.length == 0) {
 					console.log("New cut (this cut) can be inserted to the DB... inserting"
-					+ JSON.stringify(cutsFound,null,2));
+					+ JSON.stringify(surrendersFound,null,2));
 					dbcuts.insert(newCut);
 					console.log("New cut (this cut) inserted");
 					res.sendStatus(201); // CREATED F06.6
@@ -208,7 +225,7 @@ router.get("/cuts/:degree/:year", function(req,res){
 	var Rdegree = req.params.degree;
 	var Ryear = parseInt(req.params.year);
 
-	console.log(`Searching for the cut with degree <${Rdegree}> and year <${Ryear}>`);
+	console.log(`Searching for the cut with center <${Rdegree}> and year <${Ryear}>`);
 
 	// With both of the identificators F06.10
 	dbcuts.find({$and: [{degree: Rdegree}, {year: Ryear}]},{},(err, cutsFound)=> {
@@ -275,6 +292,14 @@ router.put("/cuts/:degree/:year", function(req,res){
 		console.log(`Deleting the cut with degree <${Udegree}> and year <${Uyear}>...`);
 
 		// With both of the identificators F06.10
+         /*
+        "degree": "History",
+        "year": 2018,
+        "surrender_counts": 193,
+        "new_students": 533,
+        "surrender_percent":36.21,
+        "center": "FHISTRY"
+    */
 		dbcuts.update({$and: [{degree: Udegree}, {year: Uyear}]},{
 			degree: updatedCut.degree,
 			year: updatedCut.year,
@@ -290,7 +315,7 @@ router.put("/cuts/:degree/:year", function(req,res){
 				} else {
 		
 					if(numCutsUpdated == 0) {
-						console.error('No data has been updated');
+						console.error('Any data has been updated');
 						res.sendStatus(404); // NOT FOUND F06.6
 					} else {
 						console.log(`The cut with degree <${Udegree}> and year <${Uyear}> has been updated`)
@@ -300,6 +325,7 @@ router.put("/cuts/:degree/:year", function(req,res){
 		});
 	}
 });
+
 
 // POST TO A RESOURCE F04.6 SHOULD RETURN AN ERROR.
 router.post("/cuts/:degree/:year", function(req,res){
@@ -316,7 +342,7 @@ router.put("/cuts", function(req,res){
 // DELETE TO A RESOURCE F04.8
 router.delete("/cuts", (req,res)=>{
 
-	console.log(`Deleting all cuts...`);
+	console.log(`Deleting all cuts ...`);
 
 	dbcuts.remove({},{multi: true},(err, numCutsRemoved)=>{
 		if(err) {
@@ -328,7 +354,7 @@ router.delete("/cuts", (req,res)=>{
 				console.error('Any data has been deleted');
 				res.sendStatus(404); // NOT FOUND F06.6
 			} else {
-				console.log(`All cutve has been deleted, a total of <${numCutsRemoved}>`)
+				console.log(`All cuts have been deleted, a total of <${numCutsRemoved}>`)
 				res.sendStatus(200); // OK F06.6
 			}
 		}
@@ -350,12 +376,26 @@ function isValidData(obj){
 function validDataEntry(obj){
     if(Object.keys(obj).length !== 6) return false;
     if (!obj["degree"]) return false;
+	if (!obj.degree) return false;
+	if (!obj["year"]) return false;
     if (!obj.year) return false;
-    if (!obj["cut_off_mark"]) return false;
+	if (!obj["cut_off_mark"]) return false;
+    if (!obj.cut_off_mark) return false;
+	if (!obj["selectivity_presented_seville"]) return false;
     if (!obj.selectivity_presented_seville) return false;
-    if (!obj.price_admision) return false;
+    if (!obj["price_admision"]) return false;
+	if (!obj.price_admision) return false;
     if (!obj["faculty"]) return false;
+	if (!obj.faculty) return false;
     return true;
-}
 
+     /*
+        "degree": "History",
+        "year": 2018,
+        "surrender_counts": 193,
+        "new_students": 533,
+        "surrender_percent":36.21,
+        "center": "FHISTRY"
+    */
+}
 module.exports = router;
