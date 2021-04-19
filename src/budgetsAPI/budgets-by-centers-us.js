@@ -50,7 +50,9 @@ router.get("/loadInitialData", (req,res) =>{
     res.sendStatus(201); // CREATED
 });
 
-// SEARCHS F06.2
+////////////////////// MAIN CODE ////////////////////////////
+
+// SEARCHS F06.2 | RETURNS A LIST WITH ALL RESOURCES F04.1
 // Return a specific budget or all budgets as the query deteminates.
 router.get("/budgets",(req,res)=>{
 
@@ -59,7 +61,7 @@ router.get("/budgets",(req,res)=>{
 	dbBudgetsByCenters.find({},(err, budgetsFound)=> {
 		if(err) {
 			console.error("ERROR accesing to the DB in GET" + err);
-			res.sendStatus(500); // INTERNAL ERROR.
+			res.sendStatus(500); // INTERNAL ERROR. F06.6
 		} else {
 
 			// Check if we want to search an specific budget or if we want all of them.
@@ -81,13 +83,15 @@ router.get("/budgets",(req,res)=>{
 			});
 
 			if(selectedBudgets.includes("ERROR")) {
-				res.sendStatus(400); // BAD REQUEST
+				res.sendStatus(400); // BAD REQUEST, the values of limit and offset are wrong. F06.6
 			} else if(selectedBudgets.length == 0) {
 				console.error('Any budget has been found');
-				res.sendStatus(404); // NOT FOUND
+				res.sendStatus(404); // NOT FOUND F06.6
 			}
 			else {
-				res.send(JSON.stringify(selectedBudgets,null,2)); //OK
+				// RETURNS AN ARRAY F06.11
+				console.log(`Es array?: <${Array.isArray(selectedBudgets)}>`);
+				res.status(200).send(JSON.stringify(selectedBudgets,null,2)); //OK F06.6
 			}
 		}
 	});
@@ -159,27 +163,192 @@ function paginationMaker(req, budgets) {
 	return res;
 }
 
+// POST TO RESOURCES LIST F04.1
 router.post("/budgets", function(req,res){
 	var newBudget = req.body;
 
-	console.log(`Element (budget) to be inserted: <${JSON.stringify(newBudget,null,2)}>`);
+	// WE SHOULD RETURN A 400 CODE WHEN WE DONT RECEIVE A JSON DATA WITH THE EXACTLY DATA STRUCTURE
+	// HOPED. F06.12
+	if(!isValidData(newBudget)) {
+		console.error("ERROR incorrect structure of entry data in POST");
+		res.sendStatus(400); // BAD REQUEST F06.6
+	} else {
+		console.log(`Element (budget) to be inserted: <${JSON.stringify(newBudget,null,2)}>`);
 
-	dbBudgetsByCenters.find({center: newBudget.center},(err, budgetsFound)=> {
+		dbBudgetsByCenters.find({center: newBudget.center},(err, budgetsFound)=> {
+			if(err) {
+				console.error("ERROR accesing to the DB in POST" + err);
+				res.sendStatus(500); // INTERNAL ERROR F06.6
+			} else {
+
+				if (budgetsFound.length == 0) {
+					console.log("New budget (this budget) can be inserted to the DB... inserting"
+					+ JSON.stringify(budgetsFound,null,2));
+					dbBudgetsByCenters.insert(newBudget);
+					console.log("New budget (this budget) inserted");
+					res.sendStatus(201); // CREATED F06.6
+				} else {
+					console.log("The budget already exists in the DB... Check conflicts");
+					res.sendStatus(409); // CONFLICT F06.6
+				}
+			}
+		});
+	}
+});
+
+// GET TO A RESOURCE F04.3
+router.get("/budgets/:center/:year", function(req,res){
+	var Rcenter = req.params.center;
+	var Ryear = parseInt(req.params.year);
+
+	console.log(`Searching for the budget with center <${Rcenter}> and year <${Ryear}>`);
+
+	// With both of the identificators F06.10
+	dbBudgetsByCenters.find({$and: [{center: Rcenter}, {year: Ryear}]},{},(err, budgetsFound)=> {
 		if(err) {
-			console.error("ERROR accesing to the DB in POST" + err);
-			res.sendStatus(500);
+			console.error("ERROR accesing to the DB in GET TO A RESOURCE" + err);
+			res.sendStatus(500); // INTERNAL ERROR F06.6
 		} else {
 
-			if (budgetsFound.length == 0) {
-				console.log("New budget (this budget) can be inserted to the DB... inserting"
-				+ JSON.stringify(budgetsFound,null,2));
-				dbBudgetsByCenters.insert(newBudget);
-				res.sendStatus(201);
+			if(budgetsFound.length == 0) {
+				console.error('Any data has been found');
+				res.sendStatus(404); // NOT FOUND F06.6
 			} else {
-				console.log("The budget already exists in the DB... Check conflicts");
-				res.sendStatus(409); // CONFLICT
+				// Get off the id.
+				budgetsFound.forEach((t)=>{
+					delete t._id;
+				});
+				// RETURNS AN OBJECT, IN THIS CASE, THE ONLY OBJECT ON THE ARRAY F06.11
+				console.log(`Found the budget with center <${Rcenter}> and year <${Ryear}> type: <${typeof budgetsFound[0]}>`);
+				res.status(200).send(JSON.stringify(budgetsFound[0],null,2)); //OK F06.6 
 			}
 		}
 	});
 });
+
+// DELETE TO A RESOURCE F04.4
+router.delete("/budgets/:center/:year", (req,res)=>{
+	var Dcenter = req.params.center;
+	var Dyear = parseInt(req.params.year);
+
+	console.log(`Deleting the budget with center <${Dcenter}> and year <${Dyear}>...`);
+
+	// With both of the identificators F06.10
+	dbBudgetsByCenters.remove({$and: [{center: Dcenter}, {year: Dyear}]},(err, numBudgetsRemoved)=>{
+		if(err) {
+			console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
+			res.sendStatus(500); // INTERNAL ERROR F06.6
+		} else {
+
+			if(numBudgetsRemoved == 0) {
+				console.error('Any data has been deleted');
+				res.sendStatus(404); // NOT FOUND F06.6
+			} else {
+				console.log(`The budget with center <${Dcenter}> and year <${Dyear}> has been deleted`)
+				res.sendStatus(200); // OK F06.6
+			}
+		}
+	});
+
+});
+
+// PUT TO A RESOURCE F04.5
+router.put("/budgets/:center/:year", function(req,res){
+
+	var Ucenter = req.params.center;
+	var Uyear = parseInt(req.params.year);
+	var updatedBudget = req.body;
+
+	// WE SHOULD RETURN A 400 CODE WHEN WE DONT RECEIVE A JSON DATA WITH THE EXACTLY DATA STRUCTURE
+	// HOPED. F06.12
+	if(!isValidData(updatedBudget)) {
+		console.error("ERROR incorrect structure of entry data in POST");
+		res.sendStatus(400); // BAD REQUEST F06.6
+	} else {
+		console.log(`Deleting the budget with center <${Ucenter}> and year <${Uyear}>...`);
+
+		// With both of the identificators F06.10
+		dbBudgetsByCenters.update({$and: [{center: Ucenter}, {year: Uyear}]},{
+			center: updatedBudget.center,
+			year: updatedBudget.year,
+			fixed_fees: updatedBudget.fixed_fees,
+			amounts_by_number_of_etc: updatedBudget.amounts_by_number_of_etc,
+			amounts_by_number_of_proffessors: updatedBudget.amounts_by_number_of_proffessors,
+			total: updatedBudget.total },(err, numBudgetsUpdated)=>{
+			
+
+				if(err) {
+					console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
+					res.sendStatus(500); // INTERNAL ERROR F06.6
+				} else {
+		
+					if(numBudgetsUpdated == 0) {
+						console.error('Any data has been updated');
+						res.sendStatus(404); // NOT FOUND F06.6
+					} else {
+						console.log(`The budget with center <${Ucenter}> and year <${Uyear}> has been updated`)
+						res.sendStatus(200); // OK F06.6
+					}
+				}
+		});
+	}
+});
+
+// POST TO A RESOURCE F04.6 SHOULD RETURN AN ERROR.
+router.post("/budgets/:center/:year", function(req,res){
+	console.log("ERROR, it´s not allowed to make a post to a resource");
+	res.sendStatus(405); // NOT ALLOWED F06.6
+});
+
+// PUT TO THE RESOURCES LIST F04.7 SHOULD RETURN AN ERROR.
+router.put("/budgets", function(req,res){
+	console.log("ERROR, it´s not allowed to make a put to the resource list");
+	res.sendStatus(405); // NOT ALLOWED F06.6
+});
+
+// DELETE TO A RESOURCE F04.8
+router.delete("/budgets", (req,res)=>{
+
+	console.log(`Deleting all the budgets...`);
+
+	dbBudgetsByCenters.remove({},{multi: true},(err, numBudgetsRemoved)=>{
+		if(err) {
+			console.error("ERROR accesing to the DB in DELETE TO A RESOURCE" + err);
+			res.sendStatus(500); // INTERNAL ERROR F06.6
+		} else {
+
+			if(numBudgetsRemoved == 0) {
+				console.error('Any data has been deleted');
+				res.sendStatus(404); // NOT FOUND F06.6
+			} else {
+				console.log(`All the budgets has been deleted, a total of <${numBudgetsRemoved}>`)
+				res.sendStatus(200); // OK F06.6
+			}
+		}
+	});
+});
+
+// WE SHOULD RETURN A 400 CODE WHEN WE DONT RECEIVE A JSON DATA WITH THE EXACTLY DATA STRUCTURE
+// HOPED. F06.12
+function isValidData(obj){
+    if(!Array.isArray(obj)) return validDataEntry(obj);
+
+    for(let element in obj){
+        if(!validDataEntry(obj[element])) return false;
+    }
+
+    return true;
+}
+
+function validDataEntry(obj){
+    if(Object.keys(obj).length !== 6) return false;
+    if (!obj["center"]) return false;
+    if (!obj.year) return false;
+    if (!obj["fixed_fees"]) return false;
+    if (!obj["amounts_by_number_of_etc"]) return false;
+    if (!obj["amounts_by_number_of_proffessors"]) return false;
+    if (!obj["total"]) return false;
+    return true;
+}
+
 module.exports = router;
