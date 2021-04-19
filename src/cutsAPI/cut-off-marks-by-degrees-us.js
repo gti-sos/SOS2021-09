@@ -3,7 +3,10 @@ var express = require("express");
 var router = express.Router();
 var Datastore = require("nedb");
 
-var dbcuts = new Datastore({ filename: './cutsDB'});
+var dbcuts = new Datastore({ filename: './cutsAPI/cutsDB'});
+	dbcuts.loadDatabase(function (err) {
+
+});
 
 var datosGuardados = [
     {
