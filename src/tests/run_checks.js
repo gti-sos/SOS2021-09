@@ -48,3 +48,26 @@ newman.run({
         }
     });
 });
+
+fs.stat('cargonare1.db', function(err, stat) {
+    if(err == null) {
+        fs.copyFileSync("cargonare1.db", "cargonare1.db.bak");
+    }
+});
+
+newman.run({
+    collection: require('./SOS2021-09-surrenders-by-degrees-us.postman_collection'),
+    reporters: 'cli'
+}, function (err) {
+	if (err) { throw err; }
+    console.log('Collection run complete!');
+    // Close server
+    app.close();
+    // Restore db
+    fs.stat('cargonare1.db.bak', function(err, stat) {
+        if(err == null) {
+            fs.copyFileSync("cargonare1.db.bak", "cargonare1.db");
+            fs.rmSync("cargonare1.db.bak");
+        }
+    });
+});
