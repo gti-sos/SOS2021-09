@@ -24,3 +24,27 @@ newman.run({
         }
     });
 });
+
+//SOS2021-09-budgets-by-centers-us.postman_collection.json
+fs.stat('budgetsbycentersus.db', function(err, stat) {
+    if(err == null) {
+        fs.copyFileSync("budgetsbycentersus.db", "budgetsbycentersus.db.bak");
+    }
+});
+
+newman.run({
+    collection: require('./SOS2021-09-budgets-by-centers-us.postman_collection'),
+    reporters: 'cli'
+}, function (err) {
+	if (err) { throw err; }
+    console.log('Collection run complete!');
+    // Close server
+    app.close();
+    // Restore db
+    fs.stat('budgetsbycentersus.db', function(err, stat) {
+        if(err == null) {
+            fs.copyFileSync("budgetsbycentersus.db", "budgetsbycentersus.db");
+            fs.rmSync("budgetsbycentersus.db");
+        }
+    });
+});
