@@ -86,7 +86,7 @@ router.get("/surrenders",(req,res)=>{
 
 				// PAGINATION F06.3
 			} else if(req.query.limit != undefined || req.query.offset != undefined) {
-				selectedSurrenders = paginationMaker(req, selectedSurrenders);
+				selectedSurrenders = paginationMaker(req, surrendersFound);
 			}
 			  else {
 				selectedSurrenders = filterOfRequest(req, surrendersFound);
