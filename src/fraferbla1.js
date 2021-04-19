@@ -56,7 +56,7 @@ var initialData = [
 
 //5.2: loadInitialData
 router.get("/loadInitialData", (req,res) =>{
-    dbcuts.insert(d_g);
+    dbcuts.insert(initialData);
     console.log(`Datos anadidos: <${JSON.stringify(dbcuts,null,2)}>`);
     res.sendStatus(201); //Created
 });
