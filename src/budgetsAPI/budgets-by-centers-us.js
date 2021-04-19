@@ -1,137 +1,185 @@
-
-// Requiere La app express
+// Requiere el paquete express
 var express = require("express");
 
-// Instanciamos el invocador
-var router = express.Router();
+// Requiere el paquete nedb, que es el paquete de la base de datos.
+var Datastore = require("nedb");
 
-//  
-var dbBudgetsByCenters = [];
+// Inicializamos la base de datos. PERSISTANCE F06.4
+var dbBudgetsByCenters = new Datastore({ filename: './budgetsAPI/budgetsDB' });
+	dbBudgetsByCenters.loadDatabase(function (err) {    // Callback is optional
+  	// Now commands will be executed
+});
+// Iniciamos el routeador de la app.
+var router = express.Router();
 
 // Array de datos Inicales.
 var initialData = [{
     "center": "ETSII",
     "year": 2018,
-    "fixed-fees": 11003.22,
-    "amounts-by-number-of-etc": 38717.17,
-    "amounts-by-number-of-proffesors": 93753.44,
+    "fixed_fees": 11003.22,
+    "amounts_by_number_of_etc": 38717.17,
+    "amounts_by_number_of_proffessors": 93753.44,
     "total": 143474.00
 },{
     "center": "ETSIA",
     "year": 2018,
-    "fixed-fees": 11003.22,
-    "amounts-by-number-of-etc": 30500.00,
-    "amounts-by-number-of-proffesors": 80460.90,
+    "fixed_fees": 11003.22,
+    "amounts_by_number_of_etc": 30500.00,
+    "amounts_by_number_of_proffessors": 80460.90,
     "total": 120500.20
 
 },{
         "center": "FCOM",
         "year": 2018,
-        "fixed-fees": 11003.22,
-        "amounts-by-number-of-etc": 93753.44,
-        "amounts-by-number-of-proffesors": 50700.59,
+        "fixed_fees": 11003.22,
+        "amounts_by_number_of_etc": 93753.44,
+        "amounts_by_number_of_proffessors": 50700.59,
         "total": 180600.20
 }];
 
-// Página de inicio.
+// Index page.
 router.get("/", (req,res) =>{
-    //app.use(express.static('./indexBudgetsAPI.html'));
-    res.sendStatus(200);
+    res.send('<html><body><h1> Hi!</h1> <br> <h3> This is the API home page: "Budgets by Centers US". Please, load <a href="http://sos2021-09.herokuapp.com">the initial data</a> to display the information.</h3></body><html>');
+    res.sendStatus(200); // OK
 });
 
-//5.2: Hacer loadInitialData que cree dos o más recursos (Crea 3)
+// Charge the initial data.
 router.get("/loadInitialData", (req,res) =>{
-    dbBudgetsByCenters = initialData;
-    console.log(`Datos anadidos: <${JSON.stringify(dbBudgetsByCenters,null,2)}>`);
-    res.sendStatus(201);
+	dbBudgetsByCenters.insert(initialData);
+    console.log(`Data added: <${JSON.stringify(initialData,null,2)}>`);
+    res.sendStatus(201); // CREATED
 });
 
-//6.1: Devuelve una lista de recursos, usando GET
+// SEARCHS F06.2
+// Return a specific budget or all budgets as the query deteminates.
 router.get("/budgets",(req,res)=>{
-	if (dbBudgetsByCenters.length != 0){
-		console.log(`Requested budgets by centers data`);
-		return res.send(JSON.stringify(dbBudgetsByCenters,null,2));
-	} else {
-		console.log("Data not found (budgets)");
-		return res.sendStatus(404);
-	}
-	return res.send.sendStatus(200);
 
+	var selectedBudgets = [];
+	
+	dbBudgetsByCenters.find({},(err, budgetsFound)=> {
+		if(err) {
+			console.error("ERROR accesing to the DB in GET" + err);
+			res.sendStatus(500); // INTERNAL ERROR.
+		} else {
+
+			// Check if we want to search an specific budget or if we want all of them.
+			// In case of no filtering has been declared, all budgets will be sended. SEARCHS
+			if(Object.keys(req.query).length == 0) {
+				selectedBudgets = budgetsFound;
+
+				// PAGINATION F06.3
+			} else if(req.query.limit != undefined || req.query.offset != undefined) {
+				selectedBudgets = paginationMaker(req, budgetsFound);
+			}
+			  else {
+				selectedBudgets = filterOfRequest(req, budgetsFound);
+			}
+
+			// Get off the id.
+			selectedBudgets.forEach((t)=>{
+				delete t._id;
+			});
+
+			if(selectedBudgets.includes("ERROR")) {
+				res.sendStatus(400); // BAD REQUEST
+			} else if(selectedBudgets.length == 0) {
+				console.error('Any budget has been found');
+				res.sendStatus(404); // NOT FOUND
+			}
+			else {
+				res.send(JSON.stringify(selectedBudgets,null,2)); //OK
+			}
+		}
+	});
 });
 
-//6.2: Crea un nuevo recurso, usando POST
-router.post('/budgets',(req,res)=>{
+// Search method F06.2
+function filterOfRequest(req, budgets) {
+	var res = [];
 
-	var newObject = req.body;
-	console.log(`Element (budget) created: <${JSON.stringify(newObject,null,2)}>`);
-	dbBudgetsByCenters.push(newObject);
-	res.sendStatus(201);
+	for(var budget of budgets) {
+	var check = true;
 
-});
-
-
-//6.3: Hacemos un GET a un recurso específico, para obtener un presupuesto
-router.get("/budgets/:center/:year",(req,res)=>{
-    var center = req.params.center;
-	var year = parseInt(req.params.year);
-
-	console.log(`Budget by center: <${center}> and year: <${year}>`);
-	for (var v of dbBudgetsByCenters){
-		if(v.year === year && v.center === center) {
-			return res.status(200).send(JSON.stringify(v,null,2));
+	// We mus check for each budget wich field is selected to comparate, if selected,
+	// the metod will check if the value of the budget on that field matches with the value on query.
+	if(req.query.center != undefined) {
+		if(budget.center != req.query.center)  {
+			check = false;
 		}
 	}
-    console.log("The budget for that center and that year was not found");
-	return res.sendStatus(404);
-});
-
-//6.4: Eliminar un recurso, presupuesto de ese año y centro, DELETE
-router.delete("/budgets/:center/:year", (req,res)=>{
-	var data_deleted = req.params;
-	for (var i = 0; i <  dbBudgetsByCenters.length; i++){
-		if(dbBudgetsByCenters[i].center === data_deleted.center && dbBudgetsByCenters[i].year === parseInt(data_deleted.year)){
-                dbBudgetsByCenters.splice(i,1);
-			console.log(`The budget for this center: <${data_deleted.center}> and this year: <${data_deleted.year}> has been erased`);
-			return res.sendStatus(200);
+	if(req.query.year != undefined) {
+		if(budget.year != req.query.year)  {
+			check = false;
 		}
 	}
-    console.log("The budget for that center and that year was not found");
-	return res.sendStatus(404);
-});
-
-//6.5 Actualizamos un elemento, un presupuesto, con PUT
-router.put("/budgets/:center/:year", function(req,res){
-	for(var i in dbBudgetsByCenters){
-		if(dbBudgetsByCenters[i].center == String(req.params.center) && dbCorte[i].year == Number(req.params.year)){
-			var newData = req.body;
-			dbBudgetsByCenters[i] = newData;
-			break;
+	if(req.query.fixed_fees != undefined) {
+		if(budget.fixed_fees != req.query.fixed_fees)  {
+			check = false;
 		}
 	}
-	dbBudgetsByCenters = dbBudgetsByCenters.map(i => JSON.stringify(i));
-	dbBudgetsByCenters = new Set(dbBudgetsByCenters);
-	dbBudgetsByCenters = [...dbBudgetsByCenters]
-	dbBudgetsByCenters = dbBudgetsByCenters.map(i => JSON.parse(i))
-	res.status(200).send("The budget has been updated correctly");
-});
+	if(req.query.amounts_by_number_of_etc != undefined) {
+		if(budget.amounts_by_number_of_etc != req.query.amounts_by_number_of_etc)  {
+			check = false;
+		}
+	}
+	if(req.query.amounts_by_number_of_proffessors != undefined) {
+		if(budget.amounts_by_number_of_proffessors != req.query.amounts_by_number_of_proffessors)  {
+			check = false;
+		}
+	}
+	if(req.query.total != undefined) {
+		if(budget.total != req.query.total)  {
+			check = false;
+		}
+	}
 
-//6.6 Hacemos POST a un recurso
-router.post("/budgets/:center/:year", (req,res) =>{
-	console.log("ERROR, this method isn´t allowed");
-	return res.sendStatus(405);
-});
+	if(check) {
+		res.push(budget);
+	}
+	
+	}
+	return res;
+}
 
-//6.7 Hacemos PUT a lista de recursos
-router.put("/budgets", (req,res) =>{
-	console.log("ERROR, this method isn´t allowed");
-	return res.sendStatus(405);
-});
+// Pagination method F06.3
+function paginationMaker(req, budgets) {
+	var res = [];
+	const offset = req.query.offset;
+	const limit = req.query.limit;
 
-//6.8 DELETE: borra todo los recursos
-router.delete("/budgets", (req,res)=>{
-	dbCorte.length = 0 ;
-	console.log('All budgets have been deleted');
-	return res.sendStatus(200);
-});
+	if(limit < 1 || offset < 0 || offset > budgets.length) {
+		console.error(`Error in pagination, you have exceded limits`);
+		res.push("ERROR");
+		return res;	
+	}
+	const startIndex = offset;
+	const endIndex = startIndex + limit;
 
+	res = budgets.slice(startIndex, endIndex);
+	return res;
+}
+
+router.post("/budgets", function(req,res){
+	var newBudget = req.body;
+
+	console.log(`Element (budget) to be inserted: <${JSON.stringify(newBudget,null,2)}>`);
+
+	dbBudgetsByCenters.find({center: newBudget.center},(err, budgetsFound)=> {
+		if(err) {
+			console.error("ERROR accesing to the DB in POST" + err);
+			res.sendStatus(500);
+		} else {
+
+			if (budgetsFound.length == 0) {
+				console.log("New budget (this budget) can be inserted to the DB... inserting"
+				+ JSON.stringify(budgetsFound,null,2));
+				dbBudgetsByCenters.insert(newBudget);
+				res.sendStatus(201);
+			} else {
+				console.log("The budget already exists in the DB... Check conflicts");
+				res.sendStatus(409); // CONFLICT
+			}
+		}
+	});
+});
 module.exports = router;
