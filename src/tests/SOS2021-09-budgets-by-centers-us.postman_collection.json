@@ -1,0 +1,858 @@
+{
+	"info": {
+		"_postman_id": "5c794c9d-2bea-4a83-b49a-8f51b0854efc",
+		"name": "Primer entregable F06",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Load Initial Data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la lista de Recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"It´s an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la lista de Recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"It´s a valid object and it´s an object\", function () {\r",
+							"    validDataEntry(pm.request.body);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Auxiliar functions.\r",
+							"function isValidData(obj){\r",
+							"    if(!Array.isArray(obj)) return validDataEntry(obj);\r",
+							"\r",
+							"    for(let element in obj){\r",
+							"        if(!validDataEntry(obj[element])) return false;\r",
+							"    }\r",
+							"\r",
+							"    return true;\r",
+							"}\r",
+							"\r",
+							"function validDataEntry(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"center\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"    if (!obj[\"fixed_fees\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_etc\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_proffessors\"]) return false;\r",
+							"    if (!obj[\"total\"]) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"center\": \"PRUEBAPOST\",\r\n    \"year\": 2018,\r\n    \"fixed_fees\": 11003.22,\r\n    \"amounts_by_number_of_etc\": 33717.14,\r\n    \"amounts_by_number_of_proffessors\": 900753.44,\r\n    \"total\": 1430974.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a un Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"It´s a valid object and it´s an object\", function () {\r",
+							"    validDataReturn(pm.response);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Auxiliar functions.\r",
+							"function isValidData(obj){\r",
+							"    if(!Array.isArray(obj)) return validDataReturn(obj);\r",
+							"\r",
+							"    for(let element in obj){\r",
+							"        if(!validDataReturn(obj[element])) return false;\r",
+							"    }\r",
+							"\r",
+							"    return true;\r",
+							"}\r",
+							"\r",
+							"function validDataReturn(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"center\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"    if (!obj[\"fixed_fees\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_etc\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_proffessors\"]) return false;\r",
+							"    if (!obj[\"total\"]) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets/PRUEBAPOST/2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets",
+						"PRUEBAPOST",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a un Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets/PRUEBAPOST/2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets",
+						"PRUEBAPOST",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"It´s a valid object and it´s an object\", function () {\r",
+							"    validDataEntry(pm.request.body);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"// Auxiliar functions.\r",
+							"function isValidData(obj){\r",
+							"    if(!Array.isArray(obj)) return validDataEntry(obj);\r",
+							"\r",
+							"    for(let element in obj){\r",
+							"        if(!validDataEntry(obj[element])) return false;\r",
+							"    }\r",
+							"\r",
+							"    return true;\r",
+							"}\r",
+							"\r",
+							"function validDataEntry(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"center\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"    if (!obj[\"fixed_fees\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_etc\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_proffessors\"]) return false;\r",
+							"    if (!obj[\"total\"]) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"center\": \"ETSII\",\r\n    \"year\": 2018,\r\n    \"fixed_fees\": 11003.22,\r\n    \"amounts_by_number_of_etc\": 6666.17,\r\n    \"amounts_by_number_of_proffessors\": 93753.44,\r\n    \"total\": 143474.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets/ETSII/2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets",
+						"ETSII",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a un Recurso (Debe dar fallo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets/ETSII/2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets",
+						"ETSII",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a la lista de Recursos (Debe dar fallo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a la lista de Recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load Initial Data Para las búsquedas y paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por 1 campo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"It´s an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"The objects on the array are valid\", function () {\r",
+							"    validDataReturn(pm.response);\r",
+							"});\r",
+							"\r",
+							"// Auxiliar functions.\r",
+							"function isValidData(obj){\r",
+							"    if(!Array.isArray(obj)) return validDataReturn(obj);\r",
+							"\r",
+							"    for(let element in obj){\r",
+							"        if(!validDataReturn(obj[element])) return false;\r",
+							"    }\r",
+							"\r",
+							"    return true;\r",
+							"}\r",
+							"\r",
+							"function validDataReturn(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"center\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"    if (!obj[\"fixed_fees\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_etc\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_proffessors\"]) return false;\r",
+							"    if (!obj[\"total\"]) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets?center=ETSII",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					],
+					"query": [
+						{
+							"key": "center",
+							"value": "ETSII"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por 2 campos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"It´s an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"The objects on the array are valid\", function () {\r",
+							"    validDataReturn(pm.response);\r",
+							"});\r",
+							"\r",
+							"// Auxiliar functions.\r",
+							"function isValidData(obj){\r",
+							"    if(!Array.isArray(obj)) return validDataReturn(obj);\r",
+							"\r",
+							"    for(let element in obj){\r",
+							"        if(!validDataReturn(obj[element])) return false;\r",
+							"    }\r",
+							"\r",
+							"    return true;\r",
+							"}\r",
+							"\r",
+							"function validDataReturn(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"center\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"    if (!obj[\"fixed_fees\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_etc\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_proffessors\"]) return false;\r",
+							"    if (!obj[\"total\"]) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets?fixed_fees=11003.22&amounts_by_number_of_proffessors=50700.59",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					],
+					"query": [
+						{
+							"key": "fixed_fees",
+							"value": "11003.22"
+						},
+						{
+							"key": "amounts_by_number_of_proffessors",
+							"value": "50700.59"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Búsqueda por 3 campos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"It´s an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"pm.test(\"The objects on the array are valid\", function () {\r",
+							"    validDataReturn(pm.response);\r",
+							"});\r",
+							"\r",
+							"// Auxiliar functions.\r",
+							"function isValidData(obj){\r",
+							"    if(!Array.isArray(obj)) return validDataReturn(obj);\r",
+							"\r",
+							"    for(let element in obj){\r",
+							"        if(!validDataReturn(obj[element])) return false;\r",
+							"    }\r",
+							"\r",
+							"    return true;\r",
+							"}\r",
+							"\r",
+							"function validDataReturn(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"center\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"    if (!obj[\"fixed_fees\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_etc\"]) return false;\r",
+							"    if (!obj[\"amounts_by_number_of_proffessors\"]) return false;\r",
+							"    if (!obj[\"total\"]) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets?fixed_fees=11003.22&amounts_by_number_of_proffessors=50700.59&year=2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					],
+					"query": [
+						{
+							"key": "fixed_fees",
+							"value": "11003.22"
+						},
+						{
+							"key": "amounts_by_number_of_proffessors",
+							"value": "50700.59"
+						},
+						{
+							"key": "year",
+							"value": "2018"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"It´s an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The returned array the same size that limit\", function () {\r",
+							"    pm.response.length == pm.collectionVariables.get(\"limit\");\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets?limit=2&offset=0",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginación 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"It´s an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The returned array the same size that limit\", function () {\r",
+							"    pm.response.length == pm.collectionVariables.get(\"limit\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets?limit=2&offset=1",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a la lista de Recursos tras pruebas búsquedas y paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
