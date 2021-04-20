@@ -74,69 +74,7 @@
 			"response": []
 		},
 		{
-			"name": "Delete Records",
-			"event": [
-				{
-					"listen": "test",
-					"script": {
-						"exec": [
-							"pm.sendRequest({",
-							"    url: pm.variables.get(\"HOST\") + \"/api/v1/performances-by-degrees-us/\",",
-							"    method: 'POST',",
-							"    header: {",
-							"        'content-type': 'application/json'",
-							"    },",
-							"    body: {",
-							"        mode: 'raw',",
-							"        raw: JSON.stringify({ \"field-of-knowledge\": \"PruebaPOSTMAN\", \"year\": 5555, \"performance-percents\": \"0\", \"credits-passed\": 1870, \"credits-enrolled\": 2147, \"center\": \"FHISTRY\" })",
-							"    }",
-							"}, function (err, res) {",
-							"    pm.sendRequest({",
-							"        url: pm.variables.get(\"HOST\") + \"/api/v1/performances-by-degrees-us/?field-of-knowledge=PruebaPOSTMAN&year=5555&performance-percents=0&credits-passed=1870&credits-enrolled=2147&center=FHISTRY\",",
-							"        method: 'DELETE'",
-							"    }, function (err, res) {",
-							"        pm.test(\"Delete one record\", function(){",
-							"            pm.expect(res.code).equals(200);",
-							"        });",
-							"    });",
-							"});"
-						],
-						"type": "text/javascript"
-					}
-				}
-			],
-			"request": {
-				"method": "DELETE",
-				"header": [],
-				"url": {
-					"raw": "{{HOST}}/api/v1/performances-by-degrees-us/",
-					"host": [
-						"{{HOST}}"
-					],
-					"path": [
-						"api",
-						"v1",
-						"performances-by-degrees-us",
-						""
-					],
-					"query": [
-						{
-							"key": "removeAll",
-							"value": "true",
-							"disabled": true
-						},
-						{
-							"key": "_id",
-							"value": "WhupLB2n5dyfZZ6H",
-							"disabled": true
-						}
-					]
-				}
-			},
-			"response": []
-		},
-		{
-			"name": "Get Data",
+			"name": "Search Data",
 			"event": [
 				{
 					"listen": "test",
@@ -211,18 +149,38 @@
 					],
 					"query": [
 						{
-							"key": "year",
-							"value": "2018",
-							"disabled": true
-						},
-						{
 							"key": "offset",
-							"value": "",
+							"value": "1",
 							"disabled": true
 						},
 						{
 							"key": "limit",
 							"value": "1",
+							"disabled": true
+						},
+						{
+							"key": "center",
+							"value": "ETSII",
+							"disabled": true
+						},
+						{
+							"key": "credits-passed",
+							"value": "1870",
+							"disabled": true
+						},
+						{
+							"key": "credits-enrolled",
+							"value": "2147",
+							"disabled": true
+						},
+						{
+							"key": "field-of-knowledge",
+							"value": "Computer-Science",
+							"disabled": true
+						},
+						{
+							"key": "year",
+							"value": "2018",
 							"disabled": true
 						}
 					]
@@ -249,14 +207,14 @@
 							"    }",
 							"}, function (err, res) {",
 							"            pm.sendRequest({",
-							"            url: pm.variables.get(\"HOST\") + \"/api/v1/performances-by-degrees-us/\",",
+							"            url: pm.variables.get(\"HOST\") + \"/api/v1/performances-by-degrees-us/FHISTRY/5555/PruebaPOSTMAN2\",",
 							"            method: 'PUT',",
 							"            header: {",
 							"            'content-type': 'application/json'",
 							"            },",
 							"            body: {",
 							"                mode: 'raw',",
-							"                raw: JSON.stringify([{ \"field-of-knowledge\": \"PruebaPOSTMAN2\", \"year\": 5555, \"performance-percents\": \"0\", \"credits-passed\": 1870, \"credits-enrolled\": 2147, \"center\": \"FHISTRY\" }, { \"field-of-knowledge\": \"FuncionaPOSTMAN\", \"year\": 5555, \"performance-percents\": \"0\", \"credits-passed\": 1870, \"credits-enrolled\": 2147, \"center\": \"FHISTRY\" }])",
+							"                raw: JSON.stringify({ \"field-of-knowledge\": \"FuncionaPOSTMAN\", \"year\": 5555, \"performance-percents\": \"0\", \"credits-passed\": 1870, \"credits-enrolled\": 2147, \"center\": \"FHISTRY\" })",
 							"            }",
 							"        }, function (err, res) {",
 							"            pm.test(\"Modify one record\", function(){",
@@ -274,7 +232,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "    [{\n        \"field-of-knowledge\": \"Computer-Science\",\n        \"year\": 2018,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"ETSII\"\n    },\n    {\n        \"field-of-knowledge\": \"Pruebas2222\",\n        \"year\": 2018,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"ETSII\"\n    }\n    ]",
+					"raw": "{\n    \"field-of-knowledge\": \"Histor22y\",\n    \"year\": 2018,\n    \"performance-percents\": \"83.44%\",\n    \"credits-passed\": 2006,\n    \"credits-enrolled\": 2404,\n    \"center\": \"FHISTRY\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -282,7 +240,7 @@
 					}
 				},
 				"url": {
-					"raw": "{{HOST}}/api/v1/performances-by-degrees-us/",
+					"raw": "{{HOST}}/api/v1/performances-by-degrees-us/FHISTRY/2018/History",
 					"host": [
 						"{{HOST}}"
 					],
@@ -290,29 +248,9 @@
 						"api",
 						"v1",
 						"performances-by-degrees-us",
-						""
-					],
-					"query": [
-						{
-							"key": "year",
-							"value": "2020",
-							"disabled": true
-						},
-						{
-							"key": "offset",
-							"value": "",
-							"disabled": true
-						},
-						{
-							"key": "limit",
-							"value": "1",
-							"disabled": true
-						},
-						{
-							"key": "_id",
-							"value": "AiXxaFP0Gcm9hoLX",
-							"disabled": true
-						}
+						"FHISTRY",
+						"2018",
+						"History"
 					]
 				}
 			},
@@ -361,6 +299,89 @@
 						}
 					}
 				},
+				"url": {
+					"raw": "{{HOST}}/api/v1/performances-by-degrees-us/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"performances-by-degrees-us",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete one record",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.sendRequest({",
+							"    url: pm.variables.get(\"HOST\") + \"/api/v1/performances-by-degrees-us/\",",
+							"    method: 'POST',",
+							"    header: {",
+							"        'content-type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({ \"field-of-knowledge\": \"PruebaPOSTMAN\", \"year\": 5555, \"performance-percents\": \"0\", \"credits-passed\": 1870, \"credits-enrolled\": 2147, \"center\": \"FHISTRY\" })",
+							"    }",
+							"}, function (err, res) {",
+							"    pm.sendRequest({",
+							"        url: pm.variables.get(\"HOST\") + \"/api/v1/performances-by-degrees-us/FHISTRY/5555/PruebaPOSTMAN\",",
+							"        method: 'DELETE'",
+							"    }, function (err, res) {",
+							"        pm.test(\"Delete one record\", function(){",
+							"            pm.expect(res.code).equals(200);",
+							"        });",
+							"    });",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/v1/performances-by-degrees-us/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"performances-by-degrees-us",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete All Records",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Delete All Data\", function(){",
+							"    pm.response.to.have.status(200);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
 				"url": {
 					"raw": "{{HOST}}/api/v1/performances-by-degrees-us/",
 					"host": [
