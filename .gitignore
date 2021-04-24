@@ -7,6 +7,15 @@ yarn-error.log*
 lerna-debug.log*
 # DB
 *.db
+cutsDB
+surrendersdb
+cutsdb
+
+__sapper__
+
+src/node_modules
+# Compiled svelte
+public/build/
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
