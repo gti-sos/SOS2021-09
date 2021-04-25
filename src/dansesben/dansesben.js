@@ -110,6 +110,9 @@ router
 .post('/:center/:year/:field_of_knowledge', (req, res) =>{
     res.sendStatus(405);
 })
+.put('/', (req, res) =>{
+    res.sendStatus(405);
+})
 .delete("/", (req, res) => {
      db.remove({}, {multi: true}, function (err, numRemoved) {
         if(err){
@@ -119,6 +122,7 @@ router
                 res.sendStatus(200);
             });
 })
+
 
 /*
     Utils for the API

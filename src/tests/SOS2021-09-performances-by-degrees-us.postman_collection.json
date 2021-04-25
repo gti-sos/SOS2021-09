@@ -221,6 +221,22 @@
 							"                pm.expect(res.code).equals(200);",
 							"            });",
 							"        });",
+							"});",
+							"",
+							"pm.sendRequest({",
+							"    url: pm.variables.get(\"HOST\") + \"/api/v1/performances-by-degrees-us/FHISTRY/5555/PruebaPOSTMAN2\",",
+							"    method: 'PUT',",
+							"    header: {",
+							"    'content-type': 'application/json'",
+							"    },",
+							"    body: {",
+							"        mode: 'raw',",
+							"        raw: JSON.stringify({ \"field-of-knowledge\": \"FuncionaPOSTMAN\"})",
+							"    }",
+							"    }, function (err, res) {",
+							"    pm.test(\"Invalid modification\", function(){",
+							"        pm.expect(res.code).equals(400);",
+							"    });",
 							"});"
 						],
 						"type": "text/javascript"
@@ -292,7 +308,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[{\n        \"field-of-knowledge\": \"Prueba\",\n        \"year\": 2019,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"FHISTRY\"\n},\n{\n        \"field-of-knowledge\": \"Prueba2\",\n        \"year\": 2019,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"FHISTRY\"\n}]",
+					"raw": "[{\n        \"field-of-knowledge\": \"ewjjjjjjjr\",\n        \"year\": 2019,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"FHISTRY\"\n},\n{\n        \"field-of-knowledge\": \"Prueba5\",\n        \"year\": 2019,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"FHISTRY\"\n}]",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -309,6 +325,74 @@
 						"v1",
 						"performances-by-degrees-us",
 						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT to collection (Invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function(){",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/v1/performances-by-degrees-us/",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"performances-by-degrees-us",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST to element (Invalid)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function(){",
+							"    pm.response.to.have.status(405);",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "{{HOST}}/api/v1/performances-by-degrees-us/FHISTRY/2018/History",
+					"host": [
+						"{{HOST}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"performances-by-degrees-us",
+						"FHISTRY",
+						"2018",
+						"History"
 					]
 				}
 			},
@@ -350,7 +434,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "{{HOST}}/api/v1/performances-by-degrees-us/",
+					"raw": "{{HOST}}/api/v1/performances-by-degrees-us/FHISTRY/2019/Prueba",
 					"host": [
 						"{{HOST}}"
 					],
@@ -358,7 +442,9 @@
 						"api",
 						"v1",
 						"performances-by-degrees-us",
-						""
+						"FHISTRY",
+						"2019",
+						"Prueba"
 					]
 				}
 			},
