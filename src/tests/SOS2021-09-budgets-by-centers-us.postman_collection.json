@@ -1,7 +1,7 @@
 {
 	"info": {
-		"_postman_id": "5c794c9d-2bea-4a83-b49a-8f51b0854efc",
-		"name": "Primer entregable F06",
+		"_postman_id": "0463d30b-1bf9-401e-bf98-683e2a32ac12",
+		"name": "Primer entregable F06_v2",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -129,6 +129,51 @@
 				"body": {
 					"mode": "raw",
 					"raw": "{\r\n    \"center\": \"PRUEBAPOST\",\r\n    \"year\": 2018,\r\n    \"fixed_fees\": 11003.22,\r\n    \"amounts_by_number_of_etc\": 33717.14,\r\n    \"amounts_by_number_of_proffessors\": 900753.44,\r\n    \"total\": 1430974.00\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/budgets",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v1",
+						"budgets-by-centers-us",
+						"budgets"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la lista de Recursos pero con JSON mal debe dar error",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    center: \"PRUEBAPOST\",\r\n    \"year\": 2018,\r\n    \"fixed_fees\": 11003.22,\r\n    \"amounts_by_number_of_etc\": 33717.14,\r\n    \"amounts_by_number_of_proffessors\": 900753.44,\r\n    \"total\": 1430974.00\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
