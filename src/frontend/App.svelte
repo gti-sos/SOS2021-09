@@ -27,7 +27,9 @@
         <p><strong>APIs</strong>:</p>
         <ul>
             <li>
-                <a href="https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/docs">https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/docs</a> (developed by <a href="https://github.com/Adrirofer">Adrian Roman Fernandez</a>) / Check documentation in: <a href="https://documenter.getpostman.com/view/14937223/TzJshKGA">Budgets by Centers Documentation</a>
+                Check the API <a href="https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/docs">https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/docs</a> (developed by <a href="https://github.com/Adrirofer">Adrian Roman Fernandez</a>)
+                <br>| Check the API documentation in: <a href="https://documenter.getpostman.com/view/14937223/TzJydbQt"> API Documentation</a>
+                <br>| Check the API Front-End in: <a href="/budgetsAPI/"> Front-End</a>
             </li>
             <li>
                 <a href="https://sos2021-09.herokuapp.com/api/v1/cut-off-marks-by-degrees-us/docs">https://sos2021-09.herokuapp.com/api/v1/cut-off-marks-by-degrees-us/docs</a> (developed by <a href="https://github.com/franfdezb">Francisco José Fernández Blanco</a>)
