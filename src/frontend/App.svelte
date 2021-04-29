@@ -38,7 +38,7 @@
             <li>
                 <a href="https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us">https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us</a> (developed by <a href="https://github.com/cargonare1">Carlos González Arenas</a>)
             </li>/ Check documentation in: <a href="https://documenter.getpostman.com/view/12390654/TzJu8c5h">Surrender by degrees Documentation</a>
-                                        <br>| Check the API Front-End in: <a href="/surrenders-by-degrees-us/"> Front-End</a>
+                                        <br>| Check the API Front-End in: <a href="/cargonare1/"> Front-End</a>
 
             <li><b>Performances By Degrees</b>:
                 <a href="/dansesben/">Web Interface</a>
