@@ -6068,22 +6068,22 @@ var app = (function () {
     			thead = element("thead");
     			tr = element("tr");
     			td0 = element("td");
-    			td0.textContent = "Centro";
+    			td0.textContent = "Grado";
     			t1 = space();
     			td1 = element("td");
     			td1.textContent = "Año";
     			t3 = space();
     			td2 = element("td");
-    			td2.textContent = "Cuantía fija";
+    			td2.textContent = "Número de abandonos";
     			t5 = space();
     			td3 = element("td");
-    			td3.textContent = "Cuantía por número de créditos ECTS";
+    			td3.textContent = "Nuevos estudiantes";
     			t7 = space();
     			td4 = element("td");
-    			td4.textContent = "Cuantía por número de profesores";
+    			td4.textContent = "Porcentaje de abandonos";
     			t9 = space();
     			td5 = element("td");
-    			td5.textContent = "Total";
+    			td5.textContent = "Centro";
     			t11 = space();
     			tbody = element("tbody");
 
@@ -6186,7 +6186,7 @@ var app = (function () {
     		c: function create() {
     			main = element("main");
     			h3 = element("h3");
-    			h3.textContent = "Presupuestos por centro";
+    			h3.textContent = "Abandonos por grado";
     			t1 = space();
     			create_component(table.$$.fragment);
     			add_location(h3, file, 26, 4, 704);
