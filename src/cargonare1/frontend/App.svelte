@@ -6,45 +6,45 @@
     
     let budgets = [];
 
-    async function getBudgets(){
-        console.log("Fetching budgets...");
-        const res = await fetch("/api/v1/budgets-by-centers-us/budgets");
+    async function getSurrenders(){
+        console.log("Fetching surrenders...");
+        const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders");
 
         if(res.ok){
             console.log("Ok.");
             const json = await res.json();
             budgets = json;
-            console.log(`We have received ${budgets.length} budgets.`);
+            console.log(`We have received ${surrenders.length} surrenders.`);
         }else{
             console.log("Error!");
         }
     }   
     
-    onMount(getBudgets);
+    onMount(getSurrenders);
 </script>
 
 <main>
-    <h3>Presupuestos por centro</h3>
+    <h3>Abandonos por grado</h3>
     <Table bordered>
         <thead>
             <tr>
-                <td>Centro</td>
+                <td>grado</td>
                 <td>Año</td>
-                <td>Cuantía fija</td>
-                <td>Cuantía por número de créditos ECTS</td>
-                <td>Cuantía por número de profesores</td>
-                <td>Total</td>
+                <td>Número de abandonos</td>
+                <td>Nuevos estudiantes</td>
+                <td>Porcentaje de abandonos</td>
+                <td>centro</td>
             </tr>
         </thead>
         <tbody>
-            {#each budgets as budget}
+            {#each surrenders as surrender}
                 <tr>
-                    <td>{budget.center}</td>
-                    <td>{budget.year}</td>
-                    <td>{budget.fixed_fees}</td>
-                    <td>{budget.amounts_by_number_of_etc}</td>
-                    <td>{budget.amounts_by_number_of_proffessors}</td>
-                    <td>{budget.total}</td>
+                    <td>{surrender.center}</td>
+                    <td>{surrender.year}</td>
+                    <td>{surrender.surrender_counts}</td>
+                    <td>{surrender.new_students}</td>
+                    <td>{surrender.surrender_percent}</td>
+                    <td>{surrender.center}</td>
                 </tr>
             {/each}
         </tbody>
