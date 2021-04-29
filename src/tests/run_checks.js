@@ -91,6 +91,6 @@ newman.run({
         if(err == null) {
             fs.copyFileSync("cuts.db.bak", "cuts.db");
             fs.rmSync("cuts.db.bak");
-        }
+        } 
     });
 });
