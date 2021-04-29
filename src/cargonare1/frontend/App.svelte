@@ -4,7 +4,7 @@
     import { onMount } from 'svelte';
     
     
-    let budgets = [];
+    let surrenders = [];
 
     async function getSurrenders(){
         console.log("Fetching surrenders...");
@@ -13,7 +13,7 @@
         if(res.ok){
             console.log("Ok.");
             const json = await res.json();
-            budgets = json;
+            surrenders = json;
             console.log(`We have received ${surrenders.length} surrenders.`);
         }else{
             console.log("Error!");
