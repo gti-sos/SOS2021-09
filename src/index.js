@@ -9,11 +9,11 @@ app.use(express.static('public')); // Exposes the folder public in the webapp
 
 // Dani
 // Add the routes especified in the dansesben.js file
-const dansesbenRoutes = require("./dansesben");
+const dansesbenRoutes = require("./dansesben/dansesben");
 app.use('/api/v1/performances-by-degrees-us', dansesbenRoutes);
 
 // Fran
-const franferbla1Routers = require("./fraferbla1");
+const franferbla1Routers = require("./fraferbla1/fraferbla1");
 app.use('/api/v1/cut-off-marks-by-degrees-us', franferbla1Routers);
 
 // Adri
@@ -21,7 +21,7 @@ const budgetsbycentersus = require("./budgetsAPI/budgets-by-centers-us");
 app.use('/api/v1/budgets-by-centers-us', budgetsbycentersus);
 
 // Carlos
-const cargonare1R = require("./cargonare1");
+const cargonare1R = require("./cargonare1/cargonare1");
 app.use('/api/v1/surrenders-by-degrees-us', cargonare1R);
 
 // ***** RUTAS APIS L07

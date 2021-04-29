@@ -58,22 +58,23 @@ router
         else res.json(docs);
     });
 })
-.put('/', (req, res) =>{
-    if(!Array.isArray(req.body) || req.body.length !== 2) {
+.put('/:center/:year/:field_of_knowledge', (req, res) =>{
+    if(Array.isArray(req.body)) {
         res.sendStatus(400);
         return;
     }
 
-    let document = documentFromParams(req.body[0]);
-    let new_document = documentFromParams(req.body[1]);
+    let document = {"center": req.params.center, "year": parseInt(req.params.year),
+    "field-of-knowledge": req.params["field_of_knowledge"]};
+    let new_document = documentFromParams(req.body);
 
-    if(isValidData(document)){
+    if(isValidData(new_document)){
         db.findOne(document, function (err, doc) {
             if(err){
                 console.error(err);
                 res.sendStatus(500);
             }else{
-                if(doc === null) res.sendStatus(400);
+                if(doc === null) res.sendStatus(404);
                 else
                     db.update({_id: doc["_id"]}, new_document, {}, function (err, _) {
                         if(err){
@@ -89,15 +90,15 @@ router
         res.sendStatus(400);
     }
 })
-.delete('/', (req, res) =>{
-    let document = documentFromParams(req.query);
-    let removeAll = req.query.removeAll;
+.delete('/:center/:year/:field_of_knowledge', (req, res) =>{
+    let document = {"center": req.params.center, "year": parseInt(req.params.year),
+                       "field-of-knowledge": req.params["field_of_knowledge"]};
 
     db.count(document, function (err, count) {
-        if((count > 1 && removeAll !== "true") || count === 0) {
-            res.sendStatus(409);
+        if(count === 0) {
+            res.sendStatus(404);
         }else{
-            db.remove(document, { multi: removeAll === "true" }, function (err, numRemoved) {
+            db.remove(document, function (err, numRemoved) {
                 if(err){
                     console.error(err);
                     res.sendStatus(500);
@@ -106,30 +107,55 @@ router
         }
     });
 })
+.post('/:center/:year/:field_of_knowledge', (req, res) =>{
+    res.sendStatus(405);
+})
+.put('/', (req, res) =>{
+    res.sendStatus(405);
+})
+.delete("/", (req, res) => {
+     db.remove({}, {multi: true}, function (err, numRemoved) {
+        if(err){
+            console.error(err);
+            res.sendStatus(500);
+            }else
+                res.sendStatus(200);
+            });
+})
+
 
 /*
     Utils for the API
  */
 
 function insertIntoDB(data){
-    db.insert(data, function (err, newDoc) {
-        if(err){
-            console.error(err);
-            return -1;
+
+    if(Array.isArray(data)){
+        for(let doc in data){
+            db.count(data[doc], function (err, count) {
+              if(count == 0) {
+                db.insert(data[doc], function (err, newDoc) {
+                    if(err){
+                        console.error(err);
+                        return -1;
+                    }
+                });
+              }
+            });
         }
-
-        if(Array.isArray(data)){
-            let ids = [];
-
-            for(let doc in data){
-                ids.push(doc["_id"]);
-            }
-
-            return ids;
-        }
-
-        return newDoc["_id"];
-    });
+    }else{
+        db.count(data, function (err, count) {
+          if(count == 0) {
+            db.insert(data, function (err, newDoc) {
+                if(err){
+                    console.error(err);
+                    return -1;
+                }
+            });
+          }
+        });
+    }
+    return 0;
 }
 
 function documentFromParams(params){
