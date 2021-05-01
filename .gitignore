@@ -16,6 +16,9 @@ __sapper__
 src/node_modules
 # Compiled svelte
 public/build/
+public/budgetsAPI/build
+public/cargonare1/build
+public/fraferbla1/build
 
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
