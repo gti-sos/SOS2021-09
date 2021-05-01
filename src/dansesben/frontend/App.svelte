@@ -1,8 +1,10 @@
 <script>
     import {Col, Container, Row, Table, FormGroup, Label, Input
         , InputGroup, InputGroupText, Button, Icon, Modal, ModalBody,
-        ModalFooter, ModalHeader, Form, Alert} from 'sveltestrap';
+        ModalFooter, ModalHeader, Form, Alert, InputGroupAddon} from 'sveltestrap';
     import { onMount } from 'svelte';
+
+    import ActionModal from './ActionModal.svelte';
 
     let data = [];
     let maxElements = 10; // Max table elements
@@ -15,7 +17,6 @@
     })
 
     //Load data
-
     async function loadData(){
         const res = await fetch('/api/v1/performances-by-degrees-us/');
         data = await res.json();
@@ -29,14 +30,38 @@
         if (currentPage < data.length / maxElements) currentPage++;
     }
 
+    // Alerts
+    let alerts = [];
+
     // View modal
-    let openViewModal = false;
+    let openEditModal = false;
     let editModalIndex = 0;
-    const toggleViewModal = () => (openViewModal = !openViewModal);
+    let newDataEdit = {};
+    let oldDataURL = "";
+    const toggleEditModal = () => (openEditModal = !openEditModal);
 
     function editElement(index){
-        editModalIndex = index;
-        toggleViewModal();
+        newDataEdit = data[index];
+        oldDataURL = newDataEdit.center + "/" + newDataEdit.year + "/" + newDataEdit["field-of-knowledge"];
+        toggleEditModal();
+    }
+
+    async function saveEditedElement(){
+        let res = await fetch('/api/v1/performances-by-degrees-us/' + oldDataURL, {"method": "PUT", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(newDataEdit)});
+
+        if(res.status === 200){
+            alerts = [...alerts, {text: "Modificado " + oldDataURL + " correctamente", color: "success"}];
+            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
+        }else if(res.status === 404){
+            alerts = [...alerts, {text: "Elemento " + oldDataURL + " no existe", color: "warning"}];
+            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
+        }else{
+            alerts = [...alerts, {text: "Error interno al intentar modificar " + oldDataURL, color: "danger"}];
+            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
+        }
+
+        await loadData(); // Renew data
+        toggleEditModal();
     }
 
     // Delete modal
@@ -48,9 +73,6 @@
         deleteModalIndex = index;
         toggleDeleteModal();
     }
-
-    // Alert
-    let alerts = [];
 
     async function deleteElement(){
         let element = data[deleteModalIndex];
@@ -71,6 +93,50 @@
         await loadData(); // Renew data
     }
 
+    // Delete all modal
+    let deleteAllModal = false;
+    const toggleDeleteAllModal = () => (deleteAllModal = !deleteAllModal);
+
+    // Delete All
+    async function deleteAllElements(){
+        let res = await fetch('/api/v1/performances-by-degrees-us/', {"method": "DELETE"});
+
+        if(res.status === 200){
+            alerts = [...alerts, {text: "Todos los elementos han sido eliminados", color: "success"}];
+            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
+        }else{
+            alerts = [...alerts, {text: "Error interno al intentar borrar todos los elementos", color: "danger"}];
+            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
+        }
+
+        await loadData(); // Renew data
+        toggleDeleteAllModal();
+    }
+
+    // Add all modal
+    let addModal = false;
+    const toggleAddModal = () => (addModal = !addModal);
+    let rowToAdd = {};
+
+    async function addElement(){
+        let res = await fetch('/api/v1/performances-by-degrees-us/', {"method": "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(rowToAdd)});
+
+        if(res.status === 201){
+            alerts = [...alerts, {text: "Elemento correctamente añadido", color: "success"}];
+            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
+        }
+        else if(res.status === 400){
+                alerts = [...alerts, {text: "Elemento inválido, revise que los valores sean válidos", color: "warning"}];
+                setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
+        }
+        else{
+            alerts = [...alerts, {text: "Error interno al intentar añadir el elemento", color: "danger"}];
+            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
+        }
+
+        await loadData(); // Renew data
+        toggleAddModal();
+    }
 
 </script>
 
@@ -84,54 +150,89 @@
 </Container>
 
 <!-- Delete Modal -->
-<div>
-    <Modal isOpen={deleteModal} {toggleDeleteModal}>
-        <ModalHeader {toggleDeleteModal}>¿Seguro que quiere borrar el elemento?</ModalHeader>
-        <ModalBody>
-            El elemento será permanentemente borrado
-        </ModalBody>
-        <ModalFooter>
-            <Button color="danger" on:click={deleteElement}>Borrar</Button>
-            <Button color="secundary" on:click={toggleDeleteModal}>Cerrar</Button>
-        </ModalFooter>
-    </Modal>
-</div>
+<ActionModal modalVisible={deleteModal} title="¿Seguro que quiere borrar el elemento?"
+             description="Esta acción es irreversible."
+             actionName="Borrar" actionFunction={deleteElement}/>
+
+<!-- Delete All Modal -->
+<ActionModal modalVisible={deleteAllModal} title="¿Seguro que quiere borrar todos los elementos?"
+             description="Esta acción es irreversible."
+             actionName="Borrar" actionFunction={deleteAllElements}/>
+
 <!-- Edit modal -->
 <div>
-    <Modal isOpen={openViewModal} {toggleViewModal}>
-        <ModalHeader {toggleViewModal}>Editar entrada</ModalHeader>
+    <Modal isOpen={openEditModal} {toggleEditModal}>
+        <ModalHeader {toggleEditModal}>Editar entrada</ModalHeader>
         <ModalBody>
-
             <Form>
                 <FormGroup>
                     <Label><b>Campo de conocimiento</b></Label>
-                    <Input type="text" value={data[editModalIndex]["field-of-knowledge"]} />
+                    <Input type="text" bind:value={newDataEdit["field-of-knowledge"]} />
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Año</b></Label>
-                    <Input type="number" value={data[editModalIndex].year} />
+                    <Input type="number" bind:value={newDataEdit.year} />
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Rendimiento</b></Label>
-                    <Input type="text" value={data[editModalIndex]["performance-percents"]} />
+                    <Input type="text" bind:value={newDataEdit["performance-percents"]} />
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Créditos superados</b></Label>
-                    <Input type="number" value={data[editModalIndex]["credits-passed"]} />
+                    <Input type="number" bind:value={newDataEdit["credits-passed"]} />
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Créditos matriculados</b></Label>
-                    <Input type="number" value={data[editModalIndex]["credits-enrolled"]} />
+                    <Input type="number" bind:value={newDataEdit["credits-enrolled"]} />
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Centro</b></Label>
-                    <Input type="text" value={data[editModalIndex].center} />
+                    <Input type="text" bind:value={newDataEdit.center} />
                 </FormGroup>
             </Form>
         </ModalBody>
         <ModalFooter>
-            <Button color="primary" on:click={toggleViewModal}>Guardar</Button>
-            <Button color="secundary" on:click={toggleViewModal}>Cerrar</Button>
+            <Button color="primary" on:click={saveEditedElement}>Guardar</Button>
+            <Button color="secundary" on:click={toggleEditModal}>Cerrar</Button>
+        </ModalFooter>
+    </Modal>
+</div>
+
+<!-- Add modal -->
+<div>
+    <Modal isOpen={addModal} {toggleAddModal}>
+        <ModalHeader {toggleAddModal}>Añadir entrada</ModalHeader>
+        <ModalBody>
+            <Form>
+                <FormGroup>
+                    <Label><b>Campo de conocimiento</b></Label>
+                    <Input type="text" bind:value={rowToAdd["field-of-knowledge"]} />
+                </FormGroup>
+                <FormGroup>
+                    <Label><b>Año</b></Label>
+                    <Input type="number" bind:value={rowToAdd.year} />
+                </FormGroup>
+                <FormGroup>
+                    <Label><b>Rendimiento</b></Label>
+                    <Input type="text" bind:value={rowToAdd["performance-percents"]} />
+                </FormGroup>
+                <FormGroup>
+                    <Label><b>Créditos superados</b></Label>
+                    <Input type="number" bind:value={rowToAdd["credits-passed"]} />
+                </FormGroup>
+                <FormGroup>
+                    <Label><b>Créditos matriculados</b></Label>
+                    <Input type="number" bind:value={rowToAdd["credits-enrolled"]} />
+                </FormGroup>
+                <FormGroup>
+                    <Label><b>Centro</b></Label>
+                    <Input type="text" bind:value={rowToAdd.center} />
+                </FormGroup>
+            </Form>
+        </ModalBody>
+        <ModalFooter>
+            <Button color="primary" on:click={addElement}>Guardar</Button>
+            <Button color="secundary" on:click={toggleAddModal}>Cerrar</Button>
         </ModalFooter>
     </Modal>
 </div>
@@ -145,19 +246,25 @@
 
 <!-- Table -->
 <Container>
-    <Row>
+    <Row class="mt-3">
         <Col>
+            <FormGroup class="float-left">
+                <Button color="success" on:click={() => toggleAddModal()}><Icon name="plus"/>Añadir elemento</Button>
+                <Button color="danger" on:click={() => toggleDeleteAllModal()}><Icon name="trash-fill"/>Borrar todo</Button>
+            </FormGroup>
         </Col>
         <Col>
-            <FormGroup>
-                <Label>Elementos</Label>
+            <InputGroup>
+                <InputGroupAddon addonType="prepend">
+                    <InputGroupText>Elementos</InputGroupText>
+                </InputGroupAddon>
                 <Input type="select" bind:value={maxElements} on:change={() => {currentPage = 1}}>
                     <option>10</option>
                     <option>25</option>
                     <option>50</option>
                     <option>100</option>
                 </Input>
-            </FormGroup>
+            </InputGroup>
         </Col>
     </Row>
     <Row>
@@ -196,13 +303,15 @@
             </Table>
         </Col>
     </Row>
-    <Row class="float-right">
+    <Row>
         <Col>
-            <InputGroup>
-                <Button class="btn-light bg-transparent" on:click={previousPage}>Anterior</Button>
-                <InputGroupText class="bg-transparent">{currentPage}</InputGroupText>
-                <Button class="btn-light bg-transparent" on:click={nextPage}>Siguiente</Button>
-            </InputGroup>
+            <div class="float-right">
+                <InputGroup>
+                    <Button class="btn-light bg-transparent" on:click={previousPage}>Anterior</Button>
+                    <InputGroupText class="bg-transparent">{currentPage}</InputGroupText>
+                    <Button class="btn-light bg-transparent" on:click={nextPage}>Siguiente</Button>
+                </InputGroup>
+            </div>
         </Col>
     </Row>
 </Container>
