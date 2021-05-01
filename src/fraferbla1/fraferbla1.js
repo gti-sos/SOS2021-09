@@ -4,7 +4,7 @@ var router = express.Router();
 //Sacamos el paquete nedb, el paquete de la base de datos
 var Datastore=require("nedb");
 
-var dbcuts=new Datastore({filename: './cutsdb'});
+var dbcuts=new Datastore({filename: 'dbs/cutsdb'});
     dbcuts.loadDatabase(function (err) { //La llamada de vuelta, que es opcional
         //Ahora los comandos serán ejecutados
     });

@@ -5,7 +5,7 @@ var express = require("express");
 var Datastore = require("nedb");
 
 // Inicializamos la base de datos. PERSISTANCE F06.4
-var dbBudgetsByCenters = new Datastore({ filename: './budgetsAPI/budgetsDB' });
+var dbBudgetsByCenters = new Datastore({ filename: 'dbs/budgetsDB' });
 	dbBudgetsByCenters.loadDatabase(function (err) {    // Callback is optional
   	// Now commands will be executed
 });
