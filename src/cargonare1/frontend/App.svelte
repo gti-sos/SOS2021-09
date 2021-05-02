@@ -24,22 +24,22 @@
 </script>
 
 <main>
-    <h3>Abandonos por grado</h3>
+    <h3>Abandonos por grado en la Universidad de Sevilla</h3>
     <Table bordered>
         <thead>
             <tr>
-                <td>grado</td>
+                <td>Grado</td>
                 <td>Año</td>
                 <td>Número de abandonos</td>
                 <td>Nuevos estudiantes</td>
                 <td>Porcentaje de abandonos</td>
-                <td>centro</td>
+                <td>Centro</td>
             </tr>
         </thead>
         <tbody>
             {#each surrenders as surrender}
                 <tr>
-                    <td>{surrender.center}</td>
+                    <td>{surrender.degree}</td>
                     <td>{surrender.year}</td>
                     <td>{surrender.surrender_counts}</td>
                     <td>{surrender.new_students}</td>
