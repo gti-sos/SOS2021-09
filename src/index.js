@@ -11,6 +11,8 @@ app.use(express.static('public')); // Exposes the folder public in the webapp
 // Add the routes especified in the dansesben.js file
 const dansesbenRoutes = require("./dansesben/dansesben");
 app.use('/api/v1/performances-by-degrees-us', dansesbenRoutes);
+const dansesbenRoutesV2 = require("./dansesben/dansesbenV2");
+app.use('/api/v2/performances-by-degrees-us', dansesbenRoutesV2);
 
 // Fran
 const franferbla1Routers = require("./fraferbla1/fraferbla1");

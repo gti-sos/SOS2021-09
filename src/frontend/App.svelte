@@ -42,8 +42,10 @@
 
             <li><b>Performances By Degrees</b>:
                 <a href="/dansesben/">Web Interface</a>
-                <a href="https://documenter.getpostman.com/view/15037183/TzJsexSB">Documentation</a>
-                <a href="https://sos2021-09.herokuapp.com/api/v1/performances-by-degrees-us/">API</a>
+                <a href="https://documenter.getpostman.com/view/15037183/TzRLmWbS">Documentation V1</a>
+                <a href="https://sos2021-09.herokuapp.com/api/v1/performances-by-degrees-us/">API V1</a>
+                <a href="https://documenter.getpostman.com/view/15037183/TzJsexSB">Documentation V2</a>
+                <a href="https://sos2021-09.herokuapp.com/api/v2/performances-by-degrees-us/">API V2</a>
                 (developed by <a href="https://github.com/Wocanilo">Daniel Sesé Benjumea</a>)
             </li>
         </ul>

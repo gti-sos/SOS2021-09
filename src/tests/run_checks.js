@@ -25,6 +25,29 @@ newman.run({
     });
 });
 
+fs.stat('dansesbenV2.db', function(err, stat) {
+    if(err == null) {
+        fs.copyFileSync("dansesbenV2.db", "dansesbenV2.db.bak");
+    }
+});
+
+newman.run({
+    collection: require('./SOS2021-09-performances-by-degrees-us-V2.postman_collection'),
+    reporters: 'cli'
+}, function (err) {
+    if (err) { throw err; }
+    console.log('Collection run complete!');
+    // Close server
+    app.close();
+    // Restore db
+    fs.stat('dansesbenV2.db.bak', function(err, stat) {
+        if(err == null) {
+            fs.copyFileSync("dansesbenV2.db.bak", "dansesbenV2.db");
+            fs.rmSync("dansesbenV2.db.bak");
+        }
+    });
+});
+
 //SOS2021-09-budgets-by-centers-us.postman_collection.json
 fs.stat('budgetsbycentersus.db', function(err, stat) {
     if(err == null) {
