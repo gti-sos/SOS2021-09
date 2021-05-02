@@ -24,7 +24,7 @@
 </script>
 
 <main>
-    <h3>Abandonos por grado</h3>
+    <h3>Abandonos por grado en la Universidad de Sevilla</h3>
     <Table bordered>
         <thead>
             <tr>
