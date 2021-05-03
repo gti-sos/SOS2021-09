@@ -16,7 +16,8 @@
             surrenders = json;
             console.log(`We have received ${surrenders.length} surrenders.`);
         }else{
-            console.log("Error!");
+            errorMsg = res.status + ": " + res.statusText;
+            console.log("Error!" + errorMsg);
         }
     }   
     
