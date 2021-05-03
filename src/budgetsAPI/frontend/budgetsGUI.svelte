@@ -16,7 +16,8 @@
             budgets = json;
             console.log(`We have received ${budgets.length} budgets.`);
         }else{
-            console.log("Error!");
+            errorMsg = res.status + ": " + res.statusText;
+            console.log("Error!" + errorMsg);
         }
     }   
     

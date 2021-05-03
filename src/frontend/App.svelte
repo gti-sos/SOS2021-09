@@ -1,4 +1,24 @@
-<ul>
+<script>
+	import Router from 'svelte-spa-router';
+
+    import LandingPage from './LandingPage.svelte';
+	import info from './info.svelte';
+	import NotFound from './NotFound.svelte';
+
+	const routes = {
+        "/": LandingPage,
+		"/info": info,
+		"*": NotFound 
+	};
+
+</script>
+
+<main>
+	<Router {routes} />
+</main>
+
+<!--
+    <ul>
     <li>
         <strong>Team</strong>
         <ul>
@@ -27,10 +47,12 @@
         <p><strong>APIs</strong>:</p>
         <ul>
             <li>
+                <h4>"Budgets by Centers"</h4>
                 Check the API <a href="https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/docs">https://sos2021-09.herokuapp.com/api/v1/budgets-by-centers-us/docs</a> (developed by <a href="https://github.com/Adrirofer">Adrian Roman Fernandez</a>)
                 <br>| Check the API documentation in: <a href="https://documenter.getpostman.com/view/14937223/TzJydbQt"> API Documentation</a>
                 <br>| Check the API Front-End in: <a href="/budgetsAPI/"> Front-End</a>
             </li>
+            <br>
             <li>
                 <a href="https://sos2021-09.herokuapp.com/api/v1/cut-off-marks-by-degrees-us/docs">https://sos2021-09.herokuapp.com/api/v1/cut-off-marks-by-degrees-us/docs</a> (developed by <a href="https://github.com/franfdezb">Francisco José Fernández Blanco</a>)
             </li>/ Check documentation in: <a href="https://documenter.getpostman.com/view/14962900/TzJsfJ4p">Cut off marks by degrees Documentation</a>
@@ -51,3 +73,5 @@
         </ul>
     </li>
 </ul>
+
+-->
