@@ -36,7 +36,7 @@
                                 }
                             }
                            ).then( (res) => {
-                               getsurrenders();
+                               getSurrenders();
                            })
     }
     
@@ -44,7 +44,7 @@
     let surrenders = [];
     let errorMsg = "";
     
-    async function getsurrenders(){
+    async function getSurrenders(){
         console.log("Fetching surrenders...");
         const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders");
 
@@ -60,7 +60,7 @@
     }   
     
     // BORRAR TODOS LOS RECURSOS F08 PR P1B3.
-    async function deletesurrenders(){
+    async function deleteSurrenders(){
         console.log("Deleting all surrenders...");
 
         const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders",
@@ -69,23 +69,23 @@
                             }
                            ).then( (res) => {
                             console.log("All surrenders deleted...");
-                                getsurrenders();
+                                getSurrenders();
                            })
     }
 
     // BORRAR UN RECURSO CONCRETO F08 PR P1B4.
-    async function deletesurrender(surrenderCenter, surrenderYear){
-        console.log("Deleting contact with center " + surrenderCenter + " and year: " + surrenderYear);
+    async function deleteSurrender(surrenderDegree, surrenderYear){
+        console.log("Deleting contact with degree " + surrenderDegree + " and year: " + surrenderYear);
 
-        const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders/"+ surrenderCenter + "/" + surrenderYear,
+        const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders/"+ surrenderDegree + "/" + surrenderYear,
                             {
                                 method: "DELETE"
                             }
                            ).then( (res) => {
-                                getsurrenders();
+                                getSurrenders();
                            })
     }
-    onMount(getsurrenders);
+    onMount(getSurrenders);
 
 </script>
 
@@ -121,10 +121,10 @@
                     <td>{surrender.new_students}</td>
                     <td>{surrender.surrender_percent}</td>
                     <td>{surrender.center}</td>
-                    <td><Button on:click={deletesurrender(surrender.center, surrender.year)}>Borrar</Button></td>
+                    <td><Button on:click={deleteSurrender(surrender.degree, surrender.year)}>Borrar</Button></td>
                 </tr>
             {/each}
         </tbody>
     </Table>
-    <Button on:click={deletesurrenders}>Borrar Abandono</Button>
+    <Button on:click={deleteSurrenders}>Borrar Abandono</Button>
 </main>
