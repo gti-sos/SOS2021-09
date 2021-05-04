@@ -66,7 +66,7 @@
                 "Content-Type": "application/json"
             }
         }).then(function (res) {
-            getSurrender();
+            //getSurrender();
         });
 
 
