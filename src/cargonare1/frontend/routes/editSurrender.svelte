@@ -26,8 +26,8 @@
 
     async function getSurrender() {
 
-        console.log("Fetching surrender..." + params.center);
-        const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders/"+ params.center + "/2018");
+        console.log("Fetching surrender..." + params.degree);
+        const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders/"+ params.degree + "/2018");
 
         if (res.ok) {
             console.log("Ok:");
@@ -52,7 +52,7 @@
 
         console.log("Updating surrender..." + JSON.stringify(params.center));
 
-        const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders/" + params.center + "/2018", {
+        const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders/" + params.degree + "/2018", {
             method: "PUT",
             body: JSON.stringify({
                 degree: params.degree,
