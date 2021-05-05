@@ -1,7 +1,7 @@
 <script>
     import {Container, Alert, Row, Form, FormGroup, Label, Input, Button, Card} from 'sveltestrap';
-    import {pop} from 'svelte-spa-router';
     import { onMount } from 'svelte';
+    import {pop} from 'svelte-spa-router';
 
     export let params = {} // URL params
     let alerts = [];
@@ -13,7 +13,11 @@
 
         if(res.status === 404){
             alerts = [...alerts, {text: "Elemento " + oldDataURL + " no existe", color: "warning"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts; pop()}, 2000);
+            setTimeout(() => {
+                alerts.shift();
+                alerts = alerts;
+                window.location.href = "";
+            }, 2000);
         }else{
             newDataEdit = await res.json();
         }
@@ -24,13 +28,24 @@
 
         if(res.status === 200){
             alerts = [...alerts, {text: "Modificado " + oldDataURL + " correctamente", color: "success"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts; pop()}, 1500);
+            setTimeout(async () => {
+                alerts.shift();
+                alerts = alerts;
+                window.location.href = "";
+            }, 1200);
         }else if(res.status === 404){
             alerts = [...alerts, {text: "Elemento " + oldDataURL + " no existe", color: "warning"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts; pop()}, 1500);
+            setTimeout(async () => {
+                alerts.shift();
+                alerts = alerts;
+                window.location.href = "";
+            }, 1200);
         }else{
             alerts = [...alerts, {text: "Error interno al intentar modificar " + oldDataURL, color: "danger"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
+            setTimeout(() => {
+                alerts.shift();
+                alerts = alerts;
+            }, 1200);
         }
     }
 </script>

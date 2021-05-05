@@ -2,35 +2,42 @@
     import {Col, Container, Row, Table, FormGroup, Label, Input
         , InputGroup, InputGroupText, Button, Icon, Modal, ModalBody,
         ModalFooter, ModalHeader, Form, Alert, InputGroupAddon} from 'sveltestrap';
-    import { onMount } from 'svelte';
     import ActionModal from './ActionModal.svelte';
+    import {apiAlerts, apiData} from './stores.js';
+    import {deleteRecord, deleteAllRecords, addRecord, searchRecords} from "./API";
 
     let data = [];
-    let maxElements = 10; // Max table elements
-    let currentPage = 1;
+    let searchConfig = {"limit": 5, "page": 1};
 
-    // Load Initial Data
-    onMount(async() =>{
-        const res = await fetch('/api/v2/performances-by-degrees-us/');
-        data = await res.json();
-    })
+    $:  {
+        // Load Data
+        searchRecords(searchConfig).then(data => apiData.update(_ => data));
+    }
 
-    //Load data
+    const unsubscribe = apiData.subscribe(value => {
+        data = value;
+    });
+
     async function loadData(){
-        const res = await fetch('/api/v2/performances-by-degrees-us/');
-        data = await res.json();
+        let tmpData = await searchRecords(searchConfig);
+        apiData.update(_ => tmpData);
     }
 
-    function previousPage() {
-        if (currentPage > 1) currentPage--;
-    }
-
-    function nextPage() {
-        if (currentPage < data.length / maxElements) currentPage++;
+    function addAlert(message){
+        apiAlerts.update(alerts => [...alerts, message]);
+        setTimeout(() => apiAlerts.update(alerts => alerts.slice(1)), 1300);
     }
 
     // Alerts
     let alerts = [];
+
+    const unsubscribeAlerts = apiAlerts.subscribe(value => {
+        alerts = value;
+    });
+
+    ///
+    /// Model logic
+    ///
 
     // Delete modal
     let deleteModal = false;
@@ -44,18 +51,8 @@
 
     async function deleteElement(){
         let element = data[deleteModalIndex];
-        let res = await fetch('/api/v2/performances-by-degrees-us/' + element.center + "/" + element.year + "/" + element["field-of-knowledge"], {"method": "DELETE"});
-
-        if(res.status === 200){
-            alerts = [...alerts, {text: "Eliminado " + element.center + "/" + element.year + "/" + element["field-of-knowledge"] + " correctamente", color: "success"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
-        }else if(res.status === 404){
-            alerts = [...alerts, {text: "Elemento " + element.center + "/" + element.year + "/" + element["field-of-knowledge"] + " no existe", color: "warning"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
-        }else{
-            alerts = [...alerts, {text: "Error interno al intentar borrar " + element.center + "/" + element.year + "/" + element["field-of-knowledge"], color: "danger"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
-        }
+        let result = await deleteRecord(element);
+        addAlert(result);
 
         toggleDeleteModal();
         await loadData(); // Renew data
@@ -67,15 +64,8 @@
 
     // Delete All
     async function deleteAllElements(){
-        let res = await fetch('/api/v2/performances-by-degrees-us/', {"method": "DELETE"});
-
-        if(res.status === 200){
-            alerts = [...alerts, {text: "Todos los elementos han sido eliminados", color: "success"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
-        }else{
-            alerts = [...alerts, {text: "Error interno al intentar borrar todos los elementos", color: "danger"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
-        }
+        let result = await deleteAllRecords();
+        addAlert(result);
 
         await loadData(); // Renew data
         toggleDeleteAllModal();
@@ -87,20 +77,8 @@
     let rowToAdd = {};
 
     async function addElement(){
-        let res = await fetch('/api/v2/performances-by-degrees-us/', {"method": "POST", headers: {'Content-Type': 'application/json'}, body: JSON.stringify(rowToAdd)});
-
-        if(res.status === 201){
-            alerts = [...alerts, {text: "Elemento correctamente añadido", color: "success"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
-        }
-        else if(res.status === 400){
-            alerts = [...alerts, {text: "Elemento inválido, revise que los valores sean válidos", color: "warning"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
-        }
-        else{
-            alerts = [...alerts, {text: "Error interno al intentar añadir el elemento", color: "danger"}];
-            setTimeout(() => {alerts.shift(); alerts = alerts;}, 3000);
-        }
+        let result = await addRecord(rowToAdd);
+        addAlert(result);
 
         await loadData(); // Renew data
         toggleAddModal();
@@ -109,6 +87,7 @@
     // Edit Element
     function editElement(index){
         let element = data[index];
+        // The push function is broken.
         let oldDataURL = "?#/" + element.center + "/" + element.year + "/" + element["field-of-knowledge"];
         window.location.href = oldDataURL;
     }
@@ -186,7 +165,8 @@
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>Elementos</InputGroupText>
                 </InputGroupAddon>
-                <Input type="select" bind:value={maxElements} on:change={() => {currentPage = 1}}>
+                <Input type="select" bind:value={searchConfig.limit} on:change={() => {searchConfig.page = 1}}>
+                    <option>5</option>
                     <option>10</option>
                     <option>25</option>
                     <option>50</option>
@@ -196,48 +176,55 @@
         </Col>
     </Row>
     <Row>
-        <Col>
-            <Table responsive>
-                <thead>
+        <Table responsive>
+            <thead>
+            <tr>
+                <th>Campo de conocimiento</th>
+                <th>Año</th>
+                <th>Rendimiento</th>
+                <th>Créditos superados</th>
+                <th>Créditos matriculados</th>
+                <th>Centro</th>
+                <th>Acciones</th>
+            </tr>
+            </thead>
+            <tbody>
                 <tr>
-                    <th>Campo de conocimiento</th>
-                    <th>Año</th>
-                    <th>Rendimiento</th>
-                    <th>Créditos superados</th>
-                    <th>Créditos matriculados</th>
-                    <th>Centro</th>
-                    <th>Acciones</th>
+                    <td><Input type="search" placeholder="Campo Conocimiento" bind:value={searchConfig["field-of-knowledge"]}/></td>
+                    <td><Input type="search" placeholder="Año" bind:value={searchConfig.year}/></td>
+                    <td><Input type="search" placeholder="Rendimiento" bind:value={searchConfig["performance-percents"]}/></td>
+                    <td><Input type="search" placeholder="Créditos superados" bind:value={searchConfig["credits-passed"]}/></td>
+                    <td><Input type="search" placeholder="Créditos matriculados" bind:value={searchConfig["credits-enrolled"]}/></td>
+                    <td><Input type="search" placeholder="Centro" bind:value={searchConfig.center}/></td>
+                    <td>No hay acciones disponibles</td>
                 </tr>
-                </thead>
-                <tbody>
-                {#each data.slice(maxElements * (currentPage - 1), maxElements * currentPage) as row,
-                    index ({"year": row.year, "center": row.center, "field-of-knowledge": row["field-of-knowledge"]})}
-                    <tr>
-                        <td>{row["field-of-knowledge"]}</td>
-                        <td>{row.year}</td>
-                        <td>{row["performance-percents"]}</td>
-                        <td>{row["credits-passed"]}</td>
-                        <td>{row["credits-enrolled"]}</td>
-                        <td>{row.center}</td>
-                        <td>
-                            <FormGroup>
-                                <Button color="primary" on:click={() => editElement(index)}><Icon name="pencil-fill"/></Button>
-                                <Button color="danger" on:click={() => openDeleteModal(index)}><Icon name="trash-fill"/></Button>
-                            </FormGroup>
-                        </td>
-                    </tr>
-                {/each}
-                </tbody>
-            </Table>
-        </Col>
+                {#each data as row,
+                index ({"year": row.year, "center": row.center, "field-of-knowledge": row["field-of-knowledge"]})}
+                <tr>
+                    <td>{row["field-of-knowledge"]}</td>
+                    <td>{row.year}</td>
+                    <td>{row["performance-percents"]}</td>
+                    <td>{row["credits-passed"]}</td>
+                    <td>{row["credits-enrolled"]}</td>
+                    <td>{row.center}</td>
+                    <td>
+                        <FormGroup>
+                            <Button color="primary" on:click={() => editElement(index)}><Icon name="pencil-fill"/></Button>
+                            <Button color="danger" on:click={() => openDeleteModal(index)}><Icon name="trash-fill"/></Button>
+                        </FormGroup>
+                    </td>
+                </tr>
+            {/each}
+            </tbody>
+        </Table>
     </Row>
     <Row>
         <Col>
             <div class="float-right">
                 <InputGroup>
-                    <Button class="btn-light bg-transparent" on:click={previousPage}>Anterior</Button>
-                    <InputGroupText class="bg-transparent">{currentPage}</InputGroupText>
-                    <Button class="btn-light bg-transparent" on:click={nextPage}>Siguiente</Button>
+                    <Button class="btn-light bg-transparent" on:click={() => searchConfig.page--}>Anterior</Button>
+                    <InputGroupText class="bg-transparent">{searchConfig.page}</InputGroupText>
+                    <Button class="btn-light bg-transparent" on:click={() => searchConfig.page++}>Siguiente</Button>
                 </InputGroup>
             </div>
         </Col>

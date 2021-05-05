@@ -144,7 +144,7 @@ function insertIntoDB(data){
     if(Array.isArray(data)){
         for(let doc in data){
             db.count(data[doc], function (err, count) {
-              if(count == 0) {
+              if(count === 0) {
                 db.insert(data[doc], function (err, newDoc) {
                     if(err){
                         console.error(err);
@@ -156,7 +156,7 @@ function insertIntoDB(data){
         }
     }else{
         db.count(data, function (err, count) {
-          if(count == 0) {
+          if(count === 0) {
             db.insert(data, function (err, newDoc) {
                 if(err){
                     console.error(err);
