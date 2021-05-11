@@ -19,8 +19,9 @@ const franferbla1Routers = require("./fraferbla1/fraferbla1");
 app.use('/api/v1/cut-off-marks-by-degrees-us', franferbla1Routers);
 
 // Adri
-const budgetsbycentersus = require("./budgetsAPI/budgets-by-centers-us");
-app.use('/api/v1/budgets-by-centers-us', budgetsbycentersus);
+const budgetsbycentersus = require("./budgetsAPI/budgets-by-centers-usV2");
+//app.use('/api/v1/budgets-by-centers-us', budgetsbycentersus);
+app.use('/api/v2/budgets-by-centers-us', budgetsbycentersus);
 
 // Carlos
 const cargonare1R = require("./cargonare1/cargonare1");

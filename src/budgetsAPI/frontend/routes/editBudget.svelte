@@ -16,7 +16,7 @@
     let budget = {};
     let updatedCenter = "XXXX";
     let updatedYear = 1234;
-    let updatedFixedFees = 12345;
+    let updatedFixedFees = 12345.22;
     let updatedAmountByECTS = 12345;
     let updatedAmountByProff = 12345;
     let updatedTotal = 12345;
@@ -27,7 +27,7 @@
     async function getBudget() {
 
         console.log("Fetching budget..." + params.center);
-        const res = await fetch("/api/v1/budgets-by-centers-us/budgets/"+ params.center + "/2018");
+        const res = await fetch("/api/v2/budgets-by-centers-us/budgets/"+ params.center + "/" + params.year);
 
         if (res.ok) {
             console.log("Ok:");
@@ -35,43 +35,51 @@
             budget = json;
             updatedCenter = budget.center;
             updatedYear = parseInt(budget.year, 10);
-            updatedFixedFees = parseInt(budget.fixed_fees, 10);
-            updatedAmountByECTS = parseInt(budget.amounts_by_number_of_etc, 10);
-            updatedAmountByProff = parseInt(budget.amounts_by_number_of_proffessors, 10);
-            updatedTotal = parseInt(budget.total, 10);
+            updatedFixedFees = parseFloat(budget.fixed_fees, 10);
+            updatedAmountByECTS = parseFloat(budget.amounts_by_number_of_etc, 10);
+            updatedAmountByProff = parseFloat(budget.amounts_by_number_of_proffessors, 10);
+            updatedTotal = parseFloat(budget.total, 10);
 
             console.log("Received budget.");
         } else {
             errorMsg = res.status + ": " + res.statusText;
             console.log("ERROR!" + errorMsg);
+            if(res.status === 404) {
+                window.alert("No se encuentra el presupuesto");
+            }
         }
     }
 
 
     async function updateBudget() {
 
-        console.log("Updating budget..." + JSON.stringify(params.center));
+        console.log("Updating budget..." + JSON.stringify(params.center) + params.year);
 
-        const res = await fetch("/api/v1/budgets-by-centers-us/budgets/" + params.center + "/2018", {
+        const res = await fetch("/api/v2/budgets-by-centers-us/budgets/"+ params.center + "/" + params.year, {
             method: "PUT",
             body: JSON.stringify({
                 center: params.center,
-                year: updatedYear,
-                fixed_fees: updatedFixedFees,
-                amounts_by_number_of_etc: updatedAmountByECTS,
-                amounts_by_number_of_proffessors: updatedAmountByProff,
-                total: updatedTotal
+                year: parseInt(updatedYear, 10),
+                fixed_fees: parseFloat(updatedFixedFees, 10),
+                amounts_by_number_of_etc: parseFloat(updatedAmountByECTS, 10),
+                amounts_by_number_of_proffessors: parseFloat(updatedAmountByProff, 10),
+                total: parseFloat(updatedTotal, 10)
             }),
             headers: {
                 "Content-Type": "application/json"
             }
         }).then(function (res) {
-            getBudget();
+            if(res.status === 400) {
+                window.alert("Datos introducidos incorrectamente. Introduzcalos de nuevo, por favor.");
+            }
+            if(res.status === 200) {
+                window.alert("Presupuesto Actualizado");
+                console.log("Actualizado");
+                history.go(-1);
+            }
         });
-
-
-
     }
+
 </script>
 <main>
     <h3>Editar Presupuesto <strong>{params.center}</strong></h3>
@@ -90,7 +98,7 @@
             <tbody>
                 <tr>
                     <td>{updatedCenter}</td>
-                    <td>{updatedYear}</td>
+                    <td><input bind:value="{updatedYear}"></td>
                     <td><input bind:value="{updatedFixedFees}"></td>
                     <td><input bind:value="{updatedAmountByECTS}"></td>
                     <td><input bind:value="{updatedAmountByProff}"></td>
