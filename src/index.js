@@ -15,8 +15,8 @@ const dansesbenRoutesV2 = require("./dansesben/dansesbenV2");
 app.use('/api/v2/performances-by-degrees-us', dansesbenRoutesV2);
 
 // Fran
-const franferbla1Routers = require("./fraferbla1/fraferbla1");
-app.use('/api/v1/cut-off-marks-by-degrees-us', franferbla1Routers);
+const franferbla1Routers = require("./fraferbla1/fraferbla1V2");
+app.use('/api/v2/cut-off-marks-by-degrees-us', franferbla1Routers);
 
 // Adri
 const budgetsbycentersus = require("./budgetsAPI/budgets-by-centers-usV2");
