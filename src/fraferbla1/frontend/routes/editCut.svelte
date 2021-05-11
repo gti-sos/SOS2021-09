@@ -88,7 +88,7 @@
                     <td><input bind:value="{updatedCutOff}"></td>
                     <td><input bind:value="{updatedSelecPresented}"></td>
                     <td><input bind:value="{updatedPrice}"></td>
-                    <td><input bind:value="{updatedFaculty}"></td>
+                    <td>{updatedFaculty}</td>
                     <td> <Button outline  color="primary" on:click={updateCut}>Actualizar</Button> </td>
                 </tr>
         </tbody>
