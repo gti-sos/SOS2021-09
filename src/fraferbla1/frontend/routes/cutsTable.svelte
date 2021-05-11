@@ -173,12 +173,12 @@ import { get } from 'svelte/store';
         </thead>
         <tbody>
             <tr>
-                <td><input placeholder="Ej: ETSII" bind:value="{newCut.degree}"></td>
+                <td><input placeholder="Ej: Geography" bind:value="{newCut.degree}"></td>
                 <td><input placeholder="Ej: 2021" bind:value= {newCut.year}></td>
                 <td><input placeholder="Ej: 3553.1" bind:value="{newCut.cut_off_mark}"></td>
                 <td><input placeholder="Ej: 13569.1" bind:value="{newCut.selectivity_presented_seville}"></td>
                 <td><input placeholder="Ej: 5647.3" bind:value="{newCut.price_admision}"></td>
-                <td><input placeholder="Ej: 465675.2" bind:value="{newCut.faculty}"></td>
+                <td><input placeholder="Ej: FHISTRY" bind:value="{newCut.faculty}"></td>
                 <td><Button on:click={insertCut}>Añadir</Button></td>
             </tr>
             {#each cuts as cut}
