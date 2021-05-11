@@ -222,9 +222,9 @@
         <Col>
             <div class="float-right">
                 <InputGroup>
-                    <Button class="btn-light bg-transparent" on:click={() => searchConfig.page--}>Anterior</Button>
+                    <Button class="btn-light bg-transparent" on:click={() => {if (searchConfig.page > 1) searchConfig.page--}}>Anterior</Button>
                     <InputGroupText class="bg-transparent">{searchConfig.page}</InputGroupText>
-                    <Button class="btn-light bg-transparent" on:click={() => searchConfig.page++}>Siguiente</Button>
+                    <Button class="btn-light bg-transparent" on:click={() => {if (data.length === parseInt(searchConfig.limit)) searchConfig.page++}}>Siguiente</Button>
                 </InputGroup>
             </div>
         </Col>

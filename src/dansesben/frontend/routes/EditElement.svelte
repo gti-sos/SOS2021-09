@@ -1,6 +1,6 @@
 <script>
     import {Container, Alert, Row, Form, FormGroup, Label, Input, Button, Card} from 'sveltestrap';
-    import { onMount } from 'svelte';
+    import {onMount} from 'svelte';
     import {pop} from 'svelte-spa-router';
 
     export let params = {} // URL params
