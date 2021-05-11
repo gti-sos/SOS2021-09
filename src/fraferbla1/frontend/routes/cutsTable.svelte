@@ -20,12 +20,12 @@ import { get } from 'svelte/store';
         var newCutCutOffs = parseFloat(newCut.cut_off_mark);
         var newCutSelectPresented = parseFloat(newCut.selectivity_presented_seville);
         var newCutPrice = parseFloat(newCut.price_admision);
-        var newCutFaculty = parseFloat(newCut.total);
+        var newCutFaculty = parseFloat(newCut.faculty);
         newCut.year = newCutYear;
         newCut.cut_off_mark = newCutCutOffs;
         newCut.selectivity_presented_seville = newCutSelectPresented;
         newCut.price_admision = newCutPrice;
-        newCut.total = newCutFaculty;
+        newCut.faculty = newCutFaculty;
         console.log(newCut);
         let res = await fetch("/api/v2/cut-off-marks-by-degrees-us/cuts",
                             {
@@ -178,7 +178,7 @@ import { get } from 'svelte/store';
                 <td><input placeholder="Ej: 3553.1" bind:value="{newCut.cut_off_mark}"></td>
                 <td><input placeholder="Ej: 13569.1" bind:value="{newCut.selectivity_presented_seville}"></td>
                 <td><input placeholder="Ej: 5647.3" bind:value="{newCut.price_admision}"></td>
-                <td><input placeholder="Ej: 465675.2" bind:value="{newCut.total}"></td>
+                <td><input placeholder="Ej: 465675.2" bind:value="{newCut.faculty}"></td>
                 <td><Button on:click={insertCut}>Añadir</Button></td>
             </tr>
             {#each cuts as cut}
@@ -188,7 +188,7 @@ import { get } from 'svelte/store';
                     <td>{cut.cut_off_mark}</td>
                     <td>{cut.selectivity_presented_seville}</td>
                     <td>{cut.price_admision}</td>
-                    <td>{cut.total}</td>
+                    <td>{cut.faculty}</td>
                     <td><Button on:click={deleteCut(cut.degree, cut.year)}>Borrar</Button></td>
                 </tr>
             {/each}
