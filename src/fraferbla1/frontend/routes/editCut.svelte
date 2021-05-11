@@ -12,13 +12,13 @@
     let cut = {};
     let updatedDegree = "XXXX";
     let updatedYear = 1234;
-    let updatedCutOff = 12345.22;
-    let updatedSelecPresented = 12345;
-    let updatedPrice = 12345;
+    let updatedCutOffs = 12345.22;
+    let updatedSelectPresented = 12345;
+    let updatedPriceAdmision = 12345;
     let updatedFaculty = "XXXX";
     let errorMsg = "";
-    onMount(getCut);
-    async function getCut() {
+    onMount(getcut);
+    async function getcut() {
         console.log("Fetching cut..." + params.degree);
         const res = await fetch("/api/v2/cut-off-marks-by-degrees-us/cuts/"+ params.degree + "/" + params.year);
         if (res.ok) {
@@ -27,10 +27,10 @@
             cut = json;
             updatedDegree = cut.degree;
             updatedYear = parseInt(cut.year, 10);
-            updatedCutOff = parseFloat(cut.cut_off_mark, 10);
-            updatedSelecPresented = parseFloat(cut.selectivity_presented_seville, 10);
-            updatedPrice = parseFloat(cut.price_admision, 10);
-            updatedFaculty = cut.faculty;
+            updatedCutOffs = parseFloat(cut.cut_off_mark, 10);
+            updatedSelectPresented = parseFloat(cut.selectivity_presented_seville, 10);
+            updatedPriceAdmision = parseFloat(cut.price_admision, 10);
+            updatedFaculty = parseStr(cut.faculty, 10);
             console.log("Received cut.");
         } else {
             errorMsg = res.status + ": " + res.statusText;
@@ -40,17 +40,17 @@
             }
         }
     }
-    async function updateCut() {
+    async function updatecut() {
         console.log("Updating cut..." + JSON.stringify(params.degree) + params.year);
-        const res = await fetch("/api/v2/cut-off-marks-by-degrees-us/cuts/"+ params.degree + "/" + params.year, {
+        const res = await fetch("/api/v2/cuts-by-degrees-us/cuts/"+ params.degree + "/" + params.year, {
             method: "PUT",
             body: JSON.stringify({
                 degree: params.degree,
                 year: parseInt(updatedYear, 10),
-                cut_off_mark: parseFloat(updatedCutOff, 10),
-                selectivity_presented_seville: parseFloat(updatedSelecPresented, 10),
-                price_admision: parseFloat(updatedPrice, 10),
-                faculty: params.faculty
+                cut_off_mark: parseFloat(updatedCutOffs, 10),
+                selectivity_presented_seville: parseFloat(updatedSelectPresented, 10),
+                price_admision: parseFloat(updatedPriceAdmision, 10),
+                total: parseStr(updatedFaculty, 10)
             }),
             headers: {
                 "Content-Type": "application/json"
@@ -60,7 +60,7 @@
                 window.alert("Datos introducidos incorrectamente. Introduzcalos de nuevo, por favor.");
             }
             if(res.status === 200) {
-                window.alert("Dato actualizado");
+                window.alert("Presupuesto Actualizado");
                 console.log("Actualizado");
                 history.go(-1);
             }
@@ -68,14 +68,14 @@
     }
 </script>
 <main>
-    <h3>Editar dato <strong>{params.degree}</strong></h3>
+    <h3>Editar Presupuesto <strong>{params.degree}</strong></h3>
         <Table bordered>
             <thead>
                 <tr>
                     <td>Grado</td>
                     <td>Año</td>
                     <td>Nota de corte</td>
-                    <td>Presentados en selectividad</td>
+                    <td>Presentados a selectividad</td>
                     <td>Precio de matrícula</td>
                     <td>Facultad</td>
                     <td>Acción</td>
@@ -85,11 +85,11 @@
                 <tr>
                     <td>{updatedDegree}</td>
                     <td><input bind:value="{updatedYear}"></td>
-                    <td><input bind:value="{updatedCutOff}"></td>
-                    <td><input bind:value="{updatedSelecPresented}"></td>
-                    <td><input bind:value="{updatedPrice}"></td>
-                    <td>{updatedFaculty}</td>
-                    <td> <Button outline  color="primary" on:click={updateCut}>Actualizar</Button> </td>
+                    <td><input bind:value="{updatedCutOffs}"></td>
+                    <td><input bind:value="{updatedSelectPresented}"></td>
+                    <td><input bind:value="{updatedPriceAdmision}"></td>
+                    <td><input bind:value="{updatedFaculty}"></td>
+                    <td> <Button outline  color="primary" on:click={updatecut}>Actualizar</Button> </td>
                 </tr>
         </tbody>
         </Table>
