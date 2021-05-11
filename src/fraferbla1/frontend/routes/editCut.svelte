@@ -30,7 +30,7 @@
             updatedCutOffs = parseFloat(cut.cut_off_mark, 10);
             updatedSelectPresented = parseFloat(cut.selectivity_presented_seville, 10);
             updatedPriceAdmision = parseFloat(cut.price_admision, 10);
-            updatedFaculty = parseStr(cut.faculty, 10);
+            updatedFaculty = String(cut.faculty, 10);
             console.log("Received cut.");
         } else {
             errorMsg = res.status + ": " + res.statusText;
@@ -50,7 +50,7 @@
                 cut_off_mark: parseFloat(updatedCutOffs, 10),
                 selectivity_presented_seville: parseFloat(updatedSelectPresented, 10),
                 price_admision: parseFloat(updatedPriceAdmision, 10),
-                total: parseStr(updatedFaculty, 10)
+                total: String(updatedFaculty, 10)
             }),
             headers: {
                 "Content-Type": "application/json"
