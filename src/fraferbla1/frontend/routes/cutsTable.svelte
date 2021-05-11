@@ -20,12 +20,10 @@ import { get } from 'svelte/store';
         var newCutCutOffs = parseFloat(newCut.cut_off_mark);
         var newCutSelectPresented = parseFloat(newCut.selectivity_presented_seville);
         var newCutPrice = parseFloat(newCut.price_admision);
-        var newCutFaculty = parseFloat(newCut.faculty);
         newCut.year = newCutYear;
         newCut.cut_off_mark = newCutCutOffs;
         newCut.selectivity_presented_seville = newCutSelectPresented;
         newCut.price_admision = newCutPrice;
-        newCut.faculty = newCutFaculty;
         console.log(newCut);
         let res = await fetch("/api/v2/cut-off-marks-by-degrees-us/cuts",
                             {

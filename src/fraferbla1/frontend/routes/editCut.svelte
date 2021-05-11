@@ -15,7 +15,7 @@
     let updatedCutOff = 12345.22;
     let updatedSelecPresented = 12345;
     let updatedPrice = 12345;
-    let updatedFaculty = 12345;
+    let updatedFaculty = "XXXX";
     let errorMsg = "";
     onMount(getCut);
     async function getCut() {
@@ -30,7 +30,7 @@
             updatedCutOff = parseFloat(cut.cut_off_mark, 10);
             updatedSelecPresented = parseFloat(cut.selectivity_presented_seville, 10);
             updatedPrice = parseFloat(cut.price_admision, 10);
-            updatedFaculty = parseFloat(cut.faculty, 10);
+            updatedFaculty = cut.faculty;
             console.log("Received cut.");
         } else {
             errorMsg = res.status + ": " + res.statusText;
