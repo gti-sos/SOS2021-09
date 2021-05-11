@@ -42,7 +42,7 @@
     }
     async function updatecut() {
         console.log("Updating cut..." + JSON.stringify(params.degree) + params.year);
-        const res = await fetch("/api/v2/cuts-by-degrees-us/cuts/"+ params.degree + "/" + params.year, {
+        const res = await fetch("/api/v2/cut-off-marks-by-degrees-us/cuts/"+ params.degree + "/" + params.year, {
             method: "PUT",
             body: JSON.stringify({
                 degree: params.degree,
@@ -50,7 +50,7 @@
                 cut_off_mark: parseFloat(updatedCutOffs, 10),
                 selectivity_presented_seville: parseFloat(updatedSelectPresented, 10),
                 price_admision: parseFloat(updatedPriceAdmision, 10),
-                total: String(updatedFaculty, 10)
+                faculty: updatedFaculty
             }),
             headers: {
                 "Content-Type": "application/json"
