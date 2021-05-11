@@ -50,7 +50,7 @@
                 cut_off_mark: parseFloat(updatedCutOff, 10),
                 selectivity_presented_seville: parseFloat(updatedSelecPresented, 10),
                 price_admision: parseFloat(updatedPrice, 10),
-                faculty: parseFloat(updatedFaculty, 10)
+                faculty: params.faculty
             }),
             headers: {
                 "Content-Type": "application/json"
