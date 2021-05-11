@@ -31,7 +31,8 @@
             <li>
                 <p><i>Fuente de datos:</i> <strong>"Budgets by Centers"</strong></p>
                 | Revisa la IPA en: <a href="https://sos2021-09.herokuapp.com/api/v2/budgets-by-centers-us/">https://sos2021-09.herokuapp.com/api/v2/budgets-by-centers-us</a> (desarrollada por <a href="https://github.com/Adrirofer">Adrian Roman Fernandez</a>)
-                <br>| Revisa la documentación de la IPA en: <a href="https://documenter.getpostman.com/view/14937223/TzJydbQt"> Documentación IPA</a>
+                <br>| Revisa la documentación V1 de la IPA en: <a href="https://documenter.getpostman.com/view/14937223/TzRShTVc"> Documentación IPA</a>
+                <br>| Revisa la documentación V2 de la IPA en: <a href="https://documenter.getpostman.com/view/14937223/TzJydbQt"> Documentación IPA</a>
                 <br>| Revisa la Interfaz Gráfica de Usuario de la IPA en: <a href="/budgetsAPI/"> Interfaz Gráfica de Usuario</a>
             </li>
             <br>
