@@ -165,7 +165,7 @@
                 <InputGroupAddon addonType="prepend">
                     <InputGroupText>Elementos</InputGroupText>
                 </InputGroupAddon>
-                <Input type="select" bind:value={searchConfig.limit} on:change={() => {searchConfig.page = 1}}>
+                <Input type="select" on:change={(evt) => {searchConfig = {limit: evt.target.value, page: 1}}}>
                     <option>5</option>
                     <option>10</option>
                     <option>25</option>
