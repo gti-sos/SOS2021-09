@@ -56,7 +56,7 @@ fs.stat('budgetsbycentersus.db', function(err, stat) {
 });
 
 newman.run({
-    collection: require('./SOS2021-09-budgets-by-centers-us.postman_collection'),
+    collection: require('./SOS2021-09-budgets-by-centers-us.postman_collectionV2'),
     reporters: 'cli'
 }, function (err) {
 	if (err) { throw err; }
