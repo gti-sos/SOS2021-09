@@ -8,7 +8,7 @@
 	const routes = {
 		"/": Landing,
 		"/cuts": cutsIndex,
-		"/cuts/:center/:year": CutEdit,
+		"/cuts/:degree/:year": CutEdit,
 		"/cuts/search": CutsSearch
 //		"*": NotFound
 	};
