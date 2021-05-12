@@ -179,12 +179,12 @@ import { get } from 'svelte/store';
     <Table bordered>
         <thead>
             <tr>
-                <td>Centro</td>
+                <td>Grado</td>
                 <td>Año</td>
-                <td>Cuantía fija</td>
-                <td>Cuantía por número de créditos ECTS</td>
-                <td>Cuantía por número de profesores</td>
-                <td>Total</td>
+                <td>Número de abandonos</td>
+                <td>Nuevos estudiantes</td>
+                <td>Porcentaje de abandonos</td>
+                <td>Centros</td>
                 <td>Acción</td>
             </tr>
         </thead>
