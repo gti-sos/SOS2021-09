@@ -99,6 +99,14 @@ var d_g = [
         "new_students": 309,
         "surrender_percent":25.89,
         "center": "FTourism"
+    },
+	{
+        "degree": "Odontology",
+        "year": 2013,
+        "surrender_counts": 20,
+        "new_students": 93,
+        "surrender_percent":21.51,
+        "center": "FOdontology"
     }
 
 
