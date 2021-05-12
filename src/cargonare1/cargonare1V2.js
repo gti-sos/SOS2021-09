@@ -75,7 +75,32 @@ var d_g = [
         "new_students": 296,
         "surrender_percent":14.53,
         "center": "EPS"
+    },
+	{
+        "degree": "Medicine",
+        "year": 2012,
+        "surrender_counts": 38,
+        "new_students": 367,
+        "surrender_percent":10.35,
+        "center": "FMEDICINE"
+    },
+	{
+        "degree": "Pharmacy",
+        "year": 2013,
+        "surrender_counts": 49,
+        "new_students": 305,
+        "surrender_percent":16.05,
+        "center": "FPharmacy"
+    },
+	{
+        "degree": "Tourism",
+        "year": 2018,
+        "surrender_counts": 80,
+        "new_students": 309,
+        "surrender_percent":25.89,
+        "center": "FTourism"
     }
+
 
 ];
 
