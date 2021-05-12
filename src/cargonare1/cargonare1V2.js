@@ -106,7 +106,7 @@ var d_g = [
         "surrender_counts": 20,
         "new_students": 93,
         "surrender_percent":21.51,
-        "center": "FOdontology"
+        "center": "FOdontolog"
     }
 
 
