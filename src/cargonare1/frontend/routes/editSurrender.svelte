@@ -16,73 +16,65 @@
     let surrender = {};
     let updatedDegree = "XXXX";
     let updatedYear = 1234;
-    let updatedSurrenderPercent = 12345.22;
-    let updatedsurrenderCounts= 12345;
-    let updatedNew_Students = 12345;
-    let updatedCenter = "XXX";
+    let updatedSurrenderCounts = 12345;
+    let updatedNewStudents = 12.2;
+    let updatedSurrenderPercent = 12.2;
+    let updatedCenter = "XXXX";
     let errorMsg = "";
 
     onMount(getSurrender);
 
     async function getSurrender() {
 
-        console.log("Fetching surrender..." + params.degree);
-        const res = await fetch("/api/v2/surrenders-by-degrees-us/surrenders/"+ params.degree + "/" + params.year);
+        console.log("Fetching surrender..." + params.center);
+        const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders/"+ params.center + "/2018");
 
         if (res.ok) {
             console.log("Ok:");
             const json = await res.json();
             surrender = json;
-            updatedCenter = surrender.center;
             updatedDegree = surrender.degree;
             updatedYear = parseInt(surrender.year, 10);
+            updatedSurrenderCounts = parseInt(surrender.surrender_counts, 10);
+            updatedNewStudents = parseInt(surrender.new_students, 10);
             updatedSurrenderPercent = parseFloat(surrender.surrender_percent, 10);
-            updatedNew_Students = parseInt(surrender.new_students, 10);
-            updatedsurrenderCounts = parseInt(surrender.surrender_counts, 10);
+            updatedCenter = surrender.center;
 
             console.log("Received surrender.");
         } else {
             errorMsg = res.status + ": " + res.statusText;
             console.log("ERROR!" + errorMsg);
-            if(res.status === 404) {
-                window.alert("No se encuentra el abandono");
-            }
         }
     }
 
 
     async function updateSurrender() {
 
-        console.log("Updating surrender..." + JSON.stringify(params.degree) + params.year);
+        console.log("Updating surrender..." + JSON.stringify(params.center));
 
-        const res = await fetch("/api/v2/surrenders-by-degrees-us/surrenders/"+ params.degree + "/" + params.year, {
+        const res = await fetch("/api/v1/surrenders-by-degrees-us/surrenders/" + params.center + "/2018", {
             method: "PUT",
             body: JSON.stringify({
                 degree: params.degree,
-                year: parseInt(updatedYear, 10),
-                surrender_percent: parseFloat(updatedSurrenderPercent, 10),
-                new_students: parseInt(updatedNew_Students, 10),
-                surrender_counts: parseInt(updatedsurrenderCounts, 10),
-                center: updatedCenter
+                year: updatedYear,
+                surrender_counts: updatedSurrenderCounts,
+                new_students: updatedNewStudents,
+                surrender_percent: updatedSurrenderPercent,
+                center: params.center
             }),
             headers: {
                 "Content-Type": "application/json"
             }
         }).then(function (res) {
-            if(res.status === 400) {
-                window.alert("Datos introducidos incorrectamente. Introduzcalos de nuevo, por favor.");
-            }
-            if(res.status === 200) {
-                window.alert("Presupuesto Actualizado");
-                console.log("Actualizado");
-                history.go(-1);
-            }
+            //getSurrender();
         });
-    }
 
+
+
+    }
 </script>
 <main>
-    <h3>Editar Abandono <strong>{params.degree}</strong></h3>
+    <h3>Editar Abandono <strong>{params.center}</strong></h3>
         <Table bordered>
             <thead>
                 <tr>
@@ -98,9 +90,9 @@
             <tbody>
                 <tr>
                     <td>{updatedDegree}</td>
-                    <td><input bind:value="{updatedYear}"></td>
-                    <td><input bind:value="{updatedsurrenderCounts}"></td>
-                    <td><input bind:value="{updatedNew_Students}"></td>
+                    <td>{updatedYear}</td>
+                    <td><input bind:value="{updatedSurrenderCounts}"></td>
+                    <td><input bind:value="{updatedNewStudents}"></td>
                     <td><input bind:value="{updatedSurrenderPercent}"></td>
                     <td><input bind:value="{updatedCenter}"></td>
                     <td> <Button outline  color="primary" on:click={updateSurrender}>Actualizar</Button> </td>

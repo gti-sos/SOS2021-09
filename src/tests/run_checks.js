@@ -102,7 +102,7 @@ fs.stat('cuts.db', function(err, stat) {
 });
 
 newman.run({
-    collection: require('./SOS2021-09-cut-off-marks-by-degrees-us-V2.postman_collection'),
+    collection: require('./SOS2021-09-surrenders-by-degrees-us.postman_collection'),
     reporters: 'cli'
 }, function (err) {
 	if (err) { throw err; }
