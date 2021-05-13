@@ -38,7 +38,7 @@
             <br>
             <li>
                 <p><i>Fuente de datos:</i> <strong>"Cut off marks by degrees US"</strong></p>
-                | Revisa la IPA en: <a href="https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/docs">https://sos2021-09.herokuapp.com/api/v1/cut-off-marks-by-degrees-us/docs</a> (desarrollada por <a href="https://github.com/franfdezb">Francisco José Fernández Blanco</a>)
+                | Revisa la IPA en: <a href="https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/">https://sos2021-09.herokuapp.com/api/v1/cut-off-marks-by-degrees-us/docs</a> (desarrollada por <a href="https://github.com/franfdezb">Francisco José Fernández Blanco</a>)
                 <br> | Revisa la documentación V1 en: <a href="https://documenter.getpostman.com/view/14962900/TzJsfJ4p">Documentación de la IPA cut off marks by degrees</a>
                 <br> | Revisa la documentación V2 en: <a href="https://documenter.getpostman.com/view/14962900/TzRSiTwM">Documentación de la IPA cut off marks by degrees</a>
                 <br> | Revisa la Interfaz Gráfica de Usuario de la IPA en: <a href="/fraferbla1/"> Interfaz Gráfica de Usuario</a>
