@@ -200,7 +200,7 @@ import { get } from 'svelte/store';
             </tr>
             {#each surrenders as surrender}
                 <tr>
-                    <td><a href="#/surrenders/{surrender.degree}/{surrender.year}">{surrender.center}</a></td>
+                    <td><a href="#/surrenders/{surrender.degree}/{surrender.year}">{surrender.degree}</a></td>
                     <td>{surrender.year}</td>
                     <td>{surrender.surrender_counts}</td>
                     <td>{surrender.new_students}</td>
