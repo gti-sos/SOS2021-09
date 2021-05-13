@@ -390,7 +390,7 @@ router.delete("/cuts/:degree/:year", (req,res)=>{
 });
 
 // PUT TO A RESOURCE F04.5
-router.put("/cuts/:degree/:year", function(req,res){
+router.put("/cuts/:degree/:year", function(req,res){ 
 
 	var Udegree = req.params.degree;
 	var Uyear = parseInt(req.params.year);
