@@ -1,0 +1,987 @@
+{
+	"info": {
+		"_postman_id": "3bc0ab32-884a-45d9-b10b-5c4754d7c8f6",
+		"name": "APIV2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "loadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/loadInitialData/",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"loadInitialData",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la lista de recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"pm.test(\"Its an array\", function () {\r",
+							"    Array.isArray(pm.response.body)\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts/",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la lista de recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Its a valid object and its an object\", function () {\r",
+							"    validDataEntry(pm.request.body);\r",
+							"});\r",
+							"\r",
+							"//Auxiliar functions\r",
+							"function validDataEntry(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"degree\"]) return false;\r",
+							"\tif (!obj.degree) return false;\r",
+							"\tif (!obj[\"year\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"\tif (!obj[\"cut_off_mark\"]) return false;\r",
+							"    if (!obj.cut_off_mark) return false;\r",
+							"\tif (!obj[\"selectivity_presented_seville\"]) return false;\r",
+							"    if (!obj.selectivity_presented_seville) return false;\r",
+							"    if (!obj[\"price_admision\"]) return false;\r",
+							"\tif (!obj.price_admision) return false;\r",
+							"    if (!obj[\"faculty\"]) return false;\r",
+							"\tif (!obj.faculty) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"degree\": \"Prueba2\",\r\n    \"year\": 2077,\r\n    \"cut_off_mark\": 1,\r\n    \"selectivity_presented_seville\": 200,\r\n    \"price_admision\": 999,\r\n    \"faculty\": \"FHISTRY\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la lista de recursos Conflict",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Its a valid object and its an object\", function () {\r",
+							"    validDataEntry(pm.request.body);\r",
+							"});\r",
+							"\r",
+							"//Auxiliar functions\r",
+							"function validDataEntry(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"degree\"]) return false;\r",
+							"\tif (!obj.degree) return false;\r",
+							"\tif (!obj[\"year\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"\tif (!obj[\"cut_off_mark\"]) return false;\r",
+							"    if (!obj.cut_off_mark) return false;\r",
+							"\tif (!obj[\"selectivity_presented_seville\"]) return false;\r",
+							"    if (!obj.selectivity_presented_seville) return false;\r",
+							"    if (!obj[\"price_admision\"]) return false;\r",
+							"\tif (!obj.price_admision) return false;\r",
+							"    if (!obj[\"faculty\"]) return false;\r",
+							"\tif (!obj.faculty) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"degree\": \"Prueba2\",\r\n    \"year\": 2077,\r\n    \"cut_off_mark\": 1,\r\n    \"selectivity_presented_seville\": 200,\r\n    \"price_admision\": 999,\r\n    \"faculty\": \"FHISTRY\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a un recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Its a valid object and its an object\", function () {\r",
+							"    validDataEntry(pm.request.body);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//Auxiliar functions\r",
+							"function validDataEntry(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"degree\"]) return false;\r",
+							"\tif (!obj.degree) return false;\r",
+							"\tif (!obj[\"year\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"\tif (!obj[\"cut_off_mark\"]) return false;\r",
+							"    if (!obj.cut_off_mark) return false;\r",
+							"\tif (!obj[\"selectivity_presented_seville\"]) return false;\r",
+							"    if (!obj.selectivity_presented_seville) return false;\r",
+							"    if (!obj[\"price_admision\"]) return false;\r",
+							"\tif (!obj.price_admision) return false;\r",
+							"    if (!obj[\"faculty\"]) return false;\r",
+							"\tif (!obj.faculty) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts/Geography/2017",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts",
+						"Geography",
+						"2017"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a un recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts/Geography/2017",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts",
+						"Geography",
+						"2017"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Its a valid object and its an object\", function () {\r",
+							"    validDataEntry(pm.request.body);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//Auxiliar functions\r",
+							"function validDataEntry(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"degree\"]) return false;\r",
+							"\tif (!obj.degree) return false;\r",
+							"\tif (!obj[\"year\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"\tif (!obj[\"cut_off_mark\"]) return false;\r",
+							"    if (!obj.cut_off_mark) return false;\r",
+							"\tif (!obj[\"selectivity_presented_seville\"]) return false;\r",
+							"    if (!obj.selectivity_presented_seville) return false;\r",
+							"    if (!obj[\"price_admision\"]) return false;\r",
+							"\tif (!obj.price_admision) return false;\r",
+							"    if (!obj[\"faculty\"]) return false;\r",
+							"\tif (!obj.faculty) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"degree\": \"Prueba2\",\r\n    \"year\": 2077,\r\n    \"cut_off_mark\": 69,\r\n    \"selectivity_presented_seville\": 8669,\r\n    \"price_admision\": 757,\r\n    \"faculty\": \"FHISTRY\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts/Prueba2/2077",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts",
+						"Prueba2",
+						"2077"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a un recurso (fallo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts/Prueba3/2077",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts",
+						"Prueba3",
+						"2077"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a un recurso (fallo) error 400",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"degree\": \"History\",\r\n\"year\": 2017,\r\n\"cut_off_mark\": 6.5,\r\n\"selectivity_presented_seville\": 8669,\r\n\"price_admision\": 757,\r\n\"faculty\": \"FHISTRY\",\r\n\"hola\": \"hola\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a lista recursos (fallo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a lista de recursos Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "loadInitialData Copy",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/loadInitialData/",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"loadInitialData",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda x 1 campo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Its an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The objects on the array are valid\", function () {\r",
+							"    validDataReturn(pm.response);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//Auxiliar functions\r",
+							"function validDataReturn(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"degree\"]) return false;\r",
+							"\tif (!obj.degree) return false;\r",
+							"\tif (!obj[\"year\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"\tif (!obj[\"cut_off_mark\"]) return false;\r",
+							"    if (!obj.cut_off_mark) return false;\r",
+							"\tif (!obj[\"selectivity_presented_seville\"]) return false;\r",
+							"    if (!obj.selectivity_presented_seville) return false;\r",
+							"    if (!obj[\"price_admision\"]) return false;\r",
+							"\tif (!obj.price_admision) return false;\r",
+							"    if (!obj[\"faculty\"]) return false;\r",
+							"\tif (!obj.faculty) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts?degree=History",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					],
+					"query": [
+						{
+							"key": "year",
+							"value": "2018",
+							"disabled": true
+						},
+						{
+							"key": "degree",
+							"value": "History"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda x 2 campos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Its an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The objects on the array are valid\", function () {\r",
+							"    validDataReturn(pm.response);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//Auxiliar functions\r",
+							"function validDataReturn(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"degree\"]) return false;\r",
+							"\tif (!obj.degree) return false;\r",
+							"\tif (!obj[\"year\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"\tif (!obj[\"cut_off_mark\"]) return false;\r",
+							"    if (!obj.cut_off_mark) return false;\r",
+							"\tif (!obj[\"selectivity_presented_seville\"]) return false;\r",
+							"    if (!obj.selectivity_presented_seville) return false;\r",
+							"    if (!obj[\"price_admision\"]) return false;\r",
+							"\tif (!obj.price_admision) return false;\r",
+							"    if (!obj[\"faculty\"]) return false;\r",
+							"\tif (!obj.faculty) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts?degree=History&year=2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					],
+					"query": [
+						{
+							"key": "degree",
+							"value": "History"
+						},
+						{
+							"key": "year",
+							"value": "2018"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda x 3 campos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Its an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The objects on the array are valid\", function () {\r",
+							"    validDataReturn(pm.response);\r",
+							"});\r",
+							"\r",
+							"\r",
+							"//Auxiliar functions\r",
+							"function validDataReturn(obj){\r",
+							"    if(Object.keys(obj).length !== 6) return false;\r",
+							"    if (!obj[\"degree\"]) return false;\r",
+							"\tif (!obj.degree) return false;\r",
+							"\tif (!obj[\"year\"]) return false;\r",
+							"    if (!obj.year) return false;\r",
+							"\tif (!obj[\"cut_off_mark\"]) return false;\r",
+							"    if (!obj.cut_off_mark) return false;\r",
+							"\tif (!obj[\"selectivity_presented_seville\"]) return false;\r",
+							"    if (!obj.selectivity_presented_seville) return false;\r",
+							"    if (!obj[\"price_admision\"]) return false;\r",
+							"\tif (!obj.price_admision) return false;\r",
+							"    if (!obj[\"faculty\"]) return false;\r",
+							"\tif (!obj.faculty) return false;\r",
+							"    return true;\r",
+							"}"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts?degree=History&year=2018&cut_off_mark=6.6",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					],
+					"query": [
+						{
+							"key": "degree",
+							"value": "History"
+						},
+						{
+							"key": "year",
+							"value": "2018"
+						},
+						{
+							"key": "cut_off_mark",
+							"value": "6.6"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginacion",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Its an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The returned array has the same size than limit\", function () {\r",
+							"    pm.response.length == pm.collectionVariables.get(\"limit\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts?limit=2&offset=0",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginacion 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"Its an array\", function () {\r",
+							"    Array.isArray(pm.response.body);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"The returned array has the same size than limit\", function () {\r",
+							"    pm.response.length == pm.collectionVariables.get(\"limit\");\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts?limit=2&offset=1",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a recurso que no existe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts/Geography/2055",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts",
+						"Geography",
+						"2055"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a lista de recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/cut-off-marks-by-degrees-us/cuts",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"cut-off-marks-by-degrees-us",
+						"cuts"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
