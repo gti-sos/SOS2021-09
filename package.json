@@ -7,6 +7,8 @@
     "test": "node src/tests/run_checks.js",
     "build": "rollup -c",
     "dev": "rollup -c -w",
+    "coverage": "nyc npm run test",
+    "report-test": "nyc report --reporter=text-lcov > coverage.lcovA",
     "start": "node src/index.js",
     "watch-node": "nodemon src/index.js"
   },
@@ -23,6 +25,7 @@
   "dependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
+    "codecov": "^3.8.2",
     "express": "^4.17.1",
     "nedb": "^1.8.0",
     "rollup": "^2.3.4",
@@ -36,6 +39,7 @@
   },
   "devDependencies": {
     "newman": "^5.2.3",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0"
   }
 }

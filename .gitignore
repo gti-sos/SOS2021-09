@@ -11,6 +11,12 @@ cutsDB
 surrendersdb
 cutsdb
 
+# Coverage
+coverage
+*.lcov
+
+# nyc test coverage
+.nyc_output
 __sapper__
 
 src/node_modules
