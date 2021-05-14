@@ -28,6 +28,30 @@ router
                     "credits-passed": 1870,
                     "credits-enrolled": 2147,
                     "center": "ETSII"
+                },
+                {
+                    "field-of-knowledge": "Computer-Science",
+                    "year": 2019,
+                    "performance-percents": "80.01%",
+                    "credits-passed": 1270,
+                    "credits-enrolled": 2547,
+                    "center": "ETSII"
+                },
+                {
+                    "field-of-knowledge": "Computer-Science",
+                    "year": 2020,
+                    "performance-percents": "75.10%",
+                    "credits-passed": 970,
+                    "credits-enrolled": 2547,
+                    "center": "ETSII"
+                },
+                {
+                    "field-of-knowledge": "Computer-Science",
+                    "year": 2021,
+                    "performance-percents": "83.10%",
+                    "credits-passed": 1970,
+                    "credits-enrolled": 2347,
+                    "center": "ETSII"
                 }]);
 
                 if (insert_result === -1) res.sendStatus(500);

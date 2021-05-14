@@ -91,6 +91,10 @@
         let oldDataURL = "?#/" + element.center + "/" + element.year + "/" + element["field-of-knowledge"];
         window.location.href = oldDataURL;
     }
+
+    function goToGraphs(){
+        window.location.href = "?#/graphs";
+    }
 </script>
 
 <!-- Alert -->
@@ -157,7 +161,8 @@
         <Col>
             <FormGroup class="float-left">
                 <Button color="success" on:click={() => toggleAddModal()}><Icon name="plus"/>Añadir elemento</Button>
-                <Button color="danger" on:click={() => toggleDeleteAllModal()}><Icon name="trash-fill"/>Borrar todo</Button>
+                <Button color="danger" on:click={() => toggleDeleteAllModal()}><Icon name="trash-fill" class="pr-1"/>Borrar todo</Button>
+                <Button color="info" on:click={() => goToGraphs()}><Icon name="graph-up" class="pr-1"/>Ver gráficas</Button>
             </FormGroup>
         </Col>
         <Col>
