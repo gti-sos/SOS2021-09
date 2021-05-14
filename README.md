@@ -1,4 +1,5 @@
 # SOS2021-09
+[![Known Vulnerabilities](https://snyk.io/test/github/gti-sos/SOS2021-09/badge.svg)](https://snyk.io/test/github/gti-sos/SOS2021-09/{repo})
 
 <h2>Información del Grupo</h2>
 <ul>
