@@ -1,0 +1,100 @@
+<script>
+    import Highcharts from 'highcharts';
+    import {Container} from 'sveltestrap';
+    import {getAllRecords} from './../dansesben/frontend/routes/API';
+    import { onMount } from 'svelte';
+
+    onMount(async () => {
+        let dataDansesben = await getAllRecords();
+        dataDansesben = dataDansesben.filter(o => o.center === "ETSII" && o["field-of-knowledge"] === "Computer-Science");
+        dataDansesben = dataDansesben.sort(function(a, b) {
+            if (a.year < b.year) return -1;
+            if (a.year > b.year) return 1;
+            return 0;
+        });
+
+        // X Axis (Range of years)
+        let xAxisValues = dataDansesben.map(o => o.year);
+        let rangeStart = Math.min(...xAxisValues);
+        // Y Axis
+        let yAxisValuesDansesben = dataDansesben.map(o => o["credits-passed"]);
+
+        Highcharts.chart('container', {
+            title: {
+                text: 'Relacion fuentes de datos'
+            },
+
+            subtitle: {
+                text: ''
+            },
+
+            yAxis: [{
+                title: {
+                    text: 'Número de créditos aprobados'
+                }
+            },
+            {
+                title: {
+                    text: 'Número de aprobados'
+                }
+            }],
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: rangeStart
+                }
+            },
+
+            series: [{
+                axis: 0,
+                name: 'Ingeniería informática',
+                data: yAxisValuesDansesben,
+                tooltip: {
+                    valueSuffix: ' creditos'
+                }
+            },
+            {
+                axis: 1,
+                name: 'Bellas Artes',
+                data: yAxisValuesDansesben.map(o => o - 500),
+                tooltip: {
+                    valueSuffix: ' aprobados'
+                }
+            }],
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            }
+        });
+    });
+
+</script>
+
+<Container>
+    <figure class="highcharts-figure">
+        <div id="container"></div>
+        <p class="highcharts-description text-center">
+            Se muestra la relacion diferentes fuentes de datos
+        </p>
+    </figure>
+</Container>
