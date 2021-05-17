@@ -9,7 +9,7 @@
             <strong>Equipo</strong>
             <ul>
                 <li>
-                    <a href="https://github.com/Adrirofer">Adrian Roman Fernández</a>
+                    <a href="https://github.com/Adrirofer">Adrián Román Fernández</a>
                 </li>
                 <li>
                     <a href="https://github.com/franfdezb">Francisco José Fernández Blanco</a>
