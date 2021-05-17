@@ -5,6 +5,8 @@
     import { onMount } from 'svelte';
 
     onMount(async () => {
+
+        //DANI
         let dataDansesben = await getAllRecords();
         dataDansesben = dataDansesben.filter(o => o.center === "ETSII" && o["field-of-knowledge"] === "Computer-Science");
         dataDansesben = dataDansesben.sort(function(a, b) {
@@ -13,11 +15,38 @@
             return 0;
         });
 
+        // ADRI
+        async function getBudgets(){
+            console.log("Fetching budgets...");
+            const res = await fetch("/api/v2/budgets-by-centers-us/budgets");
+
+            if(res.ok){
+                console.log("Ok.");
+                return await res.json();
+            }else{
+                console.log("Error!");
+            }
+        }
+        let dataBudgets = await getBudgets();
+        dataBudgets = dataBudgets.filter(o => o.center === "ETSII");
+        // dataBudgets = dataBudgets.sort(function(a, b) {
+        //     if (a.year < b.year) return -1;
+        //     if (a.year > b.year) return 1;
+        //     return 0;
+        // });
+
+
         // X Axis (Range of years)
         let xAxisValues = dataDansesben.map(o => o.year);
         let rangeStart = Math.min(...xAxisValues);
+
+        // DANI
         // Y Axis
         let yAxisValuesDansesben = dataDansesben.map(o => o["credits-passed"]);
+
+        // ADRI
+        // Y Axis
+        let yAxisValuesBudgets = dataBudgets.map(o => o["total"]);
 
         Highcharts.chart('container', {
             title: {
@@ -64,10 +93,10 @@
             },
             {
                 axis: 1,
-                name: 'Bellas Artes',
-                data: yAxisValuesDansesben.map(o => o - 500),
+                name: 'ETSII',
+                data: yAxisValuesBudgets,
                 tooltip: {
-                    valueSuffix: ' aprobados'
+                    valueSuffix: ' cuantía total'
                 }
             }],
 

@@ -64,7 +64,7 @@
                     label: {
                         connectorAllowed: false
                     },
-                    pointStart: 0
+                    pointStart: 4
                 }
             },
 
