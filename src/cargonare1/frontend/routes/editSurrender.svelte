@@ -83,7 +83,7 @@
                 );
             }
             if (res.status === 200) {
-                window.alert("Presupuesto Actualizado");
+                window.alert("Abandono Actualizado");
                 console.log("Actualizado");
                 history.go(-1);
             }
