@@ -73,6 +73,7 @@ router.get("/cuts",(req,res)=>{
 
 	var selectedCuts = [];
 	
+	
 	dbcuts.find({},(err, cutsFound)=> {
 		if(err) {
 			console.error("ERROR accesing to the DB in GET" + err);
