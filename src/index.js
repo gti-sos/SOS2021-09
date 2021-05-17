@@ -24,7 +24,7 @@ const budgetsbycentersus = require("./budgetsAPI/budgets-by-centers-usV2");
 app.use('/api/v2/budgets-by-centers-us', budgetsbycentersus);
 
 // Carlos
-const cargonare1R = require("./cargonare1/cargonare1");
+const cargonare1R = require("./cargonare1/cargonare1V2");
 //app.use('/api/v1/surrenders-by-degrees-us', cargonare1R);
 app.use('/api/v2/surrenders-by-degrees-us', cargonare1R);
 
