@@ -1,0 +1,832 @@
+{
+	"info": {
+		"_postman_id": "fed46c20-c308-4986-81d5-1720077df9d8",
+		"name": "V2",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "loadInitialData",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la lista de Recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a la lista de Recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Data have been posted\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"degree\": \"PruebaEntregable\",\r\n    \"year\": 2021,\r\n    \"surrender_counts\": 1935554,\r\n    \"new_students\": 536663,\r\n    \"surrender_percent\":36322.21,\r\n    \"center\": \"CentroPrueba\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a un Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders/PruebaEntregable/2021",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders",
+						"PruebaEntregable",
+						"2021"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a un Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders/PruebaEntregable/2021",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders",
+						"PruebaEntregable",
+						"2021"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a un Recurso",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"degree\": \"PruebaEntregablePUT\",\r\n    \"year\": 2021,\r\n    \"surrender_counts\": 1935554,\r\n    \"new_students\": 536663,\r\n    \"surrender_percent\":36322.21,\r\n    \"center\": \"CentroPruebaPUT\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders/History/2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders",
+						"History",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la lista de Recursos (Debe de dar error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 404\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GET a la lista de Recursos (Debe de dar error)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders/PruebaEntregable/2021",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders",
+						"PruebaEntregable",
+						"2021"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a un Recurso (Debe dar fallo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 400\", function () {\r",
+							"    pm.response.to.have.status(400);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"degree\": \"PruebaEntregable\",\r\n    \"number\": 2021,\r\n    \"surrender_counts\": 1935554,\r\n    \"new_students\": 536663,\r\n    \"surrender_percent\":36322.21,\r\n    \"center\": \"CentroPrueba\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a un Recurso (Debe dar fallo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 409\", function () {\r",
+							"    pm.response.to.have.status(409);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"degree\": \"PruebaEntregable\",\r\n    \"year\": 2021,\r\n    \"surrender_counts\": 1935554,\r\n    \"new_students\": 536663,\r\n    \"surrender_percent\":36322.21,\r\n    \"center\": \"CentroPrueba\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "POST a un Recurso (Debe dar fallo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders/History/2018",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders",
+						"History",
+						"2018"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT a la lista de Recursos (Debe dar fallo)",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 405\", function () {\r",
+							"    pm.response.to.have.status(405);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a la lista de Recursos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status\", function () {\r",
+							"    pm.response.to.have.status(404);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Load Initial Data Para las búsquedas y paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Data have been charged\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/loadInitialData",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"loadInitialData"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por 1 campo",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders?center=FEFP",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					],
+					"query": [
+						{
+							"key": "center",
+							"value": "FEFP"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Busqueda por 2 campos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders?new_students=533&surrender_percent=36.21",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					],
+					"query": [
+						{
+							"key": "new_students",
+							"value": "533"
+						},
+						{
+							"key": "surrender_percent",
+							"value": "36.21"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Búsqueda por 3 campos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders?new_students=237&surrender_percent=19.83&center=ETSII",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					],
+					"query": [
+						{
+							"key": "new_students",
+							"value": "237"
+						},
+						{
+							"key": "surrender_percent",
+							"value": "19.83"
+						},
+						{
+							"key": "center",
+							"value": "ETSII"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders?limit=2&offset=0",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "0"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Paginación 2",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders?limit=2&offset=1",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						},
+						{
+							"key": "offset",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE a la lista de Recursos tras pruebas búsquedas y paginación",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://sos2021-09.herokuapp.com/api/v2/surrenders-by-degrees-us/surrenders",
+					"protocol": "https",
+					"host": [
+						"sos2021-09",
+						"herokuapp",
+						"com"
+					],
+					"path": [
+						"api",
+						"v2",
+						"surrenders-by-degrees-us",
+						"surrenders"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

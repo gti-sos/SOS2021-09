@@ -38,6 +38,7 @@
                 <br>| Revisa la documentación de la IPAv1 en: <a href="https://documenter.getpostman.com/view/14937223/TzRShTVc"> Documentación IPA</a>
                 <br>| Revisa la documentación de la IPAv2 en: <a href="https://documenter.getpostman.com/view/14937223/TzJydbQt"> Documentación IPA</a>
                 <br>| Revisa la Interfaz Gráfica de Usuario de la IPA en: <a href="/budgetsAPI/"> Interfaz Gráfica de Usuario</a>
+                <br>| Revisa la IPA para la integración: <a href="https://sos2021-09.herokuapp.com/api/integration/budgets-by-centers-us"> IPA Integración</a>
             </li>
             <br>
             <li>
@@ -51,6 +52,7 @@
                 <p><i>Fuente de datos:</i> <strong>"Surrenders by degrees US"</strong></p>
                 | Revisa la IPA <a href="https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us">https://sos2021-09.herokuapp.com/api/v1/surrenders-by-degrees-us</a> (desarrollada por <a href="https://github.com/cargonare1">Carlos González Arenas</a>)
                 <br> | Revisa la documentación de la IPA en: <a href="https://documenter.getpostman.com/view/12390654/TzJu8c5h">Documentación de la IPA surrenders by degrees</a>
+                <br>| Revisa la documentación de la IPAv2 en: <a href="https://documenter.getpostman.com/view/12390654/TzRXA6cF"> Documentación IPA</a>
                 <br> | Revisa la Interfaz Gráfica de Usuario de la IPA en: <a href="/cargonare1/"> Interfaz Gráfica de Usuario</a>
             </li>
             <br>
