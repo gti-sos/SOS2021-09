@@ -31,7 +31,7 @@ var initialData = [
     {
         "degree": "Computer-Science",
         "year": 2017,
-        "cut_off_mark": 8,
+        "cut_off_mark": 5.74,
         "selectivity_presented_seville": 8669,
         "price_admision": 757,
         "faculty": "ETSII"
@@ -39,11 +39,27 @@ var initialData = [
     {
         "degree": "Computer-Science",
         "year": 2018,
-        "cut_off_mark": 7,
+        "cut_off_mark": 5.85,
         "selectivity_presented_seville": 10517,
         "price_admision": 757,
         "faculty": "ETSII"
     },
+	{
+		"degree": "Computer-Science",
+        "year": 2019,
+        "cut_off_mark": 6.1,
+        "selectivity_presented_seville": 7001,
+        "price_admision": 757,
+        "faculty": "ETSII"
+	},
+	{
+		"degree": "Computer-Science",
+        "year": 2020,
+        "cut_off_mark": 7.3,
+        "selectivity_presented_seville": 8862,
+        "price_admision": 757,
+        "faculty": "ETSII"
+	},
     {
         "degree": "Geography",
         "year": 2017,
