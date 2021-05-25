@@ -4,12 +4,14 @@ import Home from './routes/Home.svelte'
 import NotFound from './routes/NotFound.svelte'
 import EditElement from './routes/EditElement.svelte';
 import Graphs from './routes/Graphs.svelte';
+import Integrations from './routes/Integrations.svelte';
 import {Container, Row, Col} from 'sveltestrap';
 
 const routes = {
     '/': Home,
     '/graphs': Graphs,
     '/:center/:year/:field-of-knowledge': EditElement,
+    '/integrations': Integrations,
     '*': NotFound
 }
 </script>

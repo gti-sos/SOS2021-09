@@ -95,6 +95,10 @@
     function goToGraphs(){
         window.location.href = "?#/graphs";
     }
+
+    function goToIntegrations(){
+        window.location.href = "?#/integrations";
+    }
 </script>
 
 <!-- Alert -->
@@ -158,11 +162,12 @@
 <!-- Table -->
 <Container>
     <Row class="mt-3">
-        <Col>
+        <Col class="col-7">
             <FormGroup class="float-left">
                 <Button color="success" on:click={() => toggleAddModal()}><Icon name="plus"/>Añadir elemento</Button>
                 <Button color="danger" on:click={() => toggleDeleteAllModal()}><Icon name="trash-fill" class="pr-1"/>Borrar todo</Button>
                 <Button color="info" on:click={() => goToGraphs()}><Icon name="graph-up" class="pr-1"/>Ver gráficas</Button>
+                <Button color="warning" on:click={() => goToIntegrations()}><Icon name="graph-up" class="pr-1"/>Integraciones</Button>
             </FormGroup>
         </Col>
         <Col>

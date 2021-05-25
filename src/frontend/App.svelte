@@ -9,7 +9,7 @@
 	const routes = {
         "/": LandingPage,
 		"/info": info,
-		"/graphs": Graphs,
+		"/analytics": Graphs,
 		"*": NotFound 
 	};
 

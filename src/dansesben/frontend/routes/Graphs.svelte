@@ -1,8 +1,9 @@
 <script>
     import Highcharts from 'highcharts';
-    import {Container} from 'sveltestrap';
+    import {Container, Row, Col} from 'sveltestrap';
     import {getAllRecords} from './API';
     import { onMount } from 'svelte';
+    import Chart from 'chart.js/auto';
 
     onMount(async () => {
         let data = await getAllRecords();
@@ -126,8 +127,59 @@
                 data: creditsPassed
             }]
         });
-    });
 
+        // Chartjs
+        const CHART_COLORS = {
+            red: 'rgb(255, 99, 132)',
+            orange: 'rgb(255, 159, 64)',
+            yellow: 'rgb(255, 205, 86)',
+            green: 'rgb(75, 192, 192)',
+            blue: 'rgb(54, 162, 235)',
+            purple: 'rgb(153, 102, 255)',
+            grey: 'rgb(201, 203, 207)'
+        };
+
+        let dataRawPie = await getAllRecords();
+        let dataCounter = {};
+
+        dataRawPie.forEach(o => {
+            if(!(o.center in dataCounter)){
+                dataCounter[o.center] = o["credits-enrolled"];
+            }else{
+                dataCounter[o.center] += o["credits-enrolled"];
+            }
+        });
+
+        const dataPie = {
+            labels: Object.keys(dataCounter),
+            datasets: [
+                {
+                    label: 'Dataset 1',
+                    data: Object.values(dataCounter),
+                    backgroundColor: Object.values(CHART_COLORS),
+                }
+            ]
+        };
+
+        var ctx = document.getElementById('myChart').getContext('2d');
+        var myChart = new Chart(ctx, {
+            type: 'pie',
+            data: dataPie,
+            options: {
+                maintainAspectRatio: false,
+                responsive: true,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                    },
+                    title: {
+                        display: true,
+                        text: 'Creditos matriculados por centro'
+                    }
+                }
+            },
+        });
+    });
 </script>
 
 <Container>
@@ -148,4 +200,8 @@
             en la <code>ETSII</code>.
         </p>
     </figure>
+</Container>
+
+<Container>
+        <canvas id="myChart" width="700" height="600"></canvas>
 </Container>

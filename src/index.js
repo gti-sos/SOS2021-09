@@ -1,4 +1,5 @@
 const express = require("express");
+var request = require('request');
 const app = express();
 const PORT = process.env.PORT || 3000;
 
@@ -13,6 +14,14 @@ const dansesbenRoutes = require("./dansesben/dansesben");
 app.use('/api/v1/performances-by-degrees-us', dansesbenRoutes);
 const dansesbenRoutesV2 = require("./dansesben/dansesbenV2");
 app.use('/api/v2/performances-by-degrees-us', dansesbenRoutesV2);
+
+// Proxy Dansesben
+const ADZUNE_SECRET = process.env.ADZUNE_SECRET || "";
+app.use("/dansesben/getDataAdzuna", function(req, res) {
+    var url = "https://api.adzuna.com/v1/api/jobs/gb/history?app_id=8e1b82c9&app_key=" + ADZUNE_SECRET + "&location0=UK&location1=London&category=it-jobs&content-type=application/json&months=24";
+    req.pipe(request(url)).pipe(res);
+});
+
 
 // Fran
 const franferbla1Routers = require("./fraferbla1/fraferbla1V2");
