@@ -1,7 +1,8 @@
 <script>
     import { onMount } from 'svelte';
-    import {Col, Container, Row, Table} from 'sveltestrap';
+    import {Col, Container, Row} from 'sveltestrap';
     import Highcharts from "highcharts";
+    import {getAllRecords} from "./API";
 
     onMount(async () =>{
        let dataLondon = await (await fetch("https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=region;areaName=london&structure={%22date%22:%22date%22,%22newCases%22:%22newCasesByPublishDate%22}")).json();
@@ -21,6 +22,13 @@
        }
 
        dataGithubParsed = dataGithubParsed.sort()
+
+        let dataAPI = await getAllRecords();
+
+        // Remove not ETSII and Computer-Science data
+        dataAPI = dataAPI.filter(o => o.center === "ETSII" && o["field-of-knowledge"] === "Computer-Science");
+        let yAxisValues = dataAPI.map(o => [Date.parse(o["year"]), o["credits-passed"]]);
+
         Highcharts.chart('container', {
             chart: {
                 type: 'column'
@@ -29,10 +37,10 @@
                 description: '.'
             },
             title: {
-                text: 'Nuevos casos de COVID19 y salario medio de trabajos de TI en Londres'
+                text: 'Nuevos casos de COVID19, salario medio de trabajos de TI en Londres y creditos aprobados en la ETSII'
             },
             subtitle: {
-                text: 'Obtenidos de https://coronavirus.data.gov.uk/ y https://adzuna.com'
+                text: 'Obtenidos de https://coronavirus.data.gov.uk/, https://adzuna.com y performances-by-degrees'
             },
 
             yAxis: [{
@@ -41,12 +49,18 @@
                 },
                 min: 0
             },
-                {
-                    title: {
-                        text: 'Salario TI'
-                    },
-                    min: 0
-                }
+            {
+                title: {
+                    text: 'Salario TI'
+                },
+                min: 0
+            },
+            {
+                title: {
+                    text: 'Creditos aprobados en la ETSII'
+                },
+                min: 0
+            }
             ],
             tooltip: {
                 pointFormat: '{series.name} had stockpiled <b>{point.y:,.0f}</b><br/>warheads in {point.x}'
@@ -68,17 +82,25 @@
                 data: dataLondonParsed,
                 tooltip: {
                     headerFormat: '<b>{series.name}</b><br>',
-                    pointFormat: '{point.x:%e. %b}: {point.y:.0f} nuevos casos'
+                    pointFormat: '{point.x:%e. %b %Y}: {point.y:.0f} nuevos casos'
                 }
             },
-                {
-                    name: "Salario de TI",
-                    data: dataGithubParsed,
-                    tooltip: {
-                        headerFormat: '<b>{series.name}</b><br>',
-                        pointFormat: '{point.x:%e. %b}: {point.y:.0f} libras'
-                    }
-                }],
+            {
+                name: "Salario de TI",
+                data: dataGithubParsed,
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x:%e. %b %Y}: {point.y:.0f} libras'
+                }
+            },
+            {
+                name: "Creditos aprobados en la ETSII",
+                data: yAxisValues,
+                tooltip: {
+                    headerFormat: '<b>{series.name}</b><br>',
+                    pointFormat: '{point.x:%Y}: {point.y:.0f} creditos'
+                }
+            }],
         });
     });
 
@@ -88,7 +110,8 @@
 <Container class="mt-4">
     <Row class="text-center">
         <Col>
-            <h3 class="mb-3">Casos de COVID19</h3>
+            <h3>Integracion dos APIs externas y la propia</h3>
+            <h5 class="mb-3">Se utiliza un proxy para acceder a la API de sueldos</h5>
         </Col>
     </Row>
     <Row class="text-center">
@@ -98,7 +121,8 @@
                     <div id="container"></div>
                     <p class="highcharts-description text-center">
                         Se muestra la evolución de de contagios de <code>COVID19</code>
-                        en la ciudad de <code>Londres</code>.
+                        en la ciudad de <code>Londres</code>, el <code>sueldo</code> de trabajos de TI
+                        en <code>Londres</code> y los <code>creditos</code> aprobados en la <code>ETSII</code>
                     </p>
                 </figure>
             </Container>

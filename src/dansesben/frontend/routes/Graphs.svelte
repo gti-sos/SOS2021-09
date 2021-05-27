@@ -202,6 +202,6 @@
     </figure>
 </Container>
 
-<Container>
+<Container class="mb-5">
         <canvas id="myChart" width="700" height="600"></canvas>
 </Container>
