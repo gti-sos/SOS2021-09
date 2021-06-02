@@ -2,7 +2,6 @@
     import { onMount } from 'svelte';
     import {Col, Container, Row} from 'sveltestrap';
     import Highcharts from "highcharts";
-    import {getAllRecords} from "./API";
 
     onMount(async () =>{
        let dataLondon = await (await fetch("https://api.coronavirus.data.gov.uk/v1/data?filters=areaType=region;areaName=london&structure={%22date%22:%22date%22,%22newCases%22:%22newCasesByPublishDate%22}")).json();
@@ -22,11 +21,9 @@
        }
 
        dataGithubParsed = dataGithubParsed.sort()
-
-        let dataAPI = await getAllRecords();
+        let dataAPI = await (await fetch("/api/v2/performances-by-degrees-us/?limit=5&center=ETSII&field-of-knowledge=Computer-Science&offset=0")).json();
 
         // Remove not ETSII and Computer-Science data
-        dataAPI = dataAPI.filter(o => o.center === "ETSII" && o["field-of-knowledge"] === "Computer-Science");
         let yAxisValues = dataAPI.map(o => [Date.parse(o["year"]), o["credits-passed"]]);
 
         Highcharts.chart('container', {
@@ -109,96 +106,45 @@
         });
 
         // SOS Integration
-        await fetch("/dansesben/proxyRequest/education-expenditures/loadInitialData");
-        let educationExpeditures = await (await fetch("/dansesben/proxyRequest/education-expenditures/")).json();
+        await fetch("/dansesben/proxyRequest/education-expenditures/loadInitialDataReduced");
+        let educationExpeditures = await (await fetch("/dansesben/proxyRequest/education-expenditures/reduced?c=Spain")).json();
 
-        educationExpeditures = educationExpeditures.filter(o => o.country == "Spain");
         educationExpeditures = [...new Map(educationExpeditures.map(item => [item["year"], item])).values()]
-        educationExpeditures = educationExpeditures.map(o => [Date.parse(o.year), o["education_expenditure_per_millions"]]);
 
+        let educationValue2016 = 0;
 
-/*        Highcharts.chart('container-2', {
+        educationExpeditures.forEach(o =>{
+            if(o.year === 2016) educationValue2016 = o["education_expenditure_per_millions"];
+        });
+
+        let dataAPI2 = await (await fetch("/api/v2/performances-by-degrees-us/")).json();
+        let creditosAprobados = 0;
+
+        dataAPI2.forEach(o => {
+           creditosAprobados = creditosAprobados + o["credits-passed"];
+        });
+
+        let options2 = {
             chart: {
-                zoomType: 'xy'
-            },
-            title: {
-                text: 'Gasto en educación vs Creditos aprobados'
-            },
-            subtitle: {
-                text: 'Fuente: education-expenditures y performances-by-degrees'
-            },
-
-            xAxis: {
-                type: 'datetime',
-                dateTimeLabelFormats: {
-                    month: '%e. %b',
-                    year: '%b'
-                },
-                title: {
-                    text: 'Date'
-                }
-            },
-
-            yAxis: [{ // Primary yAxis
-                labels: {
-                    format: '{value} creditos',
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                },
-                title: {
-                    text: 'Creditos',
-                    style: {
-                        color: Highcharts.getOptions().colors[1]
-                    }
-                }
-            }, { // Secondary yAxis
-                title: {
-                    text: 'Gasto en educacion',
-                    style: {
-                        color: Highcharts.getOptions().colors[0]
-                    }
-                },
-                labels: {
-                    format: '{value} millones de euros',
-                    style: {
-                        color: Highcharts.getOptions().colors[0]
-                    }
-                },
-                opposite: true
-            }],
-            tooltip: {
-                shared: true
-            },
-            legend: {
-                layout: 'vertical',
-                align: 'left',
-                x: 120,
-                verticalAlign: 'top',
-                y: 100,
-                floating: true,
-                backgroundColor:
-                    Highcharts.defaultOptions.legend.backgroundColor || // theme
-                    'rgba(255,255,255,0.25)'
+                type: 'treemap'
             },
             series: [{
-                name: 'Gasto en educacion',
-                type: 'column',
-                yAxis: 1,
-                data: educationExpeditures,
-                tooltip: {
-                    valueSuffix: ' millones de euros'
-                }
-
-            }, {
-                name: 'Creditos aprobados',
-                type: 'spline',
-                data: yAxisValues,
-                tooltip: {
-                    valueSuffix: ' creditos'
-                }
+                data: [
+                    {
+                        x: "Gasto en educacion en 2016",
+                        y: educationValue2016
+                    },
+                    {
+                        x: "Creditos aprobados en la US en total",
+                        y: creditosAprobados
+                    }
+                ]
             }]
-        });*/
+        }
+
+        let chart3 = new ApexCharts(document.querySelector("#myChart"), options2);
+        chart3.render();
+
 
         await fetch("/dansesben/proxyRequest/mh-stats/loadInitialData");
         let mhStats = await (await fetch("/dansesben/proxyRequest/mh-stats/")).json();
@@ -239,7 +185,7 @@
         };
 
         const options = {
-            chart: { title: 'Casos de ansiedad vs Creditos aprobados', width: 900, height: 400 },
+            chart: { title: 'Casos de ansiedad vs Creditos aprobados en Ingenieria Informatica en la ETSII', width: 900, height: 400 },
         };
 
         const chart = toastui.Chart.barChart({ el, data, options });
@@ -274,6 +220,7 @@
         <Col>
             <h3>Integracion API education-expenditures y la propia</h3>
             <h5 class="mb-3">Se utiliza un proxy para acceder a la API education-expenditures</h5>
+            <h6>Libreria ApexCharts</h6>
         </Col>
     </Row>
     <Row class="text-center">
@@ -282,7 +229,7 @@
                 <figure class="highcharts-figure">
                     <div id="myChart"></div>
                     <p class="highcharts-description text-center">
-                        Se muestra la relación entre los <code>créditos aprobados</code> y el <code>gasto en educación</code> de ese año.
+                        Se muestra la relación entre los <code>créditos aprobados</code> y el <code>gasto en educación</code> de 2016.
                     </p>
                 </figure>
             </Container>
