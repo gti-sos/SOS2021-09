@@ -205,3 +205,8 @@
 <Container class="mb-5">
         <canvas id="myChart" width="700" height="600"></canvas>
 </Container>
+<Container class="text-center mb-5">
+   <p>
+       Se muestra la proporción de créditos matriculados por centro.
+   </p>
+</Container>

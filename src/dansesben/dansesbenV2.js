@@ -52,6 +52,14 @@ router
                     "credits-passed": 1970,
                     "credits-enrolled": 2347,
                     "center": "ETSII"
+                },
+                {
+                    "field-of-knowledge": "Computer-Science",
+                    "year": 2017,
+                    "performance-percents": "90.10%",
+                    "credits-passed": 4231,
+                    "credits-enrolled": 5123,
+                    "center": "ETSII"
                 }]);
 
                 if (insert_result === -1) res.sendStatus(500);

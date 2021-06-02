@@ -7,6 +7,7 @@
     onMount(async () => {
 
         //DANI
+        await fetch("/api/v2/performances-by-degrees-us/loadInitialData");
         let dataDansesben = await getAllRecords();
         dataDansesben = dataDansesben.filter(o => o.center === "ETSII" && o["field-of-knowledge"] === "Computer-Science");
         dataDansesben = dataDansesben.sort(function(a, b) {
@@ -18,6 +19,7 @@
         // ADRI
         async function getBudgets(){
             console.log("Fetching budgets...");
+            await fetch("/api/v2/budgets-by-centers-us/");
             const res = await fetch("/api/v2/budgets-by-centers-us/budgets");
 
             if(res.ok){

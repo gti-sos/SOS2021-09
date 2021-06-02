@@ -21,6 +21,21 @@ app.use("/dansesben/getDataAdzuna", function(req, res) {
     var url = "https://api.adzuna.com/v1/api/jobs/gb/history?app_id=8e1b82c9&app_key=" + ADZUNE_SECRET + "&location0=UK&location1=London&category=it-jobs&content-type=application/json&months=24";
     req.pipe(request(url)).pipe(res);
 });
+//Proxy dansesben (SOS)
+var dansesbenAllowList = {"education-expenditures": "https://education-expenditures.herokuapp.com/api/v1",
+"mh-stats": "https://sos2021-23.herokuapp.com/api/v1/mh-stats"};
+app.use("/dansesben/proxyRequest/:api", function(req, res) {
+    let apiName = req.params.api;
+
+    if(apiName in dansesbenAllowList){
+        let url = dansesbenAllowList[apiName] + req.url;
+
+        req.pipe(request(url)).pipe(res);
+    }else{
+        res.sendStatus(400);
+    }
+});
+
 
 
 // Fran
