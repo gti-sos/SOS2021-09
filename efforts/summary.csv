@@ -1,0 +1,110 @@
+﻿Project,Client,Title,Duration
+SOS2021-09,,# 118 Actualizar el index.html | pr. p9,00:04:00
+SOS2021-09,,"#10 Rellenar mis datos en el GitHub, en la plantilla de equipos.",00:16:08
+SOS2021-09,,#102 Hacer la colección de POSTMAN. | pr. p5,00:15:29
+SOS2021-09,,#106 Adaptar la API a la tabla azul y verde | pr. p6,01:00:00
+SOS2021-09,,"#11 Rellenar mis datos en el GitHub, en la plantilla de equipos.",00:18:35
+SOS2021-09,,#110 Implementar test en las colecciones de POSTMAN | pr. p7,00:49:51
+SOS2021-09,,#114 Actualizar documentación de POSTMAN de la API | pr. p8,00:58:00
+SOS2021-09,,#122 Revisar los identificadores de recursos | pr. p10,00:13:00
+SOS2021-09,,#124 Revisar la recepción y envío de datos en la API | pr. 13,00:15:00
+SOS2021-09,,#126 Revisar la devolución de los GETS | pr. p11,00:14:08
+SOS2021-09,,#13 Verificar mis datos en Piazza.,00:06:44
+SOS2021-09,,#130 Revisar el buen uso del error 400 | pr. p12,00:30:15
+SOS2021-09,,#138 Revisar lo quee Genera la BD | pr. p14,00:05:00
+SOS2021-09,,#14 Verificar mis datos en Piazza.,00:02:14
+SOS2021-09,,#141 Revisar lo quee Genera la BD | pr. p14,03:13:00
+SOS2021-09,,#143 Añadir a la página inicial de heroku el enlace de cada front-end de cada miembro | gr. p1,00:00:24
+SOS2021-09,,#144 Revisar pruebas y despliegue automatizado de heroku a partir de commits | gr. p2,00:21:00
+SOS2021-09,,#145 Revisar que se cumplen las funcionalidades del D01 | pr. p1a,00:30:37
+SOS2021-09,,#147 Implementar Front-End en Svelte que permita una forma de listar todos los recursos | pr. p1b,02:36:22
+SOS2021-09,,#148 Todos los elementos de la interfaz deben ser comprensibles por usuarios no técnicos y deben estar en español | pr. p1c,00:00:15
+SOS2021-09,,#150 Tener una vista correctamente configurada | gr. p4,02:00:00
+SOS2021-09,,#151 Tener Código actualizado | gr. p3,00:05:00
+SOS2021-09,,#152 Implementar Front-End en Svelte que permita una forma de crear recursos | pr. p1b1,00:20:00
+SOS2021-09,,#153 Implementar Front-End en Svelte que permita una forma de borrar todos los recursos | pr. p1b3,00:20:00
+SOS2021-09,,#154 Implementar Front-End en Svelte que permita una forma de borrar un recurso concreto | pr. p1b4,00:30:00
+SOS2021-09,,#155 Implementar Front-End en Svelte que permita una forma de editar recursos concretos | pr. p1b5,00:20:00
+SOS2021-09,,#163 Tener código actualizado | gr. p3,00:30:00
+SOS2021-09,,#164 Implementar Gráfica de mi API,01:00:00
+SOS2021-09,,#165 Implementar Gráfica de mi API,17:15:00
+SOS2021-09,,#169 Implementación proxy,00:02:18
+SOS2021-09,,#170 Implementación widget Biblioteca Highcharts,01:26:15
+SOS2021-09,,"#18 Revisar integraciones, instalación y datos rellenados.",00:01:16
+SOS2021-09,,#20 Preparar servidor web,03:00:41
+SOS2021-09,,#23 Instalar Postman,00:09:00
+SOS2021-09,,#25 Instalar Postman,00:08:10
+SOS2021-09,,#26 Hacer pruebas de la implementación del servidor web,01:20:00
+SOS2021-09,,#28 Hacer pruebas de la implementación del servidor web,01:26:00
+SOS2021-09,,#29 Revisar Piazza,00:10:00
+SOS2021-09,,#32 Revisar Piazza,01:01:00
+SOS2021-09,,#33 Revisar Tracking de tiempo en Toggl que se corresponda a cada issue,00:27:00
+SOS2021-09,,#36 Revisar Tracking de tiempo en Toggl que se corresponda a cada issue,00:13:00
+SOS2021-09,,#37 Tener el repositorio actualizado,00:20:00
+SOS2021-09,,#40 Tener el repositorio actualizado,00:46:00
+SOS2021-09,,#41 Configurar Heroku,00:25:25
+SOS2021-09,,#43 Crear endpoint /info/performances-by-degrees-us,03:14:44
+SOS2021-09,,#44 Crear coleccion de Postman,00:05:43
+SOS2021-09,,#45 Revisar Tracking de tiempo en Toggl que se corresponda a cada issue,00:05:00
+SOS2021-09,,#48 Revisar Tracking de tiempo en Toggl que se corresponda a cada issue,00:18:00
+SOS2021-09,,#49 Revisar Piazza,00:17:00
+SOS2021-09,,#51 Revisar Piazza,00:53:00
+SOS2021-09,,#52 Crear colección de Postman,00:13:00
+SOS2021-09,,#54 Crear coleccion de Postman,01:38:00
+SOS2021-09,,#55 Crear endpoint (ruta) /info/budgets-by-centers-us,02:22:47
+SOS2021-09,,#57 Crear endpoint (ruta) /info/surrenders-by-degrees-us,00:48:19
+SOS2021-09,,#58 Actualizar Repositorios,00:03:00
+SOS2021-09,,#6 Instalar y Configurar la extensión de Chrome de Toggl Button.,00:00:44
+SOS2021-09,,#61 Actualizar Repositorios,00:15:00
+SOS2021-09,,#63 Implementar API,03:29:30
+SOS2021-09,,#64 Actualizar Repositorios | gr. p3 | pr. p8,00:02:00
+SOS2021-09,,#65 Tener mi API en el archivo index dentro de la carpeta public del equipo | gr. p4,00:17:00
+SOS2021-09,,#66 Asegurarme de que la actualización que haya hecho funcione bien en heroku | gr. p2,00:26:00
+SOS2021-09,,"#67 Revisar Tracking de tiempo con Toggl, con al menos 3h | pr. p3",00:04:00
+SOS2021-09,,#68 Implementar API | pr. p5,02:20:26
+SOS2021-09,,"#69 Revisar la API implementada | pr. p6, p7",01:05:00
+SOS2021-09,,#7 Instalar y Configurar la extensión de Chrome de Toggl Button.,00:00:40
+SOS2021-09,,#70 Implementar API | pr. p5,01:22:00
+SOS2021-09,,"#72 Revisar la API implementada | pr. p6, p7",00:51:00
+SOS2021-09,,#75 Tener mi API en el archivo index dentro de la carpeta public del equipo | gr. p4,01:30:00
+SOS2021-09,,#78 Asegurarme de que la actualización que haya hecho funcione bien en heroku | gr. p2,01:06:00
+SOS2021-09,,#81 Actualizar Repositorios | gr. p3 | pr. p8,02:03:00
+SOS2021-09,,#84 Hacer Tareas Extras F05,02:10:00
+SOS2021-09,,#86 Revisar todos los requisitos por persona del F05 | pr. p1,00:51:21
+SOS2021-09,,#90 Implementar búsquedas por todos los campos del recurso. | pr. p2,04:22:02
+SOS2021-09,,#90 Implementar paginación | pr. p3,01:40:19
+SOS2021-09,,#98 Implementar un sistema de persistencia | pr. p4,00:15:40
+SOS2021-09,,Actualizar el index.html | pr. p9,00:00:15
+SOS2021-09,,Actualizar Repositorios,00:25:00
+SOS2021-09,,Actualizar Repositorios | gr. p3 | pr. p8,00:46:00
+SOS2021-09,,Asegurarme de que la actualización que haya hecho funcione bien en heroku | gr. p2,00:41:00
+SOS2021-09,,Crear coleccion de Postman,00:27:00
+SOS2021-09,,Crear endpoint (ruta) /info/cut-off-marks-by-degrees-us,01:21:00
+SOS2021-09,,Front #162,06:40:00
+SOS2021-09,,Hacer pruebas de la implementación del servidor web,01:42:31
+SOS2021-09,,Implementar API | pr. p5,02:25:00
+SOS2021-09,,Implementar búsquedas por todos los campos del recurso. | pr. p2,01:00:00
+SOS2021-09,,Implementar frontend #149,06:20:00
+SOS2021-09,,Instalar Postman,00:38:00
+SOS2021-09,,Integracion #168,04:21:04
+SOS2021-09,,"Organizando GitHub, y probando la integración con Goorm y Toggl",00:45:00
+SOS2021-09,,Organizando las issues de GitHub para F02,00:36:00
+SOS2021-09,,Organizando las issues de Github para F03,00:42:25
+SOS2021-09,,Organizando las issues de Github para F04,00:45:00
+SOS2021-09,,Organizando las issues de Github para F06,01:06:00
+SOS2021-09,,Preparar issues F07,00:05:36
+SOS2021-09,,Preparar issues F08,00:13:00
+SOS2021-09,,"Realizando las tareas para el la sesión de Feedback F01 (issues 4, 8 12 y 16)",01:27:32
+SOS2021-09,,Rellenar ficha de datos,00:45:00
+SOS2021-09,,Revisar el buen uso del error 400 | pr. p12,00:15:00
+SOS2021-09,,"Revisar integraciones, instalación y datos rellenados.",00:06:50
+SOS2021-09,,"Revisar la API implementada | pr. p6, p7",01:20:00
+SOS2021-09,,Revisar la devolución de los GETS | pr. p11,00:15:00
+SOS2021-09,,Revisar la recepción y envío de datos en la API | pr. 13,00:17:00
+SOS2021-09,,Revisar los identificadores de recursos | pr. p10,00:15:00
+SOS2021-09,,Revisar Piazza,00:31:15
+SOS2021-09,,Revisar Tracking de tiempo en Toggl que se corresponda a cada issue,00:19:00
+SOS2021-09,,Tareas para F01,00:30:10
+SOS2021-09,,Tener el repositorio actualizado,00:29:00
+SOS2021-09,,Tener mi API en el archivo index dentro de la carpeta public del equipo | gr. p4,01:00:00
+SOS2021-09,,Trabajo Investigación APIs F12,03:07:44
