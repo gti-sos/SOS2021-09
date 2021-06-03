@@ -10688,7 +10688,11 @@ var app = (function () {
     		c: function create() {
     			div = element("div");
     			create_component(modal.$$.fragment);
+<<<<<<< Updated upstream
     			add_location(div, file$5, 14, 0, 314);
+=======
+    			add_location(div, file$4, 14, 0, 314);
+>>>>>>> Stashed changes
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -15076,7 +15080,11 @@ var app = (function () {
     		c: function create() {
     			b = element("b");
     			b.textContent = "Campo de conocimiento";
+<<<<<<< Updated upstream
     			add_location(b, file$3, 66, 27, 2315);
+=======
+    			add_location(b, file$2, 66, 27, 2315);
+>>>>>>> Stashed changes
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, b, anchor);
@@ -15193,7 +15201,11 @@ var app = (function () {
     		c: function create() {
     			b = element("b");
     			b.textContent = "Año";
+<<<<<<< Updated upstream
     			add_location(b, file$3, 70, 27, 2525);
+=======
+    			add_location(b, file$2, 70, 27, 2525);
+>>>>>>> Stashed changes
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, b, anchor);
@@ -15310,7 +15322,11 @@ var app = (function () {
     		c: function create() {
     			b = element("b");
     			b.textContent = "Rendimiento";
+<<<<<<< Updated upstream
     			add_location(b, file$3, 74, 27, 2702);
+=======
+    			add_location(b, file$2, 74, 27, 2702);
+>>>>>>> Stashed changes
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, b, anchor);
@@ -15427,7 +15443,11 @@ var app = (function () {
     		c: function create() {
     			b = element("b");
     			b.textContent = "Créditos superados";
+<<<<<<< Updated upstream
     			add_location(b, file$3, 78, 27, 2904);
+=======
+    			add_location(b, file$2, 78, 27, 2904);
+>>>>>>> Stashed changes
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, b, anchor);
@@ -15544,7 +15564,11 @@ var app = (function () {
     		c: function create() {
     			b = element("b");
     			b.textContent = "Créditos matriculados";
+<<<<<<< Updated upstream
     			add_location(b, file$3, 82, 27, 3109);
+=======
+    			add_location(b, file$2, 82, 27, 3109);
+>>>>>>> Stashed changes
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, b, anchor);
@@ -15661,7 +15685,11 @@ var app = (function () {
     		c: function create() {
     			b = element("b");
     			b.textContent = "Centro";
+<<<<<<< Updated upstream
     			add_location(b, file$3, 86, 27, 3319);
+=======
+    			add_location(b, file$2, 86, 27, 3319);
+>>>>>>> Stashed changes
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, b, anchor);
