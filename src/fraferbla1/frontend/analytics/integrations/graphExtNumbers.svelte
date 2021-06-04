@@ -3,6 +3,7 @@
     async function loadGraph(){
 
         let Datas = [];
+        let aux;
         let myData={
             name: 'Nota de corte',
             data: []
@@ -21,7 +22,11 @@
         let res_data2 = await res2.json()
         console.log(res_data1)
 
-        frase = res_data1.text;
+        aux = '(' + res_data1.number + ')' + ' ' + res_data1.text
+        let myData1={
+            name: aux,
+            data: [res_data1.number]
+        };
 
         res_data2.forEach((data) => {
             if(data.year == 2017){
@@ -33,6 +38,9 @@
         });
         
         Datas.push(myData);
+        Datas.push(myData1);
+
+        console.log(Datas)
 
 
         Highcharts.chart('container', {
@@ -41,7 +49,7 @@
         height: '100%'
     },
     title: {
-        text: frase
+        text: 'Gráfica que contiene una anécdota aleatoria del año 2017 y notas de corte de grados de la US en 2017'
     },
     tooltip: {
         useHTML: true,
@@ -93,8 +101,7 @@
     <figure class="highcharts-figure">
         <div id="container"></div>
         <p class="highcharts-description">
-            Gráfica que muestra las notas de corte de grados de la US en 2017 la cual tiene como título acontecimientos aleatorios que sucedieron en 2017
-        </p>
+        
     </figure>
 </main>
 
