@@ -26,22 +26,15 @@
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-node-resolve": "^11.0.0",
     "apexcharts": "^3.26.3",
-<<<<<<< Updated upstream
-    "chart.js": "^3.2.1",
-=======
     "billboard.js": "^3.0.3",
     "chart.js": "^3.3.2",
->>>>>>> Stashed changes
     "express": "^4.17.1",
     "highcharts": "^9.1.0",
     "highcharts-3d": "^0.1.7",
     "nedb": "^1.8.0",
-<<<<<<< Updated upstream
     "request": "^2.88.2",
-=======
     "quickchart-js": "^1.0.7",
     "reaviz": "^10.2.1",
->>>>>>> Stashed changes
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
     "rollup-plugin-livereload": "^2.0.0",
