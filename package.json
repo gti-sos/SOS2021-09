@@ -4,7 +4,8 @@
   "description": "Este es el repositorio para el proyecto de SOS del grupo 09.",
   "main": "index.js",
   "scripts": {
-    "test": "node src/tests/run_checks.js && node src/tests/run_puppeter.js",
+    "test": "node src/tests/run_checks.js",
+    "e2e_testing": "node src/tests/run_puppeter.js",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "coverage": "nyc npm run test",
