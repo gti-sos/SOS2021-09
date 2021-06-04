@@ -118,6 +118,64 @@
                 }]
             }
         });
+
+        Highcharts.chart('container-2', {
+            chart: {
+                type: 'bar'
+            },
+            title: {
+                text: 'Relacion fuentes de datos'
+            },
+
+            yAxis: {
+                min: 0,
+                title: {
+                    text: 'Valores',
+                    align: 'high'
+                },
+                labels: {
+                    overflow: 'justify'
+                }
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: rangeStart
+                }
+            },
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'top',
+                x: -40,
+                y: 80,
+                floating: true,
+                borderWidth: 1,
+                backgroundColor:
+                    Highcharts.defaultOptions.legend.backgroundColor || '#FFFFFF',
+                shadow: true
+            },
+
+            series: [{
+                axis: 0,
+                name: 'Ingeniería informática',
+                data: yAxisValuesDansesben,
+                    tooltip: {
+                        valueSuffix: ' creditos'
+                    }
+                },
+                {
+                axis: 1,
+                name: 'ETSII',
+                data: yAxisValuesBudgets,
+                tooltip: {
+                    valueSuffix: ' cuantía total'
+                }
+            }]
+        });
     });
 
 </script>
@@ -125,6 +183,12 @@
 <Container>
     <figure class="highcharts-figure">
         <div id="container"></div>
+        <p class="highcharts-description text-center">
+            Se muestra la relacion diferentes fuentes de datos
+        </p>
+    </figure>
+    <figure class="highcharts-figure">
+        <div id="container-2"></div>
         <p class="highcharts-description text-center">
             Se muestra la relacion diferentes fuentes de datos
         </p>
