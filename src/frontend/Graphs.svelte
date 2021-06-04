@@ -19,6 +19,7 @@
         // ADRI
         async function getBudgets(){
             console.log("Fetching budgets...");
+            await fetch("/api/v2/budgets-by-centers-us/loadInitialData");
             await fetch("/api/v2/budgets-by-centers-us/");
             const res = await fetch("/api/v2/budgets-by-centers-us/budgets");
 

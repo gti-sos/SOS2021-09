@@ -4,7 +4,7 @@
   "description": "Este es el repositorio para el proyecto de SOS del grupo 09.",
   "main": "index.js",
   "scripts": {
-    "test": "node src/tests/run_checks.js",
+    "test": "node src/tests/run_checks.js && node src/tests/run_puppeter.js",
     "build": "rollup -c",
     "dev": "rollup -c -w",
     "coverage": "nyc npm run test",
@@ -30,6 +30,7 @@
     "express": "^4.17.1",
     "highcharts": "^9.1.0",
     "nedb": "^1.8.0",
+    "puppeteer": "^10.0.0",
     "request": "^2.88.2",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",

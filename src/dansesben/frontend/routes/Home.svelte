@@ -72,9 +72,12 @@
     }
 
     // Add all modal
-    let addModal = false;
-    const toggleAddModal = () => (addModal = !addModal);
     let rowToAdd = {};
+    let addModal = false;
+    const toggleAddModal = () => {
+        addModal = !addModal;
+        rowToAdd = {};
+    }
 
     async function addElement(){
         let result = await addRecord(rowToAdd);
@@ -128,32 +131,32 @@
             <Form>
                 <FormGroup>
                     <Label><b>Campo de conocimiento</b></Label>
-                    <Input type="text" bind:value={rowToAdd["field-of-knowledge"]} />
+                    <Input type="text" bind:value={rowToAdd["field-of-knowledge"]} id="field-of-knowledge-input"/>
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Año</b></Label>
-                    <Input type="number" bind:value={rowToAdd.year} />
+                    <Input type="number" bind:value={rowToAdd.year} id="year-input"/>
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Rendimiento</b></Label>
-                    <Input type="text" bind:value={rowToAdd["performance-percents"]} />
+                    <Input type="text" bind:value={rowToAdd["performance-percents"]} id="performance-percents-input"/>
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Créditos superados</b></Label>
-                    <Input type="number" bind:value={rowToAdd["credits-passed"]} />
+                    <Input type="number" bind:value={rowToAdd["credits-passed"]} id="credits-passed-input"/>
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Créditos matriculados</b></Label>
-                    <Input type="number" bind:value={rowToAdd["credits-enrolled"]} />
+                    <Input type="number" bind:value={rowToAdd["credits-enrolled"]} id="credits-enrolled-input"/>
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Centro</b></Label>
-                    <Input type="text" bind:value={rowToAdd.center} />
+                    <Input type="text" bind:value={rowToAdd.center} id="center-input"/>
                 </FormGroup>
             </Form>
         </ModalBody>
         <ModalFooter>
-            <Button color="primary" on:click={addElement}>Guardar</Button>
+            <Button color="primary" on:click={addElement} id="save-element">Guardar</Button>
             <Button color="secundary" on:click={toggleAddModal}>Cerrar</Button>
         </ModalFooter>
     </Modal>
@@ -164,8 +167,8 @@
     <Row class="mt-3">
         <Col class="col-7">
             <FormGroup class="float-left">
-                <Button color="success" on:click={() => toggleAddModal()}><Icon name="plus"/>Añadir elemento</Button>
-                <Button color="danger" on:click={() => toggleDeleteAllModal()}><Icon name="trash-fill" class="pr-1"/>Borrar todo</Button>
+                <Button color="success" on:click={() => toggleAddModal()} id="add-element"><Icon name="plus"/>Añadir elemento</Button>
+                <Button color="danger" on:click={() => toggleDeleteAllModal()} id="delete-all"><Icon name="trash-fill" class="pr-1"/>Borrar todo</Button>
                 <Button color="info" on:click={() => goToGraphs()}><Icon name="graph-up" class="pr-1"/>Ver gráficas</Button>
                 <Button color="warning" on:click={() => goToIntegrations()}><Icon name="graph-up" class="pr-1"/>Integraciones</Button>
             </FormGroup>
@@ -186,7 +189,7 @@
         </Col>
     </Row>
     <Row>
-        <Table responsive>
+        <Table responsive id="data-table">
             <thead>
             <tr>
                 <th>Campo de conocimiento</th>
@@ -232,9 +235,9 @@
         <Col>
             <div class="float-right">
                 <InputGroup>
-                    <Button class="btn-light bg-transparent" on:click={() => {if (searchConfig.page > 1) searchConfig.page--}}>Anterior</Button>
+                    <Button class="btn-light bg-transparent" on:click={() => {if (searchConfig.page > 1) searchConfig.page--}} id="previus-page">Anterior</Button>
                     <InputGroupText class="bg-transparent">{searchConfig.page}</InputGroupText>
-                    <Button class="btn-light bg-transparent" on:click={() => {if (data.length === parseInt(searchConfig.limit)) searchConfig.page++}}>Siguiente</Button>
+                    <Button class="btn-light bg-transparent" on:click={() => {if (data.length === parseInt(searchConfig.limit)) searchConfig.page++}} id="next-page">Siguiente</Button>
                 </InputGroup>
             </div>
         </Col>

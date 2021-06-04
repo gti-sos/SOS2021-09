@@ -65,30 +65,30 @@
             <Form>
                 <FormGroup>
                     <Label><b>Campo de conocimiento</b></Label>
-                    <Input type="text" bind:value={newDataEdit["field-of-knowledge"]} />
+                    <Input type="text" bind:value={newDataEdit["field-of-knowledge"]} id="field-of-knowledge-input"/>
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Año</b></Label>
-                    <Input type="number" bind:value={newDataEdit.year} />
+                    <Input type="number" bind:value={newDataEdit.year} id="year-input"/>
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Rendimiento</b></Label>
-                    <Input type="text" bind:value={newDataEdit["performance-percents"]} />
+                    <Input type="text" bind:value={newDataEdit["performance-percents"]} id="performance-percents-input"/>
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Créditos superados</b></Label>
-                    <Input type="number" bind:value={newDataEdit["credits-passed"]} />
+                    <Input type="number" bind:value={newDataEdit["credits-passed"]} id="credits-passed-input"/>
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Créditos matriculados</b></Label>
-                    <Input type="number" bind:value={newDataEdit["credits-enrolled"]} />
+                    <Input type="number" bind:value={newDataEdit["credits-enrolled"]} id="credits-enrolled-input"/>
                 </FormGroup>
                 <FormGroup>
                     <Label><b>Centro</b></Label>
-                    <Input type="text" bind:value={newDataEdit.center} />
+                    <Input type="text" bind:value={newDataEdit.center} id="center-input"/>
                 </FormGroup>
                 <FormGroup>
-                    <Button color="primary" on:click={saveEditedElement}>Guardar</Button>
+                    <Button color="primary" on:click={saveEditedElement} id="save-element">Guardar</Button>
                     <Button color="secundary" on:click={pop}>Cerrar</Button>
                 </FormGroup>
             </Form>
