@@ -1,5 +1,10 @@
 const puppeteer = require('puppeteer');
 const app = require('../index');
+const fs = require('fs');
+
+if (!fs.existsSync("e2e_screenshots")){
+    fs.mkdirSync("e2e_screenshots");
+}
 
 (async () => {
     const browser = await puppeteer.launch();
@@ -19,7 +24,7 @@ const app = require('../index');
     console.log("Test 1 - Page loads")
 
     await page.goto('http://127.0.0.1:3000/dansesben/');
-    await page.screenshot({ path: './e2e_screnshots/01.png' });
+    await page.screenshot({ path: './e2e_screenshots/01.png' });
 
     console.log("Test 1 - Finished\n-----------------")
 
@@ -45,13 +50,13 @@ const app = require('../index');
     await page.type('#credits-enrolled-input', '500');
     await page.type('#center-input', 'Mozilla');
     // Submit the modal
-    await page.screenshot({ path: './e2e_screnshots/02-01.png' });
+    await page.screenshot({ path: './e2e_screenshots/02-01.png' });
     await page.click("#save-element");
     await page.waitForTimeout(2000);
     console.log("Test 2 - Counting rows")
 
     let endRows = await page.$$eval('#data-table tr', rows => rows.length)
-    await page.screenshot({ path: './e2e_screnshots/02-02.png' });
+    await page.screenshot({ path: './e2e_screenshots/02-02.png' });
 
     if(initialRows === endRows){
         console.error("Test 2 - Same number of rows");
@@ -72,7 +77,7 @@ const app = require('../index');
         page.click("#data-table tbody tr:last-child td:last-child Button"),
     ]);
 
-    await page.screenshot({ path: './e2e_screnshots/03-01.png' });
+    await page.screenshot({ path: './e2e_screenshots/03-01.png' });
     await page.type('#field-of-knowledge-input', 'Puppeteer');
     await page.click("#save-element");
     await page.waitForTimeout(2000);
@@ -85,7 +90,7 @@ const app = require('../index');
         process.exit(1);
     }
 
-    await page.screenshot({ path: './e2e_screnshots/03-02.png' });
+    await page.screenshot({ path: './e2e_screenshots/03-02.png' });
     console.log("Test 3 - Finished\n-----------------");
     /*
         Test 4 - Remove element
@@ -95,7 +100,7 @@ const app = require('../index');
 
     await page.click("#data-table tbody tr:last-child td:last-child Button:last-child");
     await page.waitForTimeout(2000);
-    await page.screenshot({ path: './e2e_screnshots/04-01.png' });
+    await page.screenshot({ path: './e2e_screenshots/04-01.png' });
     await page.click("Button");
     await page.waitForTimeout(2000);
 
@@ -106,7 +111,7 @@ const app = require('../index');
         process.exit(1);
     }
 
-    await page.screenshot({ path: './e2e_screnshots/04-02.png' });
+    await page.screenshot({ path: './e2e_screenshots/04-02.png' });
     console.log("Test 4 - Finished\n-----------------");
     /*
         Test 5 - Create 2 elements and delete all elements
@@ -136,12 +141,12 @@ const app = require('../index');
     await createElement(22);
     await createElement(33);
     initialRows = await page.$$eval('#data-table tr', rows => rows.length)
-    await page.screenshot({ path: './e2e_screnshots/05-01.png' });
+    await page.screenshot({ path: './e2e_screenshots/05-01.png' });
 
     // Delete all elements
     await page.click("#delete-all");
     await page.waitForTimeout(2000);
-    await page.screenshot({ path: './e2e_screnshots/05-02.png' });
+    await page.screenshot({ path: './e2e_screenshots/05-02.png' });
     await page.click("Button");
     await page.waitForTimeout(2000);
     endRows = await page.$$eval('#data-table tr', rows => rows.length)
@@ -151,7 +156,7 @@ const app = require('../index');
         process.exit(1);
     }
 
-    await page.screenshot({ path: './e2e_screnshots/05-03.png' });
+    await page.screenshot({ path: './e2e_screenshots/05-03.png' });
     console.log("Test 5 - Finished\n-----------------");
 
     /*
@@ -163,12 +168,12 @@ const app = require('../index');
         console.log("Test 6 - Creating element " + x);
         await createElement(x);
     }
-    await page.screenshot({ path: './e2e_screnshots/06-01.png' });
+    await page.screenshot({ path: './e2e_screenshots/06-01.png' });
 
     initialRows = await page.$$eval('#data-table tr', rows => rows.length)
     await page.click("#next-page");
     await page.waitForTimeout(2000);
-    await page.screenshot({ path: './e2e_screnshots/06-02.png' });
+    await page.screenshot({ path: './e2e_screenshots/06-02.png' });
     endRows = await page.$$eval('#data-table tr', rows => rows.length)
 
     if(initialRows === endRows){
@@ -189,7 +194,7 @@ const app = require('../index');
     await page.type("input", "Puppeteer1");
     await page.waitForTimeout(2000);
     endRows = await page.$$eval('#data-table tr', rows => rows.length)
-    await page.screenshot({ path: './e2e_screnshots/07-01.png' });
+    await page.screenshot({ path: './e2e_screenshots/07-01.png' });
 
     if(endRows !== 3){
         console.error("Test 7 - Filter doesn't works");
@@ -203,7 +208,7 @@ const app = require('../index');
     // Delete all elements
     await page.click("#delete-all");
     await page.waitForTimeout(2000);
-    await page.screenshot({ path: './e2e_screnshots/05-02.png' });
+    await page.screenshot({ path: './e2e_screenshots/05-02.png' });
     await page.click("Button");
     await page.waitForTimeout(2000);
 
