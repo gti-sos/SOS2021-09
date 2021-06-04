@@ -2,6 +2,7 @@
 	"info": {
 		"_postman_id": "f426775c-cd9d-4fea-90d6-ca8653a225a0",
 		"name": "SOS2021-09-performances-by-degrees-us-V2",
+		"description": "# Introduction\nAPI que permite obtener el rendimiento en creditos de los alumnos de los diferentes centros de la US\n\n# Error Codes\nSe sigue el modelo de REST API.",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
@@ -314,7 +315,7 @@
 					"listen": "test",
 					"script": {
 						"exec": [
-							"pm.test(\"Add Multiple elements\", function(){",
+							"pm.test(\"Add element\", function(){",
 							"        pm.response.to.have.status(201);",
 							"});",
 							"",
@@ -343,7 +344,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "[{\n        \"field-of-knowledge\": \"ewjjjjjjjr\",\n        \"year\": 2019,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"FHISTRY\"\n},\n{\n        \"field-of-knowledge\": \"Prueba5\",\n        \"year\": 2019,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"FHISTRY\"\n}]",
+					"raw": "{\n        \"field-of-knowledge\": \"Prueba5\",\n        \"year\": 2019,\n        \"performance-percents\": \"87.10%\",\n        \"credits-passed\": 1870,\n        \"credits-enrolled\": 2147,\n        \"center\": \"FHISTRY\"\n}",
 					"options": {
 						"raw": {
 							"language": "json"

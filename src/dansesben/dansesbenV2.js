@@ -14,7 +14,7 @@ router
         else
             if(count > 0) res.sendStatus(200);
             else{
-                let insert_result = insertIntoDB([{
+                let documents = [{
                     "field-of-knowledge": "History",
                     "year": 2018,
                     "performance-percents": "83.44%",
@@ -60,20 +60,49 @@ router
                     "credits-passed": 4231,
                     "credits-enrolled": 5123,
                     "center": "ETSII"
-                }]);
+                }];
 
-                if (insert_result === -1) res.sendStatus(500);
-                else res.sendStatus(201);
+                for(let doc in documents){
+                    db.count(documents[doc], function (err, count) {
+                        if(count === 0) {
+                            db.insert(documents[doc], function (err, newDoc) {
+                                if(err){
+                                    console.error(err);
+                                    res.sendStatus(500);
+                                }
+                            });
+                        }
+                    });
+                }
+                res.sendStatus(201);
             }
     });
 })
 .post('/', (req, res) => {
     let data = req.body;
 
+    if(Array.isArray(req.body)) {
+        res.sendStatus(400);
+        return;
+    }
+
     if (!isValidData(data)) res.sendStatus(400);
-    else
-        if(insertIntoDB(data) === -1) res.sendStatus(500);
-        else res.sendStatus(201);
+    else{
+        db.count(data, function (err, count) {
+            if(count === 0) {
+                db.insert(data, function (err, newDoc) {
+                    if(err){
+                        console.error(err);
+                        res.sendStatus(500);
+                    }else{
+                        res.sendStatus(201);
+                    }
+                });
+            }else{
+                res.sendStatus(409);
+            }
+        });
+    }
 })
 .get('/', (req, res) => {
     let offset_param = parseInt(req.query.offset);
@@ -170,36 +199,6 @@ router
 /*
     Utils for the API
  */
-
-function insertIntoDB(data){
-
-    if(Array.isArray(data)){
-        for(let doc in data){
-            db.count(data[doc], function (err, count) {
-              if(count === 0) {
-                db.insert(data[doc], function (err, newDoc) {
-                    if(err){
-                        console.error(err);
-                        return -1;
-                    }
-                });
-              }
-            });
-        }
-    }else{
-        db.count(data, function (err, count) {
-          if(count === 0) {
-            db.insert(data, function (err, newDoc) {
-                if(err){
-                    console.error(err);
-                    return -1;
-                }
-            });
-          }
-        });
-    }
-    return 0;
-}
 
 function documentFromParams(params){
     let document = {};

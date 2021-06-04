@@ -56,6 +56,9 @@ export const addRecord = async function(element){
     else if(res.status === 400){
         return {text: "Elemento inválido, revise que los valores sean válidos", color: "warning"};
     }
+    else if(res.status === 409){
+        return {text: "El elemento ya existe", color: "warning"};
+    }
     else{
         return {text: "Error interno al intentar añadir el elemento", color: "danger"};
     }
