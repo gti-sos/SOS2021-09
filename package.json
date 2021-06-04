@@ -27,7 +27,7 @@
     "@rollup/plugin-node-resolve": "^11.0.0",
     "apexcharts": "^3.26.3",
     "billboard.js": "^3.0.3",
-    "chart.js": "^3.3.2",
+    "chart.js": "^3.2.1",
     "express": "^4.17.1",
     "highcharts": "^9.1.0",
     "highcharts-3d": "^0.1.7",
