@@ -16,6 +16,10 @@ budgetsDB
 coverage
 *.lcov
 
+.DS_STORE
+# Puppeteer
+e2e_screnshots/
+
 # nyc test coverage
 .nyc_output
 __sapper__
