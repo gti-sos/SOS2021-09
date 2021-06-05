@@ -51,6 +51,46 @@ app.use('/api/v2/budgets-by-centers-us', budgetsbycentersus);
 const budgetsbycentersusInt = require("./budgetsAPI/budgets-by-centers-usINT");
 app.use('/api/integration/budgets-by-centers-us', budgetsbycentersusInt);
 
+// Proxy budgetsAPI (SOS)
+var budgetsAPIAllowList = {"anxiety_stats": "http://sos2021-11.herokuapp.com/api/integration/anxiety_stats",
+"children-out-school": "http://sos2021-children-out-school.herokuapp.com/api/v2/children-out-school",
+"international-tourisms": "https://sos2021-03.herokuapp.com/api/integration/international-tourisms"};
+app.use("/budgetsAPI/proxyRequest/:api", function(req, res) {
+    let NameApi = req.params.api;
+
+    if(NameApi in budgetsAPIAllowList){
+        let url = budgetsAPIAllowList[NameApi] + req.url;
+
+        console.log(budgetsAPIAllowList[NameApi]);
+        console.log(req.url);
+        console.log(url);
+        req.pipe(request(url)).pipe(res);
+    }else{
+        res.sendStatus(400);
+    }
+});
+
+// Proxy budgetsAPI (External 1)
+const RAPIDAPI_KEY = "56de8eae19msh70481bc7978a4d2p10d7e8jsn652e16ab7753";
+app.use("/budgetsAPI/proxyRequestExt/google-searchs-us", function(req, res) {
+    var url = "https://google-search3.p.rapidapi.com/api/v1/search/q=university+of+seville&num=100?rapidapi-key=" + RAPIDAPI_KEY;
+    req.pipe(request(url)).pipe(res);
+});
+
+// Proxy budgetsAPI (External 2)
+app.use("/budgetsAPI/proxyRequestExt2/love-calculator/:sname/:fname", function(req, res) {
+    var sname = req.params.sname;
+    var fname = req.params.fname;
+    var url2 = "https://love-calculator.p.rapidapi.com/getPercentage?rapidapi-key=" 
+        + RAPIDAPI_KEY + "&sname="+sname+"&fname=" + fname;
+
+    console.log(req.url);
+    console.log("url" + url2);
+    req.pipe(request(url2)).pipe(res);
+});
+
+
+
 // Carlos
 const cargonare1R = require("./cargonare1/cargonare1V2");
 //app.use('/api/v1/surrenders-by-degrees-us', cargonare1R);

@@ -10,3 +10,12 @@
         </Col>
     </Row>
 </Container>
+
+<Container class="mt-2">
+    <Row>
+        <Col>
+            <h4>Integraciones de budgets_by_centers_us</h4>
+            <a href="/budgetsAPI/#/integrations">Click aquí</a>
+        </Col>
+    </Row>
+</Container>
