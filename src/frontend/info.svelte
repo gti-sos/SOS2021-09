@@ -48,6 +48,7 @@
                     <br> | Revisa la documentación V1 en: <a href="https://documenter.getpostman.com/view/14962900/TzJsfJ4p">Documentación de la IPA cut off marks by degrees</a>
                     <br> | Revisa la documentación V2 en: <a href="https://documenter.getpostman.com/view/14962900/TzRSiTwM">Documentación de la IPA cut off marks by degrees</a>
                     <br> | Revisa la Interfaz Gráfica de Usuario de la IPA en: <a href="/fraferbla1/"> Interfaz Gráfica de Usuario</a>
+                    <br> | Revisa las gráficas realizadas solo con datos de mi API en: <a href="/fraferbla1/#/graphs"> Gráficas</a>
                 </li>
                 <br>
                 <li>

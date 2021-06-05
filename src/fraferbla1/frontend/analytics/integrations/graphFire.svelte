@@ -56,7 +56,7 @@
         options: {
             title: {
             display: true,
-            text: 'Chart.js Doughnut Chart',
+            text: '',
             },
         },
         }
@@ -79,7 +79,7 @@
 </script>
 
 <main>
-    <h1>Gráfico que muestra el nº de incendios en algunos países y el nº de presentados en selectividad en Sevilla</h1>
+    <h1>Gráfico que muestra el nº de incendios en algunos países y el precio de la matrícula según el año</h1>
     <body>
         <img src="" id="graph"/>
     </body>

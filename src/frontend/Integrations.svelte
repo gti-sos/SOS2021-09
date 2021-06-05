@@ -19,3 +19,12 @@
         </Col>
     </Row>
 </Container>
+
+<Container class="mt-2">
+    <Row>
+        <Col>
+            <h4>Integraciones de cut_off_marks_by_degrees_us</h4>
+            <a href="/fraferbla1/#/integrations">Click aquí</a>
+        </Col>
+    </Row>
+</Container>

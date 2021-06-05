@@ -1,8 +1,10 @@
-<script>
-import GraphHighCharts from "graphHighcharts.svelte";
-// import MyGraph2 from "./MyGraph2.svelte";
-</script>
 <main>
-    <h1> Gráficas</h1>
-    <GraphHighCharts> </GraphHighCharts>
+	<h2>Página de gráficas de la API de fraferbla1</h2>
+    <br>
+
+    <a href="/fraferbla1/#/cuts/graficas">Gráfica con la librería Highcharts</a>
+    <br>
+    <a href="/fraferbla1/#/cuts/graficav2">Gráfica con la librería Quickchart</a>
+    <br>
+
 </main>

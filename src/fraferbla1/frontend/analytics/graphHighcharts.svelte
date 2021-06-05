@@ -41,7 +41,7 @@
     yAxis: {
         min: 0,
         title: {
-            text: 'Nota de corte',
+            text: '',
             align: 'high'
         },
         labels: {
