@@ -70,6 +70,23 @@ app.use("/budgetsAPI/proxyRequest/:api", function(req, res) {
     }
 });
 
+// Proxy fraferbla1 (SOS)
+var fraferbla1APIAllowList = {"covid-india": "https://sos2021-08.herokuapp.com/api/v1/statewisetestingdetails"};
+app.use("/fraferbla1/proxyRequest/:api", function(req, res) {
+    let NameApi = req.params.api;
+
+    if(NameApi in fraferbla1APIAllowList){
+        let url = fraferbla1APIAllowList[NameApi] + req.url;
+
+        console.log(fraferbla1APIAllowList[NameApi]);
+        console.log(req.url);
+        console.log(url);
+        req.pipe(request(url)).pipe(res);
+    }else{
+        res.sendStatus(400);
+    }
+});
+
 // Proxy budgetsAPI (External 1)
 const RAPIDAPI_KEY = "56de8eae19msh70481bc7978a4d2p10d7e8jsn652e16ab7753";
 app.use("/budgetsAPI/proxyRequestExt/google-searchs-us", function(req, res) {

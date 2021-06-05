@@ -15,6 +15,7 @@
 	import graphExtChuck from './analytics/integrations/graphExtChuck.svelte';
 	import graphExtCrypto from './analytics/integrations/graphExtCrypto.svelte';
 	import integrations from './analytics/integrations/integrations.svelte';
+	import graphCovidIndia from './analytics/integrations/graphCovidIndia.svelte';
 
 //	import NotFound from './NotFound.svelte';
 	const routes = {
@@ -32,7 +33,8 @@
 		"/integrations/extnumbers" : graphExtNumbers,
 		"/integrations/extchuck" : graphExtChuck,
 		"/integrations/extcrypto" : graphExtCrypto,
-		"/integrations" : integrations
+		"/integrations" : integrations,
+		"/integrations/covidindia" : graphCovidIndia
 //		"*": NotFound
 	};
 </script>

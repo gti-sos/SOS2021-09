@@ -3,6 +3,8 @@
 async function loadChart(){
 
     let res1 = await fetch('https://sos2021-07.herokuapp.com/api/v2/buy_sell');
+    await fetch('https://sos2021-07.herokuapp.com/api/v2/buy_sell');
+
     let res2 = await fetch('/api/v2/cut-off-marks-by-degrees-us/cuts?degree=Computer-Science')
 
 

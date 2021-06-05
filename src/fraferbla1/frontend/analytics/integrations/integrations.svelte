@@ -10,7 +10,7 @@
     <br>
     <a href="#/integrations/fire">Integración de la API fire-stats</a>
     <br>
-    <a href="#/integrations/fire">Integración de la API covidIndia-stats</a>
+    <a href="#/integrations/covidindia">Integración de la API covidIndia-stats</a>
 
     <br><br>
     <h3>Integraciones Externas</h3>
