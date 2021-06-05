@@ -11,6 +11,9 @@
         // Pedimos los datos de google searchs mediante proxySOSExt. Y los almacenamos en el array
 
         // Pedimos los datos de budgets del 2019.
+        // Borramos antes para evitar duplicidades.
+        await fetch("/api/v2/budgets-by-centers-us/budgets", {method: "DELETE"});
+        await fetch("/api/v2/budgets-by-centers-us/loadInitialData");
         let budgets_2018_2019_Chart5 = await(await fetch("/api/v2/budgets-by-centers-us/budgets")).json();
 
         let centers_budgets_2018_2019 = budgets_2018_2019_Chart5.filter(o => o["year"] == 2019 

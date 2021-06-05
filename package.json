@@ -1,0 +1,51 @@
+{
+  "name": "sos2021-09",
+  "version": "1.0.0",
+  "description": "Este es el repositorio para el proyecto de SOS del grupo 09.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node src/tests/run_checks.js",
+    "e2e_testing": "node src/tests/run_puppeter.js",
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "coverage": "nyc npm run test",
+    "report-test": "nyc report --reporter=text-lcov > coverage.lcov",
+    "start": "node src/index.js",
+    "watch-node": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gti-sos/SOS2021-09.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gti-sos/SOS2021-09/issues"
+  },
+  "homepage": "https://github.com/gti-sos/SOS2021-09#readme",
+  "dependencies": {
+    "@rollup/plugin-commonjs": "^17.0.0",
+    "@rollup/plugin-node-resolve": "^11.0.0",
+    "apexcharts": "^3.26.3",
+    "chart.js": "^3.2.1",
+    "chartkick": "^4.0.4",
+    "express": "^4.17.1",
+    "highcharts": "^9.1.0",
+    "nedb": "^1.8.0",
+    "puppeteer": "^10.0.0",
+    "request": "^2.88.2",
+    "rollup": "^2.3.4",
+    "rollup-plugin-css-only": "^3.1.0",
+    "rollup-plugin-livereload": "^2.0.0",
+    "rollup-plugin-svelte": "^7.0.0",
+    "rollup-plugin-terser": "^7.0.0",
+    "svelte": "^3.37.0",
+    "svelte-spa-router": "^3.1.0",
+    "sveltestrap": "^3.14.1"
+  },
+  "devDependencies": {
+    "newman": "^5.2.3",
+    "nodemon": "^2.0.7",
+    "nyc": "^15.1.0"
+  }
+}
