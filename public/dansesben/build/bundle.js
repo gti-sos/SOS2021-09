@@ -10418,7 +10418,7 @@ var app = (function () {
     }
 
     // (22:12) <Button color="danger" on:click={actionFunction}>
-    function create_default_slot_3$3(ctx) {
+    function create_default_slot_3$4(ctx) {
     	let t;
 
     	const block = {
@@ -10438,7 +10438,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_3$3.name,
+    		id: create_default_slot_3$4.name,
     		type: "slot",
     		source: "(22:12) <Button color=\\\"danger\\\" on:click={actionFunction}>",
     		ctx
@@ -10484,7 +10484,7 @@ var app = (function () {
     	button0 = new Button({
     			props: {
     				color: "danger",
-    				$$slots: { default: [create_default_slot_3$3] },
+    				$$slots: { default: [create_default_slot_3$4] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -12821,7 +12821,7 @@ var app = (function () {
     }
 
     // (178:16) <Input type="select" on:change={(evt) => {searchConfig = {limit: evt.target.value, page: 1}}}>
-    function create_default_slot_15$1(ctx) {
+    function create_default_slot_15$2(ctx) {
     	let option0;
     	let t1;
     	let option1;
@@ -12890,7 +12890,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_15$1.name,
+    		id: create_default_slot_15$2.name,
     		type: "slot",
     		source: "(178:16) <Input type=\\\"select\\\" on:change={(evt) => {searchConfig = {limit: evt.target.value, page: 1}}}>",
     		ctx
@@ -12900,7 +12900,7 @@ var app = (function () {
     }
 
     // (174:12) <InputGroup>
-    function create_default_slot_14$1(ctx) {
+    function create_default_slot_14$2(ctx) {
     	let inputgroupaddon;
     	let t;
     	let input;
@@ -12918,7 +12918,7 @@ var app = (function () {
     	input = new Input({
     			props: {
     				type: "select",
-    				$$slots: { default: [create_default_slot_15$1] },
+    				$$slots: { default: [create_default_slot_15$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -12974,7 +12974,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_14$1.name,
+    		id: create_default_slot_14$2.name,
     		type: "slot",
     		source: "(174:12) <InputGroup>",
     		ctx
@@ -12984,13 +12984,13 @@ var app = (function () {
     }
 
     // (173:8) <Col>
-    function create_default_slot_13$1(ctx) {
+    function create_default_slot_13$2(ctx) {
     	let inputgroup;
     	let current;
 
     	inputgroup = new InputGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_14$1] },
+    				$$slots: { default: [create_default_slot_14$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -13029,7 +13029,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_13$1.name,
+    		id: create_default_slot_13$2.name,
     		type: "slot",
     		source: "(173:8) <Col>",
     		ctx
@@ -13039,7 +13039,7 @@ var app = (function () {
     }
 
     // (164:4) <Row class="mt-3">
-    function create_default_slot_12$1(ctx) {
+    function create_default_slot_12$2(ctx) {
     	let col0;
     	let t;
     	let col1;
@@ -13056,7 +13056,7 @@ var app = (function () {
 
     	col1 = new Col({
     			props: {
-    				$$slots: { default: [create_default_slot_13$1] },
+    				$$slots: { default: [create_default_slot_13$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -13110,7 +13110,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_12$1.name,
+    		id: create_default_slot_12$2.name,
     		type: "slot",
     		source: "(164:4) <Row class=\\\"mt-3\\\">",
     		ctx
@@ -13120,7 +13120,7 @@ var app = (function () {
     }
 
     // (222:28) <Button color="primary" on:click={() => editElement(index)}>
-    function create_default_slot_11$1(ctx) {
+    function create_default_slot_11$2(ctx) {
     	let icon;
     	let current;
 
@@ -13154,7 +13154,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_11$1.name,
+    		id: create_default_slot_11$2.name,
     		type: "slot",
     		source: "(222:28) <Button color=\\\"primary\\\" on:click={() => editElement(index)}>",
     		ctx
@@ -13164,7 +13164,7 @@ var app = (function () {
     }
 
     // (223:28) <Button color="danger" on:click={() => openDeleteModal(index)}>
-    function create_default_slot_10$1(ctx) {
+    function create_default_slot_10$2(ctx) {
     	let icon;
     	let current;
 
@@ -13198,7 +13198,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_10$1.name,
+    		id: create_default_slot_10$2.name,
     		type: "slot",
     		source: "(223:28) <Button color=\\\"danger\\\" on:click={() => openDeleteModal(index)}>",
     		ctx
@@ -13208,7 +13208,7 @@ var app = (function () {
     }
 
     // (221:24) <FormGroup>
-    function create_default_slot_9$1(ctx) {
+    function create_default_slot_9$2(ctx) {
     	let button0;
     	let t;
     	let button1;
@@ -13221,7 +13221,7 @@ var app = (function () {
     	button0 = new Button({
     			props: {
     				color: "primary",
-    				$$slots: { default: [create_default_slot_11$1] },
+    				$$slots: { default: [create_default_slot_11$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -13236,7 +13236,7 @@ var app = (function () {
     	button1 = new Button({
     			props: {
     				color: "danger",
-    				$$slots: { default: [create_default_slot_10$1] },
+    				$$slots: { default: [create_default_slot_10$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -13293,7 +13293,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_9$1.name,
+    		id: create_default_slot_9$2.name,
     		type: "slot",
     		source: "(221:24) <FormGroup>",
     		ctx
@@ -13336,7 +13336,7 @@ var app = (function () {
 
     	formgroup = new FormGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_9$1] },
+    				$$slots: { default: [create_default_slot_9$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -13446,7 +13446,7 @@ var app = (function () {
     }
 
     // (189:8) <Table responsive>
-    function create_default_slot_8$1(ctx) {
+    function create_default_slot_8$2(ctx) {
     	let thead;
     	let tr0;
     	let th0;
@@ -13832,7 +13832,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_8$1.name,
+    		id: create_default_slot_8$2.name,
     		type: "slot",
     		source: "(189:8) <Table responsive>",
     		ctx
@@ -13842,14 +13842,14 @@ var app = (function () {
     }
 
     // (188:4) <Row>
-    function create_default_slot_7$1(ctx) {
+    function create_default_slot_7$2(ctx) {
     	let table;
     	let current;
 
     	table = new Table({
     			props: {
     				responsive: true,
-    				$$slots: { default: [create_default_slot_8$1] },
+    				$$slots: { default: [create_default_slot_8$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -13888,7 +13888,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_7$1.name,
+    		id: create_default_slot_7$2.name,
     		type: "slot",
     		source: "(188:4) <Row>",
     		ctx
@@ -13898,7 +13898,7 @@ var app = (function () {
     }
 
     // (235:20) <Button class="btn-light bg-transparent" on:click={() => {if (searchConfig.page > 1) searchConfig.page--}}>
-    function create_default_slot_6$1(ctx) {
+    function create_default_slot_6$2(ctx) {
     	let t;
 
     	const block = {
@@ -13915,7 +13915,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_6$1.name,
+    		id: create_default_slot_6$2.name,
     		type: "slot",
     		source: "(235:20) <Button class=\\\"btn-light bg-transparent\\\" on:click={() => {if (searchConfig.page > 1) searchConfig.page--}}>",
     		ctx
@@ -13983,7 +13983,7 @@ var app = (function () {
     }
 
     // (234:16) <InputGroup>
-    function create_default_slot_3$2(ctx) {
+    function create_default_slot_3$3(ctx) {
     	let button0;
     	let t0;
     	let inputgrouptext;
@@ -13994,7 +13994,7 @@ var app = (function () {
     	button0 = new Button({
     			props: {
     				class: "btn-light bg-transparent",
-    				$$slots: { default: [create_default_slot_6$1] },
+    				$$slots: { default: [create_default_slot_6$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -14085,7 +14085,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_3$2.name,
+    		id: create_default_slot_3$3.name,
     		type: "slot",
     		source: "(234:16) <InputGroup>",
     		ctx
@@ -14102,7 +14102,7 @@ var app = (function () {
 
     	inputgroup = new InputGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_3$2] },
+    				$$slots: { default: [create_default_slot_3$3] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -14222,7 +14222,7 @@ var app = (function () {
     	row0 = new Row({
     			props: {
     				class: "mt-3",
-    				$$slots: { default: [create_default_slot_12$1] },
+    				$$slots: { default: [create_default_slot_12$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -14230,7 +14230,7 @@ var app = (function () {
 
     	row1 = new Row({
     			props: {
-    				$$slots: { default: [create_default_slot_7$1] },
+    				$$slots: { default: [create_default_slot_7$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15215,7 +15215,7 @@ var app = (function () {
     }
 
     // (70:16) <FormGroup>
-    function create_default_slot_15(ctx) {
+    function create_default_slot_15$1(ctx) {
     	let label;
     	let t;
     	let input;
@@ -15293,7 +15293,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_15.name,
+    		id: create_default_slot_15$1.name,
     		type: "slot",
     		source: "(70:16) <FormGroup>",
     		ctx
@@ -15303,7 +15303,7 @@ var app = (function () {
     }
 
     // (75:20) <Label>
-    function create_default_slot_14(ctx) {
+    function create_default_slot_14$1(ctx) {
     	let b;
 
     	const block = {
@@ -15322,7 +15322,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_14.name,
+    		id: create_default_slot_14$1.name,
     		type: "slot",
     		source: "(75:20) <Label>",
     		ctx
@@ -15332,7 +15332,7 @@ var app = (function () {
     }
 
     // (74:16) <FormGroup>
-    function create_default_slot_13(ctx) {
+    function create_default_slot_13$1(ctx) {
     	let label;
     	let t;
     	let input;
@@ -15341,7 +15341,7 @@ var app = (function () {
 
     	label = new Label({
     			props: {
-    				$$slots: { default: [create_default_slot_14] },
+    				$$slots: { default: [create_default_slot_14$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15410,7 +15410,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_13.name,
+    		id: create_default_slot_13$1.name,
     		type: "slot",
     		source: "(74:16) <FormGroup>",
     		ctx
@@ -15420,7 +15420,7 @@ var app = (function () {
     }
 
     // (79:20) <Label>
-    function create_default_slot_12(ctx) {
+    function create_default_slot_12$1(ctx) {
     	let b;
 
     	const block = {
@@ -15439,7 +15439,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_12.name,
+    		id: create_default_slot_12$1.name,
     		type: "slot",
     		source: "(79:20) <Label>",
     		ctx
@@ -15449,7 +15449,7 @@ var app = (function () {
     }
 
     // (78:16) <FormGroup>
-    function create_default_slot_11(ctx) {
+    function create_default_slot_11$1(ctx) {
     	let label;
     	let t;
     	let input;
@@ -15458,7 +15458,7 @@ var app = (function () {
 
     	label = new Label({
     			props: {
-    				$$slots: { default: [create_default_slot_12] },
+    				$$slots: { default: [create_default_slot_12$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15527,7 +15527,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_11.name,
+    		id: create_default_slot_11$1.name,
     		type: "slot",
     		source: "(78:16) <FormGroup>",
     		ctx
@@ -15537,7 +15537,7 @@ var app = (function () {
     }
 
     // (83:20) <Label>
-    function create_default_slot_10(ctx) {
+    function create_default_slot_10$1(ctx) {
     	let b;
 
     	const block = {
@@ -15556,7 +15556,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_10.name,
+    		id: create_default_slot_10$1.name,
     		type: "slot",
     		source: "(83:20) <Label>",
     		ctx
@@ -15566,7 +15566,7 @@ var app = (function () {
     }
 
     // (82:16) <FormGroup>
-    function create_default_slot_9(ctx) {
+    function create_default_slot_9$1(ctx) {
     	let label;
     	let t;
     	let input;
@@ -15575,7 +15575,7 @@ var app = (function () {
 
     	label = new Label({
     			props: {
-    				$$slots: { default: [create_default_slot_10] },
+    				$$slots: { default: [create_default_slot_10$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15644,7 +15644,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_9.name,
+    		id: create_default_slot_9$1.name,
     		type: "slot",
     		source: "(82:16) <FormGroup>",
     		ctx
@@ -15654,7 +15654,7 @@ var app = (function () {
     }
 
     // (87:20) <Label>
-    function create_default_slot_8(ctx) {
+    function create_default_slot_8$1(ctx) {
     	let b;
 
     	const block = {
@@ -15673,7 +15673,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_8.name,
+    		id: create_default_slot_8$1.name,
     		type: "slot",
     		source: "(87:20) <Label>",
     		ctx
@@ -15683,7 +15683,7 @@ var app = (function () {
     }
 
     // (86:16) <FormGroup>
-    function create_default_slot_7(ctx) {
+    function create_default_slot_7$1(ctx) {
     	let label;
     	let t;
     	let input;
@@ -15692,7 +15692,7 @@ var app = (function () {
 
     	label = new Label({
     			props: {
-    				$$slots: { default: [create_default_slot_8] },
+    				$$slots: { default: [create_default_slot_8$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15761,7 +15761,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_7.name,
+    		id: create_default_slot_7$1.name,
     		type: "slot",
     		source: "(86:16) <FormGroup>",
     		ctx
@@ -15771,7 +15771,7 @@ var app = (function () {
     }
 
     // (91:20) <Button color="primary" on:click={saveEditedElement}>
-    function create_default_slot_6(ctx) {
+    function create_default_slot_6$1(ctx) {
     	let t;
 
     	const block = {
@@ -15788,7 +15788,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_6.name,
+    		id: create_default_slot_6$1.name,
     		type: "slot",
     		source: "(91:20) <Button color=\\\"primary\\\" on:click={saveEditedElement}>",
     		ctx
@@ -15834,7 +15834,7 @@ var app = (function () {
     	button0 = new Button({
     			props: {
     				color: "primary",
-    				$$slots: { default: [create_default_slot_6] },
+    				$$slots: { default: [create_default_slot_6$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15911,7 +15911,7 @@ var app = (function () {
     }
 
     // (65:12) <Form>
-    function create_default_slot_3$1(ctx) {
+    function create_default_slot_3$2(ctx) {
     	let formgroup0;
     	let t0;
     	let formgroup1;
@@ -15937,7 +15937,7 @@ var app = (function () {
 
     	formgroup1 = new FormGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_15] },
+    				$$slots: { default: [create_default_slot_15$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15945,7 +15945,7 @@ var app = (function () {
 
     	formgroup2 = new FormGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_13] },
+    				$$slots: { default: [create_default_slot_13$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15953,7 +15953,7 @@ var app = (function () {
 
     	formgroup3 = new FormGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_11] },
+    				$$slots: { default: [create_default_slot_11$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15961,7 +15961,7 @@ var app = (function () {
 
     	formgroup4 = new FormGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_9] },
+    				$$slots: { default: [create_default_slot_9$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -15969,7 +15969,7 @@ var app = (function () {
 
     	formgroup5 = new FormGroup({
     			props: {
-    				$$slots: { default: [create_default_slot_7] },
+    				$$slots: { default: [create_default_slot_7$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -16106,7 +16106,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_3$1.name,
+    		id: create_default_slot_3$2.name,
     		type: "slot",
     		source: "(65:12) <Form>",
     		ctx
@@ -16122,7 +16122,7 @@ var app = (function () {
 
     	form = new Form({
     			props: {
-    				$$slots: { default: [create_default_slot_3$1] },
+    				$$slots: { default: [create_default_slot_3$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -17168,7 +17168,7 @@ var app = (function () {
     });
 
     /*!
-     * Chart.js v3.2.1
+     * Chart.js v3.3.2
      * https://www.chartjs.org
      * (c) 2021 Chart.js Contributors
      * Released under the MIT License
@@ -17484,7 +17484,7 @@ var app = (function () {
     function _normalizeAngle(a) {
       return (a % TAU + TAU) % TAU;
     }
-    function _angleBetween(angle, start, end) {
+    function _angleBetween(angle, start, end, sameAngleIsFullCircle) {
       const a = _normalizeAngle(angle);
       const s = _normalizeAngle(start);
       const e = _normalizeAngle(end);
@@ -17492,7 +17492,8 @@ var app = (function () {
       const angleToEnd = _normalizeAngle(e - a);
       const startToAngle = _normalizeAngle(a - s);
       const endToAngle = _normalizeAngle(a - e);
-      return a === s || a === e || (angleToStart > angleToEnd && startToAngle < endToAngle);
+      return a === s || a === e || (sameAngleIsFullCircle && s === e)
+        || (angleToStart > angleToEnd && startToAngle < endToAngle);
     }
     function _limitValue(value, min, max) {
       return Math.max(min, Math.min(max, value));
@@ -18920,19 +18921,25 @@ var app = (function () {
           return false;
         }
       }
-      return _createResolver([...set], [''], rootScopes, fallback, () => {
-        const parent = resolver._getTarget();
-        if (!(prop in parent)) {
-          parent[prop] = {};
-        }
-        return parent[prop];
-      });
+      return _createResolver([...set], [''], rootScopes, fallback,
+        () => subGetTarget(resolver, prop, value));
     }
     function addScopesFromKey(set, allScopes, key, fallback) {
       while (key) {
         key = addScopes(set, allScopes, key, fallback);
       }
       return key;
+    }
+    function subGetTarget(resolver, prop, value) {
+      const parent = resolver._getTarget();
+      if (!(prop in parent)) {
+        parent[prop] = {};
+      }
+      const target = parent[prop];
+      if (isArray(target) && isObject(value)) {
+        return value;
+      }
+      return target;
     }
     function _resolveWithPrefixes(prop, prefixes, scopes, proxy) {
       let value;
@@ -18975,6 +18982,7 @@ var app = (function () {
 
     const EPSILON = Number.EPSILON || 1e-14;
     const getPoint = (points, i) => i < points.length && !points[i].skip && points[i];
+    const getValueAxis = (indexAxis) => indexAxis === 'x' ? 'y' : 'x';
     function splineCurve(firstPoint, middlePoint, afterPoint, t) {
       const previous = firstPoint.skip ? middlePoint : firstPoint;
       const current = middlePoint;
@@ -19023,9 +19031,10 @@ var app = (function () {
         mK[i + 1] = betaK * tauK * deltaK[i];
       }
     }
-    function monotoneCompute(points, mK) {
+    function monotoneCompute(points, mK, indexAxis = 'x') {
+      const valueAxis = getValueAxis(indexAxis);
       const pointsLen = points.length;
-      let deltaX, pointBefore, pointCurrent;
+      let delta, pointBefore, pointCurrent;
       let pointAfter = getPoint(points, 0);
       for (let i = 0; i < pointsLen; ++i) {
         pointBefore = pointCurrent;
@@ -19034,20 +19043,22 @@ var app = (function () {
         if (!pointCurrent) {
           continue;
         }
-        const {x, y} = pointCurrent;
+        const iPixel = pointCurrent[indexAxis];
+        const vPixel = pointCurrent[valueAxis];
         if (pointBefore) {
-          deltaX = (x - pointBefore.x) / 3;
-          pointCurrent.cp1x = x - deltaX;
-          pointCurrent.cp1y = y - deltaX * mK[i];
+          delta = (iPixel - pointBefore[indexAxis]) / 3;
+          pointCurrent[`cp1${indexAxis}`] = iPixel - delta;
+          pointCurrent[`cp1${valueAxis}`] = vPixel - delta * mK[i];
         }
         if (pointAfter) {
-          deltaX = (pointAfter.x - x) / 3;
-          pointCurrent.cp2x = x + deltaX;
-          pointCurrent.cp2y = y + deltaX * mK[i];
+          delta = (pointAfter[indexAxis] - iPixel) / 3;
+          pointCurrent[`cp2${indexAxis}`] = iPixel + delta;
+          pointCurrent[`cp2${valueAxis}`] = vPixel + delta * mK[i];
         }
       }
     }
-    function splineCurveMonotone(points) {
+    function splineCurveMonotone(points, indexAxis = 'x') {
+      const valueAxis = getValueAxis(indexAxis);
       const pointsLen = points.length;
       const deltaK = Array(pointsLen).fill(0);
       const mK = Array(pointsLen);
@@ -19061,8 +19072,8 @@ var app = (function () {
           continue;
         }
         if (pointAfter) {
-          const slopeDeltaX = (pointAfter.x - pointCurrent.x);
-          deltaK[i] = slopeDeltaX !== 0 ? (pointAfter.y - pointCurrent.y) / slopeDeltaX : 0;
+          const slopeDelta = pointAfter[indexAxis] - pointCurrent[indexAxis];
+          deltaK[i] = slopeDelta !== 0 ? (pointAfter[valueAxis] - pointCurrent[valueAxis]) / slopeDelta : 0;
         }
         mK[i] = !pointBefore ? deltaK[i]
           : !pointAfter ? deltaK[i - 1]
@@ -19070,7 +19081,7 @@ var app = (function () {
           : (deltaK[i - 1] + deltaK[i]) / 2;
       }
       monotoneAdjust(points, deltaK, mK);
-      monotoneCompute(points, mK);
+      monotoneCompute(points, mK, indexAxis);
     }
     function capControlPoint(pt, min, max) {
       return Math.max(Math.min(pt, max), min);
@@ -19096,13 +19107,13 @@ var app = (function () {
         }
       }
     }
-    function _updateBezierControlPoints(points, options, area, loop) {
+    function _updateBezierControlPoints(points, options, area, loop, indexAxis) {
       let i, ilen, point, controlPoints;
       if (options.spanGaps) {
         points = points.filter((pt) => !pt.skip);
       }
       if (options.cubicInterpolationMode === 'monotone') {
-        splineCurveMonotone(points);
+        splineCurveMonotone(points, indexAxis);
       } else {
         let prev = loop ? points[points.length - 1] : points[0];
         for (i = 0, ilen = points.length; i < ilen; ++i) {
@@ -19250,15 +19261,26 @@ var app = (function () {
       };
     }
     function retinaScale(chart, forceRatio, forceStyle) {
-      const pixelRatio = chart.currentDevicePixelRatio = forceRatio || 1;
-      const {canvas, width, height} = chart;
-      canvas.height = height * pixelRatio;
-      canvas.width = width * pixelRatio;
-      chart.ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      const pixelRatio = forceRatio || 1;
+      const deviceHeight = Math.floor(chart.height * pixelRatio);
+      const deviceWidth = Math.floor(chart.width * pixelRatio);
+      chart.height = deviceHeight / pixelRatio;
+      chart.width = deviceWidth / pixelRatio;
+      const canvas = chart.canvas;
       if (canvas.style && (forceStyle || (!canvas.style.height && !canvas.style.width))) {
-        canvas.style.height = height + 'px';
-        canvas.style.width = width + 'px';
+        canvas.style.height = `${chart.height}px`;
+        canvas.style.width = `${chart.width}px`;
       }
+      if (chart.currentDevicePixelRatio !== pixelRatio
+          || canvas.height !== deviceHeight
+          || canvas.width !== deviceWidth) {
+        chart.currentDevicePixelRatio = pixelRatio;
+        canvas.height = deviceHeight;
+        canvas.width = deviceWidth;
+        chart.ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+        return true;
+      }
+      return false;
     }
     const supportsEventListenerOptions = (function() {
       let passiveSupported = false;
@@ -19451,6 +19473,9 @@ var app = (function () {
           continue;
         }
         value = normalize(point[property]);
+        if (value === prevValue) {
+          continue;
+        }
         inside = between(value, startBound, endBound);
         if (subStart === null && shouldStart()) {
           subStart = compare(value, startBound) === 0 ? i : prev;
@@ -19590,7 +19615,7 @@ var app = (function () {
     }
 
     /*!
-     * Chart.js v3.2.1
+     * Chart.js v3.3.2
      * https://www.chartjs.org
      * (c) 2021 Chart.js Contributors
      * Released under the MIT License
@@ -20174,13 +20199,17 @@ var app = (function () {
       });
     }
     function clearStacks(meta, items) {
+      const axis = meta.vScale && meta.vScale.axis;
+      if (!axis) {
+        return;
+      }
       items = items || meta._parsed;
       for (const parsed of items) {
         const stacks = parsed._stacks;
-        if (!stacks || stacks[meta.vScale.id] === undefined || stacks[meta.vScale.id][meta.index] === undefined) {
+        if (!stacks || stacks[axis] === undefined || stacks[axis][meta.index] === undefined) {
           return;
         }
-        delete stacks[meta.vScale.id][meta.index];
+        delete stacks[axis][meta.index];
       }
     }
     const isDirectUpdateMode = (mode) => mode === 'reset' || mode === 'none';
@@ -20202,6 +20231,7 @@ var app = (function () {
         this._drawCount = undefined;
         this.enableOptionSharing = false;
         this.$context = undefined;
+        this._syncList = [];
         this.initialize();
       }
       initialize() {
@@ -20213,6 +20243,9 @@ var app = (function () {
         me.addElements();
       }
       updateIndex(datasetIndex) {
+        if (this.index !== datasetIndex) {
+          clearStacks(this._cachedMeta);
+        }
         this.index = datasetIndex;
       }
       linkScales() {
@@ -20264,16 +20297,20 @@ var app = (function () {
         const me = this;
         const dataset = me.getDataset();
         const data = dataset.data || (dataset.data = []);
+        const _data = me._data;
         if (isObject(data)) {
           me._data = convertObjectDataToArray(data);
-        } else if (me._data !== data) {
-          if (me._data) {
-            unlistenArrayEvents(me._data, me);
-            clearStacks(me._cachedMeta);
+        } else if (_data !== data) {
+          if (_data) {
+            unlistenArrayEvents(_data, me);
+            const meta = me._cachedMeta;
+            clearStacks(meta);
+            meta._parsed = [];
           }
           if (data && Object.isExtensible(data)) {
             listenArrayEvents(data, me);
           }
+          me._syncList = [];
           me._data = data;
         }
       }
@@ -20291,6 +20328,7 @@ var app = (function () {
         const dataset = me.getDataset();
         let stackChanged = false;
         me._dataCheck();
+        const oldStacked = meta._stacked;
         meta._stacked = isStacked(meta.vScale, meta);
         if (meta.stack !== dataset.stack) {
           stackChanged = true;
@@ -20298,7 +20336,7 @@ var app = (function () {
           meta.stack = dataset.stack;
         }
         me._resyncElements(resetNewElements);
-        if (stackChanged) {
+        if (stackChanged || oldStacked !== meta._stacked) {
           updateStacks(me, meta._parsed);
         }
       }
@@ -20535,10 +20573,12 @@ var app = (function () {
             (element.$context = createDataContext(me.getContext(), index, element));
           context.parsed = me.getParsed(index);
           context.raw = dataset.data[index];
+          context.index = context.dataIndex = index;
         } else {
           context = me.$context ||
             (me.$context = createDatasetContext(me.chart.getContext(), me.index));
           context.dataset = dataset;
+          context.index = context.datasetIndex = me.index;
         }
         context.active = !!active;
         context.mode = mode;
@@ -20643,16 +20683,22 @@ var app = (function () {
       }
       _resyncElements(resetNewElements) {
         const me = this;
-        const numMeta = me._cachedMeta.data.length;
-        const numData = me._data.length;
+        const data = me._data;
+        const elements = me._cachedMeta.data;
+        for (const [method, arg1, arg2] of me._syncList) {
+          me[method](arg1, arg2);
+        }
+        me._syncList = [];
+        const numMeta = elements.length;
+        const numData = data.length;
+        const count = Math.min(numData, numMeta);
+        if (count) {
+          me.parse(0, count);
+        }
         if (numData > numMeta) {
           me._insertElements(numMeta, numData - numMeta, resetNewElements);
         } else if (numData < numMeta) {
           me._removeElements(numData, numMeta - numData);
-        }
-        const count = Math.min(numData, numMeta);
-        if (count) {
-          me.parse(0, count);
         }
       }
       _insertElements(start, count, resetNewElements = true) {
@@ -20693,20 +20739,20 @@ var app = (function () {
       }
       _onDataPush() {
         const count = arguments.length;
-        this._insertElements(this.getDataset().data.length - count, count);
+        this._syncList.push(['_insertElements', this.getDataset().data.length - count, count]);
       }
       _onDataPop() {
-        this._removeElements(this._cachedMeta.data.length - 1, 1);
+        this._syncList.push(['_removeElements', this._cachedMeta.data.length - 1, 1]);
       }
       _onDataShift() {
-        this._removeElements(0, 1);
+        this._syncList.push(['_removeElements', 0, 1]);
       }
       _onDataSplice(start, count) {
-        this._removeElements(start, count);
-        this._insertElements(start, arguments.length - 2);
+        this._syncList.push(['_removeElements', start, count]);
+        this._syncList.push(['_insertElements', start, arguments.length - 2]);
       }
       _onDataUnshift() {
-        this._insertElements(0, arguments.length);
+        this._syncList.push(['_insertElements', 0, arguments.length]);
       }
     }
     DatasetController.defaults = {};
@@ -21166,20 +21212,19 @@ var app = (function () {
       updateElements(points, start, count, mode) {
         const me = this;
         const reset = mode === 'reset';
-        const {xScale, yScale} = me._cachedMeta;
+        const {iScale, vScale} = me._cachedMeta;
         const firstOpts = me.resolveDataElementOptions(start, mode);
         const sharedOptions = me.getSharedOptions(firstOpts);
         const includeOptions = me.includeOptions(mode, sharedOptions);
+        const iAxis = iScale.axis;
+        const vAxis = vScale.axis;
         for (let i = start; i < start + count; i++) {
           const point = points[i];
           const parsed = !reset && me.getParsed(i);
-          const x = reset ? xScale.getPixelForDecimal(0.5) : xScale.getPixelForValue(parsed.x);
-          const y = reset ? yScale.getBasePixel() : yScale.getPixelForValue(parsed.y);
-          const properties = {
-            x,
-            y,
-            skip: isNaN(x) || isNaN(y)
-          };
+          const properties = {};
+          const iPixel = properties[iAxis] = reset ? iScale.getPixelForDecimal(0.5) : iScale.getPixelForValue(parsed[iAxis]);
+          const vPixel = properties[vAxis] = reset ? vScale.getBasePixel() : vScale.getPixelForValue(parsed[vAxis]);
+          properties.skip = isNaN(iPixel) || isNaN(vPixel);
           if (includeOptions) {
             properties.options = me.resolveDataElementOptions(i, mode);
             if (reset) {
@@ -21247,8 +21292,8 @@ var app = (function () {
         const startY = Math.sin(startAngle);
         const endX = Math.cos(endAngle);
         const endY = Math.sin(endAngle);
-        const calcMax = (angle, a, b) => _angleBetween(angle, startAngle, endAngle) ? 1 : Math.max(a, a * cutout, b, b * cutout);
-        const calcMin = (angle, a, b) => _angleBetween(angle, startAngle, endAngle) ? -1 : Math.min(a, a * cutout, b, b * cutout);
+        const calcMax = (angle, a, b) => _angleBetween(angle, startAngle, endAngle, true) ? 1 : Math.max(a, a * cutout, b, b * cutout);
+        const calcMin = (angle, a, b) => _angleBetween(angle, startAngle, endAngle, true) ? -1 : Math.min(a, a * cutout, b, b * cutout);
         const maxX = calcMax(0, startX, endX);
         const maxY = calcMax(HALF_PI, startY, endY);
         const minX = calcMin(PI, startX, endX);
@@ -21564,10 +21609,12 @@ var app = (function () {
       updateElements(points, start, count, mode) {
         const me = this;
         const reset = mode === 'reset';
-        const {xScale, yScale, _stacked} = me._cachedMeta;
+        const {iScale, vScale, _stacked} = me._cachedMeta;
         const firstOpts = me.resolveDataElementOptions(start, mode);
         const sharedOptions = me.getSharedOptions(firstOpts);
         const includeOptions = me.includeOptions(mode, sharedOptions);
+        const iAxis = iScale.axis;
+        const vAxis = vScale.axis;
         const spanGaps = me.options.spanGaps;
         const maxGapLength = isNumber(spanGaps) ? spanGaps : Number.POSITIVE_INFINITY;
         const directUpdate = me.chart._animationsDisabled || reset || mode === 'none';
@@ -21576,11 +21623,11 @@ var app = (function () {
           const point = points[i];
           const parsed = me.getParsed(i);
           const properties = directUpdate ? point : {};
-          const nullData = isNullOrUndef(parsed.y);
-          const x = properties.x = xScale.getPixelForValue(parsed.x, i);
-          const y = properties.y = reset || nullData ? yScale.getBasePixel() : yScale.getPixelForValue(_stacked ? me.applyStack(yScale, parsed, _stacked) : parsed.y, i);
-          properties.skip = isNaN(x) || isNaN(y) || nullData;
-          properties.stop = i > 0 && (parsed.x - prevParsed.x) > maxGapLength;
+          const nullData = isNullOrUndef(parsed[vAxis]);
+          const iPixel = properties[iAxis] = iScale.getPixelForValue(parsed[iAxis], i);
+          const vPixel = properties[vAxis] = reset || nullData ? vScale.getBasePixel() : vScale.getPixelForValue(_stacked ? me.applyStack(vScale, parsed, _stacked) : parsed[vAxis], i);
+          properties.skip = isNaN(iPixel) || isNaN(vPixel) || nullData;
+          properties.stop = i > 0 && (parsed[iAxis] - prevParsed[iAxis]) > maxGapLength;
           properties.parsed = parsed;
           if (includeOptions) {
             properties.options = sharedOptions || me.resolveDataElementOptions(i, mode);
@@ -21606,7 +21653,8 @@ var app = (function () {
         return Math.max(border, firstPoint, lastPoint) / 2;
       }
       draw() {
-        this._cachedMeta.dataset.updateControlPoints(this.chart.chartArea);
+        const meta = this._cachedMeta;
+        meta.dataset.updateControlPoints(this.chart.chartArea, meta.iScale.axis);
         super.draw();
       }
     }
@@ -21677,6 +21725,17 @@ var app = (function () {
         super(chart, datasetIndex);
         this.innerRadius = undefined;
         this.outerRadius = undefined;
+      }
+      getLabelAndValue(index) {
+        const me = this;
+        const meta = me._cachedMeta;
+        const chart = me.chart;
+        const labels = chart.data.labels || [];
+        const value = formatNumber(meta._parsed[index].r, chart.options.locale);
+        return {
+          label: labels[index] || '',
+          value,
+        };
       }
       update(mode) {
         const arcs = this._cachedMeta.data;
@@ -21959,7 +22018,7 @@ var app = (function () {
     });
 
     function abstract() {
-      throw new Error('This method is not implemented: either no adapter can be found or an incomplete integration was provided.');
+      throw new Error('This method is not implemented: Check that a complete date adapter is provided.');
     }
     class DateAdapter {
       constructor(options) {
@@ -22083,6 +22142,9 @@ var app = (function () {
           return;
         }
         const center = element.getCenterPoint(useFinalPosition);
+        if (!_isPointInArea(center, chart.chartArea, chart._minPadding)) {
+          return;
+        }
         const distance = distanceMetric(position, center);
         if (distance < minDistance) {
           items = [{element, datasetIndex, index}];
@@ -22379,8 +22441,8 @@ var app = (function () {
           return;
         }
         const padding = toPadding(chart.options.layout.padding);
-        const availableWidth = width - padding.width;
-        const availableHeight = height - padding.height;
+        const availableWidth = Math.max(width - padding.width, 0);
+        const availableHeight = Math.max(height - padding.height, 0);
         const boxes = buildLayoutBoxes(chart.boxes);
         const verticalBoxes = boxes.vertical;
         const horizontalBoxes = boxes.horizontal;
@@ -22778,7 +22840,7 @@ var app = (function () {
     };
     function calculateDelta(tickValue, ticks) {
       let delta = ticks.length > 3 ? ticks[2].value - ticks[1].value : ticks[1].value - ticks[0].value;
-      if (Math.abs(delta) > 1 && tickValue !== Math.floor(tickValue)) {
+      if (Math.abs(delta) >= 1 && tickValue !== Math.floor(tickValue)) {
         delta = tickValue - Math.floor(tickValue);
       }
       return delta;
@@ -24126,7 +24188,7 @@ var app = (function () {
       _maxDigits() {
         const me = this;
         const fontSize = me._resolveTickFontOptions(0).lineHeight;
-        return me.isHorizontal() ? me.width / fontSize / 0.7 : me.height / fontSize;
+        return (me.isHorizontal() ? me.width : me.height) / fontSize;
       }
     }
 
@@ -24670,7 +24732,7 @@ var app = (function () {
       return false;
     }
 
-    var version = "3.2.1";
+    var version = "3.3.2";
 
     const KNOWN_POSITIONS = ['top', 'bottom', 'left', 'right', 'chartArea'];
     function positionIsHorizontal(position, axis) {
@@ -24747,6 +24809,7 @@ var app = (function () {
         this._active = [];
         this._lastEvent = undefined;
         this._listeners = {};
+        this._responsiveListeners = undefined;
         this._sortedMetasets = [];
         this.scales = {};
         this.scale = undefined;
@@ -24832,15 +24895,13 @@ var app = (function () {
         const canvas = me.canvas;
         const aspectRatio = options.maintainAspectRatio && me.aspectRatio;
         const newSize = me.platform.getMaximumSize(canvas, width, height, aspectRatio);
-        const oldRatio = me.currentDevicePixelRatio;
         const newRatio = options.devicePixelRatio || me.platform.getDevicePixelRatio();
-        if (me.width === newSize.width && me.height === newSize.height && oldRatio === newRatio) {
-          return;
-        }
         me.width = newSize.width;
         me.height = newSize.height;
         me._aspectRatio = me.aspectRatio;
-        retinaScale(me, newRatio, true);
+        if (!retinaScale(me, newRatio, true)) {
+          return;
+        }
         me.notifyPlugins('resize', {size: newSize});
         callback(options.onResize, [me, newSize], me);
         if (me.attached) {
@@ -24915,20 +24976,12 @@ var app = (function () {
           layouts.addBox(me, scale);
         });
       }
-      _updateMetasetIndex(meta, index) {
-        const metasets = this._metasets;
-        const oldIndex = meta.index;
-        if (oldIndex !== index) {
-          metasets[oldIndex] = metasets[index];
-          metasets[index] = meta;
-          meta.index = index;
-        }
-      }
       _updateMetasets() {
         const me = this;
         const metasets = me._metasets;
         const numData = me.data.datasets.length;
         const numMeta = metasets.length;
+        metasets.sort((a, b) => a.index - b.index);
         if (numMeta > numData) {
           for (let i = numData; i < numMeta; ++i) {
             me._destroyDatasetMeta(i);
@@ -24966,7 +25019,7 @@ var app = (function () {
           meta.type = type;
           meta.indexAxis = dataset.indexAxis || getIndexAxis(type, me.options);
           meta.order = dataset.order || 0;
-          me._updateMetasetIndex(meta, i);
+          meta.index = i;
           meta.label = '' + dataset.label;
           meta.visible = me.isDatasetVisible(i);
           if (meta.controller) {
@@ -25009,7 +25062,7 @@ var app = (function () {
         me.buildOrUpdateScales();
         const existingEvents = new Set(Object.keys(me._listeners));
         const newEvents = new Set(me.options.events);
-        if (!setsEqual(existingEvents, newEvents)) {
+        if (!setsEqual(existingEvents, newEvents) || !!this._responsiveListeners !== me.options.responsive) {
           me.unbindEvents();
           me.bindEvents();
         }
@@ -25189,7 +25242,7 @@ var app = (function () {
         const metasets = me._metasets;
         let meta = metasets.filter(x => x && x._dataset === dataset).pop();
         if (!meta) {
-          meta = metasets[datasetIndex] = {
+          meta = {
             type: null,
             data: [],
             dataset: null,
@@ -25203,6 +25256,7 @@ var app = (function () {
             _parsed: [],
             _sorted: false
           };
+          metasets.push(meta);
         }
         return meta;
       }
@@ -25277,8 +25331,34 @@ var app = (function () {
         return this.canvas.toDataURL(...args);
       }
       bindEvents() {
+        this.bindUserEvents();
+        if (this.options.responsive) {
+          this.bindResponsiveEvents();
+        } else {
+          this.attached = true;
+        }
+      }
+      bindUserEvents() {
         const me = this;
         const listeners = me._listeners;
+        const platform = me.platform;
+        const _add = (type, listener) => {
+          platform.addEventListener(me, type, listener);
+          listeners[type] = listener;
+        };
+        const listener = function(e, x, y) {
+          e.offsetX = x;
+          e.offsetY = y;
+          me._eventHandler(e);
+        };
+        each(me.options.events, (type) => _add(type, listener));
+      }
+      bindResponsiveEvents() {
+        const me = this;
+        if (!me._responsiveListeners) {
+          me._responsiveListeners = {};
+        }
+        const listeners = me._responsiveListeners;
         const platform = me.platform;
         const _add = (type, listener) => {
           platform.addEventListener(me, type, listener);
@@ -25290,50 +25370,40 @@ var app = (function () {
             delete listeners[type];
           }
         };
-        let listener = function(e, x, y) {
-          e.offsetX = x;
-          e.offsetY = y;
-          me._eventHandler(e);
-        };
-        each(me.options.events, (type) => _add(type, listener));
-        if (me.options.responsive) {
-          listener = (width, height) => {
-            if (me.canvas) {
-              me.resize(width, height);
-            }
-          };
-          let detached;
-          const attached = () => {
-            _remove('attach', attached);
-            me.attached = true;
-            me.resize();
-            _add('resize', listener);
-            _add('detach', detached);
-          };
-          detached = () => {
-            me.attached = false;
-            _remove('resize', listener);
-            _add('attach', attached);
-          };
-          if (platform.isAttached(me.canvas)) {
-            attached();
-          } else {
-            detached();
+        const listener = (width, height) => {
+          if (me.canvas) {
+            me.resize(width, height);
           }
-        } else {
+        };
+        let detached;
+        const attached = () => {
+          _remove('attach', attached);
           me.attached = true;
+          me.resize();
+          _add('resize', listener);
+          _add('detach', detached);
+        };
+        detached = () => {
+          me.attached = false;
+          _remove('resize', listener);
+          _add('attach', attached);
+        };
+        if (platform.isAttached(me.canvas)) {
+          attached();
+        } else {
+          detached();
         }
       }
       unbindEvents() {
         const me = this;
-        const listeners = me._listeners;
-        if (!listeners) {
-          return;
-        }
-        me._listeners = {};
-        each(listeners, (listener, type) => {
+        each(me._listeners, (listener, type) => {
           me.platform.removeEventListener(me, type, listener);
         });
+        me._listeners = {};
+        each(me._responsiveListeners, (listener, type) => {
+          me.platform.removeEventListener(me, type, listener);
+        });
+        me._responsiveListeners = undefined;
       }
       updateHoverStyle(items, mode, enabled) {
         const prefix = enabled ? 'set' : 'remove';
@@ -25475,8 +25545,8 @@ var app = (function () {
       }
     });
 
-    function clipArc(ctx, element) {
-      const {startAngle, endAngle, pixelMargin, x, y, outerRadius, innerRadius} = element;
+    function clipArc(ctx, element, endAngle) {
+      const {startAngle, pixelMargin, x, y, outerRadius, innerRadius} = element;
       let angleMargin = pixelMargin / outerRadius;
       ctx.beginPath();
       ctx.arc(x, y, outerRadius, startAngle - angleMargin, endAngle + angleMargin);
@@ -25513,10 +25583,15 @@ var app = (function () {
         y: y + r * Math.sin(theta),
       };
     }
-    function pathArc(ctx, element) {
-      const {x, y, startAngle, endAngle, pixelMargin} = element;
-      const outerRadius = Math.max(element.outerRadius - pixelMargin, 0);
-      const innerRadius = element.innerRadius + pixelMargin;
+    function pathArc(ctx, element, offset, end) {
+      const {x, y, startAngle: start, pixelMargin, innerRadius: innerR} = element;
+      const outerRadius = Math.max(element.outerRadius + offset - pixelMargin, 0);
+      const innerRadius = innerR > 0 ? innerR + offset + pixelMargin : 0;
+      const alpha = end - start;
+      const beta = Math.max(0.001, alpha * outerRadius - offset / PI) / outerRadius;
+      const angleOffset = (alpha - beta) / 2;
+      const startAngle = start + angleOffset;
+      const endAngle = end - angleOffset;
       const {outerStart, outerEnd, innerStart, innerEnd} = parseBorderRadius$1(element, innerRadius, outerRadius, endAngle - startAngle);
       const outerStartAdjustedRadius = outerRadius - outerStart;
       const outerEndAdjustedRadius = outerRadius - outerEnd;
@@ -25551,46 +25626,45 @@ var app = (function () {
       }
       ctx.closePath();
     }
-    function drawArc(ctx, element) {
-      if (element.fullCircles) {
-        element.endAngle = element.startAngle + TAU;
-        pathArc(ctx, element);
-        for (let i = 0; i < element.fullCircles; ++i) {
+    function drawArc(ctx, element, offset) {
+      const {fullCircles, startAngle, circumference} = element;
+      let endAngle = element.endAngle;
+      if (fullCircles) {
+        pathArc(ctx, element, offset, startAngle + TAU);
+        for (let i = 0; i < fullCircles; ++i) {
           ctx.fill();
         }
+        if (!isNaN(circumference)) {
+          endAngle = startAngle + circumference % TAU;
+          if (circumference % TAU === 0) {
+            endAngle += TAU;
+          }
+        }
       }
-      if (!isNaN(element.circumference)) {
-        element.endAngle = element.startAngle + element.circumference % TAU;
-      }
-      pathArc(ctx, element);
+      pathArc(ctx, element, offset, endAngle);
       ctx.fill();
+      return endAngle;
     }
     function drawFullCircleBorders(ctx, element, inner) {
-      const {x, y, startAngle, endAngle, pixelMargin} = element;
+      const {x, y, startAngle, pixelMargin, fullCircles} = element;
       const outerRadius = Math.max(element.outerRadius - pixelMargin, 0);
       const innerRadius = element.innerRadius + pixelMargin;
       let i;
       if (inner) {
-        element.endAngle = element.startAngle + TAU;
-        clipArc(ctx, element);
-        element.endAngle = endAngle;
-        if (element.endAngle === element.startAngle) {
-          element.endAngle += TAU;
-          element.fullCircles--;
-        }
+        clipArc(ctx, element, startAngle + TAU);
       }
       ctx.beginPath();
       ctx.arc(x, y, innerRadius, startAngle + TAU, startAngle, true);
-      for (i = 0; i < element.fullCircles; ++i) {
+      for (i = 0; i < fullCircles; ++i) {
         ctx.stroke();
       }
       ctx.beginPath();
       ctx.arc(x, y, outerRadius, startAngle, startAngle + TAU);
-      for (i = 0; i < element.fullCircles; ++i) {
+      for (i = 0; i < fullCircles; ++i) {
         ctx.stroke();
       }
     }
-    function drawBorder(ctx, element) {
+    function drawBorder(ctx, element, offset, endAngle) {
       const {options} = element;
       const inner = options.borderAlign === 'inner';
       if (!options.borderWidth) {
@@ -25607,9 +25681,9 @@ var app = (function () {
         drawFullCircleBorders(ctx, element, inner);
       }
       if (inner) {
-        clipArc(ctx, element);
+        clipArc(ctx, element, endAngle);
       }
-      pathArc(ctx, element);
+      pathArc(ctx, element, offset, endAngle);
       ctx.stroke();
     }
     class ArcElement extends Element$1 {
@@ -25648,7 +25722,8 @@ var app = (function () {
           'startAngle',
           'endAngle',
           'innerRadius',
-          'outerRadius'
+          'outerRadius',
+          'circumference'
         ], useFinalPosition);
         const halfAngle = (startAngle + endAngle) / 2;
         const halfRadius = (innerRadius + outerRadius) / 2;
@@ -25662,22 +25737,27 @@ var app = (function () {
       }
       draw(ctx) {
         const me = this;
-        const options = me.options;
-        const offset = options.offset || 0;
+        const {options, circumference} = me;
+        const offset = (options.offset || 0) / 2;
         me.pixelMargin = (options.borderAlign === 'inner') ? 0.33 : 0;
-        me.fullCircles = Math.floor(me.circumference / TAU);
-        if (me.circumference === 0 || me.innerRadius < 0 || me.outerRadius < 0) {
+        me.fullCircles = circumference > TAU ? Math.floor(circumference / TAU) : 0;
+        if (circumference === 0 || me.innerRadius < 0 || me.outerRadius < 0) {
           return;
         }
         ctx.save();
-        if (offset && me.circumference < TAU) {
+        let radiusOffset = 0;
+        if (offset) {
+          radiusOffset = offset / 2;
           const halfAngle = (me.startAngle + me.endAngle) / 2;
-          ctx.translate(Math.cos(halfAngle) * offset, Math.sin(halfAngle) * offset);
+          ctx.translate(Math.cos(halfAngle) * radiusOffset, Math.sin(halfAngle) * radiusOffset);
+          if (me.circumference >= PI) {
+            radiusOffset = offset;
+          }
         }
         ctx.fillStyle = options.backgroundColor;
         ctx.strokeStyle = options.borderColor;
-        drawArc(ctx, me);
-        drawBorder(ctx, me);
+        const endAngle = drawArc(ctx, me, radiusOffset);
+        drawBorder(ctx, me, radiusOffset, endAngle);
         ctx.restore();
       }
     }
@@ -25859,12 +25939,12 @@ var app = (function () {
           Object.assign(this, cfg);
         }
       }
-      updateControlPoints(chartArea) {
+      updateControlPoints(chartArea, indexAxis) {
         const me = this;
         const options = me.options;
         if ((options.tension || options.cubicInterpolationMode === 'monotone') && !options.stepped && !me._pointsUpdated) {
           const loop = options.spanGaps ? me._loop : me._fullLoop;
-          _updateBezierControlPoints(me._points, options, chartArea, loop);
+          _updateBezierControlPoints(me._points, options, chartArea, loop, indexAxis);
           me._pointsUpdated = true;
         }
       }
@@ -26856,7 +26936,7 @@ var app = (function () {
           if (!source) {
             continue;
           }
-          source.line.updateControlPoints(area);
+          source.line.updateControlPoints(area, source.axis);
           if (draw) {
             drawfill(chart.ctx, source, area);
           }
@@ -28577,14 +28657,14 @@ var app = (function () {
     function generateTicks$1(generationOptions, dataRange) {
       const ticks = [];
       const MIN_SPACING = 1e-14;
-      const {step, min, max, precision, count, maxTicks, maxDigits, horizontal} = generationOptions;
+      const {bounds, step, min, max, precision, count, maxTicks, maxDigits, includeBounds} = generationOptions;
       const unit = step || 1;
       const maxSpaces = maxTicks - 1;
       const {min: rmin, max: rmax} = dataRange;
       const minDefined = !isNullOrUndef(min);
       const maxDefined = !isNullOrUndef(max);
       const countDefined = !isNullOrUndef(count);
-      const minSpacing = (rmax - rmin) / maxDigits;
+      const minSpacing = (rmax - rmin) / (maxDigits + 1);
       let spacing = niceNum((rmax - rmin) / maxSpaces / unit) * unit;
       let factor, niceMin, niceMax, numSpaces;
       if (spacing < MIN_SPACING && !minDefined && !maxDefined) {
@@ -28598,8 +28678,13 @@ var app = (function () {
         factor = Math.pow(10, precision);
         spacing = Math.ceil(spacing * factor) / factor;
       }
-      niceMin = Math.floor(rmin / spacing) * spacing;
-      niceMax = Math.ceil(rmax / spacing) * spacing;
+      if (bounds === 'ticks') {
+        niceMin = Math.floor(rmin / spacing) * spacing;
+        niceMax = Math.ceil(rmax / spacing) * spacing;
+      } else {
+        niceMin = rmin;
+        niceMax = rmax;
+      }
       if (minDefined && maxDefined && step && almostWhole((max - min) / step, spacing / 1000)) {
         numSpaces = Math.min((max - min) / spacing, maxTicks);
         spacing = (max - min) / numSpaces;
@@ -28618,32 +28703,46 @@ var app = (function () {
           numSpaces = Math.ceil(numSpaces);
         }
       }
-      factor = Math.pow(10, isNullOrUndef(precision) ? _decimalPlaces(spacing) : precision);
+      const decimalPlaces = Math.max(
+        _decimalPlaces(spacing),
+        _decimalPlaces(niceMin),
+      );
+      factor = Math.pow(10, isNullOrUndef(precision) ? decimalPlaces : precision);
       niceMin = Math.round(niceMin * factor) / factor;
       niceMax = Math.round(niceMax * factor) / factor;
       let j = 0;
       if (minDefined) {
-        ticks.push({value: min});
-        if (niceMin <= min) {
-          j++;
-        }
-        if (almostEquals(Math.round((niceMin + j * spacing) * factor) / factor, min, minSpacing * (horizontal ? ('' + min).length : 1))) {
+        if (includeBounds && niceMin !== min) {
+          ticks.push({value: min});
+          if (niceMin < min) {
+            j++;
+          }
+          if (almostEquals(Math.round((niceMin + j * spacing) * factor) / factor, min, relativeLabelSize(min, minSpacing, generationOptions))) {
+            j++;
+          }
+        } else if (niceMin < min) {
           j++;
         }
       }
       for (; j < numSpaces; ++j) {
         ticks.push({value: Math.round((niceMin + j * spacing) * factor) / factor});
       }
-      if (maxDefined) {
-        if (almostEquals(ticks[ticks.length - 1].value, max, minSpacing * (horizontal ? ('' + max).length : 1))) {
+      if (maxDefined && includeBounds && niceMax !== max) {
+        if (almostEquals(ticks[ticks.length - 1].value, max, relativeLabelSize(max, minSpacing, generationOptions))) {
           ticks[ticks.length - 1].value = max;
         } else {
           ticks.push({value: max});
         }
-      } else {
+      } else if (!maxDefined || niceMax === max) {
         ticks.push({value: niceMax});
       }
       return ticks;
+    }
+    function relativeLabelSize(value, minSpacing, {horizontal, minRotation}) {
+      const rad = toRadians(minRotation);
+      const ratio = (horizontal ? Math.sin(rad) : Math.cos(rad)) || 0.001;
+      const length = 0.75 * minSpacing * ('' + value).length;
+      return Math.min(minSpacing / ratio, length);
     }
     class LinearScaleBase extends Scale {
       constructor(cfg) {
@@ -28665,12 +28764,12 @@ var app = (function () {
       }
       handleTickRangeOptions() {
         const me = this;
-        const {beginAtZero, stacked} = me.options;
+        const {beginAtZero} = me.options;
         const {minDefined, maxDefined} = me.getUserBounds();
         let {min, max} = me;
         const setMin = v => (min = minDefined ? min : v);
         const setMax = v => (max = maxDefined ? max : v);
-        if (beginAtZero || stacked) {
+        if (beginAtZero) {
           const minSign = sign(min);
           const maxSign = sign(max);
           if (minSign < 0 && maxSign < 0) {
@@ -28715,13 +28814,16 @@ var app = (function () {
         maxTicks = Math.max(2, maxTicks);
         const numericGeneratorOptions = {
           maxTicks,
+          bounds: opts.bounds,
           min: opts.min,
           max: opts.max,
           precision: tickOpts.precision,
           step: tickOpts.stepSize,
           count: tickOpts.count,
           maxDigits: me._maxDigits(),
-          horizontal: me.isHorizontal()
+          horizontal: me.isHorizontal(),
+          minRotation: tickOpts.minRotation || 0,
+          includeBounds: tickOpts.includeBounds !== false
         };
         const dataRange = me._range || me;
         const ticks = generateTicks$1(numericGeneratorOptions, dataRange);
@@ -28768,11 +28870,12 @@ var app = (function () {
       }
       computeTickLimit() {
         const me = this;
-        if (me.isHorizontal()) {
-          return Math.ceil(me.width / 40);
-        }
+        const horizontal = me.isHorizontal();
+        const length = horizontal ? me.width : me.height;
+        const minRotation = toRadians(me.options.ticks.minRotation);
+        const ratio = (horizontal ? Math.sin(minRotation) : Math.cos(minRotation)) || 0.001;
         const tickFont = me._resolveTickFontOptions(0);
-        return Math.ceil(me.height / tickFont.lineHeight);
+        return Math.ceil(length / Math.min(40, tickFont.lineHeight / ratio));
       }
       getPixelForValue(value) {
         return value === null ? NaN : this.getPixelForDecimal((value - this._startValue) / this._valueRange);
@@ -29860,7 +29963,7 @@ var app = (function () {
     const file$2 = "src\\dansesben\\frontend\\routes\\Graphs.svelte";
 
     // (185:0) <Container>
-    function create_default_slot_2$2(ctx) {
+    function create_default_slot_3$1(ctx) {
     	let figure;
     	let div;
     	let t0;
@@ -29911,7 +30014,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_2$2.name,
+    		id: create_default_slot_3$1.name,
     		type: "slot",
     		source: "(185:0) <Container>",
     		ctx
@@ -29921,7 +30024,7 @@ var app = (function () {
     }
 
     // (195:0) <Container>
-    function create_default_slot_1$2(ctx) {
+    function create_default_slot_2$2(ctx) {
     	let figure;
     	let div;
     	let t0;
@@ -29972,7 +30075,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_1$2.name,
+    		id: create_default_slot_2$2.name,
     		type: "slot",
     		source: "(195:0) <Container>",
     		ctx
@@ -29982,7 +30085,7 @@ var app = (function () {
     }
 
     // (205:0) <Container class="mb-5">
-    function create_default_slot$2(ctx) {
+    function create_default_slot_1$2(ctx) {
     	let canvas;
 
     	const block = {
@@ -30003,9 +30106,38 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot$2.name,
+    		id: create_default_slot_1$2.name,
     		type: "slot",
     		source: "(205:0) <Container class=\\\"mb-5\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (208:0) <Container class="text-center mb-5">
+    function create_default_slot$2(ctx) {
+    	let p;
+
+    	const block = {
+    		c: function create() {
+    			p = element("p");
+    			p.textContent = "Se muestra la proporción de créditos matriculados por centro.";
+    			add_location(p, file$2, 208, 3, 6342);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, p, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(p);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot$2.name,
+    		type: "slot",
+    		source: "(208:0) <Container class=\\\"text-center mb-5\\\">",
     		ctx
     	});
 
@@ -30018,11 +30150,13 @@ var app = (function () {
     	let container1;
     	let t1;
     	let container2;
+    	let t2;
+    	let container3;
     	let current;
 
     	container0 = new Container({
     			props: {
-    				$$slots: { default: [create_default_slot_2$2] },
+    				$$slots: { default: [create_default_slot_3$1] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -30030,7 +30164,7 @@ var app = (function () {
 
     	container1 = new Container({
     			props: {
-    				$$slots: { default: [create_default_slot_1$2] },
+    				$$slots: { default: [create_default_slot_2$2] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -30039,6 +30173,15 @@ var app = (function () {
     	container2 = new Container({
     			props: {
     				class: "mb-5",
+    				$$slots: { default: [create_default_slot_1$2] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	container3 = new Container({
+    			props: {
+    				class: "text-center mb-5",
     				$$slots: { default: [create_default_slot$2] },
     				$$scope: { ctx }
     			},
@@ -30052,6 +30195,8 @@ var app = (function () {
     			create_component(container1.$$.fragment);
     			t1 = space();
     			create_component(container2.$$.fragment);
+    			t2 = space();
+    			create_component(container3.$$.fragment);
     		},
     		l: function claim(nodes) {
     			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
@@ -30062,6 +30207,8 @@ var app = (function () {
     			mount_component(container1, target, anchor);
     			insert_dev(target, t1, anchor);
     			mount_component(container2, target, anchor);
+    			insert_dev(target, t2, anchor);
+    			mount_component(container3, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, [dirty]) {
@@ -30086,18 +30233,27 @@ var app = (function () {
     			}
 
     			container2.$set(container2_changes);
+    			const container3_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				container3_changes.$$scope = { dirty, ctx };
+    			}
+
+    			container3.$set(container3_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(container0.$$.fragment, local);
     			transition_in(container1.$$.fragment, local);
     			transition_in(container2.$$.fragment, local);
+    			transition_in(container3.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(container0.$$.fragment, local);
     			transition_out(container1.$$.fragment, local);
     			transition_out(container2.$$.fragment, local);
+    			transition_out(container3.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
@@ -30106,6 +30262,8 @@ var app = (function () {
     			destroy_component(container1, detaching);
     			if (detaching) detach_dev(t1);
     			destroy_component(container2, detaching);
+    			if (detaching) detach_dev(t2);
+    			destroy_component(container3, detaching);
     		}
     	};
 
@@ -30311,8 +30469,8 @@ var app = (function () {
     const { Object: Object_1 } = globals;
     const file$1 = "src\\dansesben\\frontend\\routes\\Integrations.svelte";
 
-    // (112:8) <Col>
-    function create_default_slot_5(ctx) {
+    // (199:8) <Col>
+    function create_default_slot_15(ctx) {
     	let h3;
     	let t1;
     	let h5;
@@ -30324,9 +30482,9 @@ var app = (function () {
     			t1 = space();
     			h5 = element("h5");
     			h5.textContent = "Se utiliza un proxy para acceder a la API de sueldos";
-    			add_location(h3, file$1, 112, 12, 3767);
+    			add_location(h3, file$1, 199, 12, 6787);
     			attr_dev(h5, "class", "mb-3");
-    			add_location(h5, file$1, 113, 12, 3831);
+    			add_location(h5, file$1, 200, 12, 6851);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, h3, anchor);
@@ -30342,16 +30500,597 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_default_slot_5.name,
+    		id: create_default_slot_15.name,
     		type: "slot",
-    		source: "(112:8) <Col>",
+    		source: "(199:8) <Col>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (111:4) <Row class="text-center">
+    // (198:4) <Row class="text-center">
+    function create_default_slot_14(ctx) {
+    	let col;
+    	let current;
+
+    	col = new Col({
+    			props: {
+    				$$slots: { default: [create_default_slot_15] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(col.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(col, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const col_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				col_changes.$$scope = { dirty, ctx };
+    			}
+
+    			col.$set(col_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(col.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(col.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(col, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_14.name,
+    		type: "slot",
+    		source: "(198:4) <Row class=\\\"text-center\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (206:12) <Container>
+    function create_default_slot_13(ctx) {
+    	let figure;
+    	let div;
+    	let t0;
+    	let p;
+    	let t1;
+    	let code0;
+    	let t3;
+    	let code1;
+    	let t5;
+    	let code2;
+    	let t7;
+    	let code3;
+    	let t9;
+    	let code4;
+    	let t11;
+    	let code5;
+
+    	const block = {
+    		c: function create() {
+    			figure = element("figure");
+    			div = element("div");
+    			t0 = space();
+    			p = element("p");
+    			t1 = text("Se muestra la evolución de de contagios de ");
+    			code0 = element("code");
+    			code0.textContent = "COVID19";
+    			t3 = text("\r\n                        en la ciudad de ");
+    			code1 = element("code");
+    			code1.textContent = "Londres";
+    			t5 = text(", el ");
+    			code2 = element("code");
+    			code2.textContent = "sueldo";
+    			t7 = text(" de trabajos de TI\r\n                        en ");
+    			code3 = element("code");
+    			code3.textContent = "Londres";
+    			t9 = text(" y los ");
+    			code4 = element("code");
+    			code4.textContent = "creditos";
+    			t11 = text(" aprobados en la ");
+    			code5 = element("code");
+    			code5.textContent = "ETSII";
+    			attr_dev(div, "id", "container");
+    			add_location(div, file$1, 207, 20, 7098);
+    			add_location(code0, file$1, 209, 67, 7261);
+    			add_location(code1, file$1, 210, 40, 7323);
+    			add_location(code2, file$1, 210, 65, 7348);
+    			add_location(code3, file$1, 211, 27, 7414);
+    			add_location(code4, file$1, 211, 54, 7441);
+    			add_location(code5, file$1, 211, 92, 7479);
+    			attr_dev(p, "class", "highcharts-description text-center");
+    			add_location(p, file$1, 208, 20, 7146);
+    			attr_dev(figure, "class", "highcharts-figure");
+    			add_location(figure, file$1, 206, 16, 7042);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, figure, anchor);
+    			append_dev(figure, div);
+    			append_dev(figure, t0);
+    			append_dev(figure, p);
+    			append_dev(p, t1);
+    			append_dev(p, code0);
+    			append_dev(p, t3);
+    			append_dev(p, code1);
+    			append_dev(p, t5);
+    			append_dev(p, code2);
+    			append_dev(p, t7);
+    			append_dev(p, code3);
+    			append_dev(p, t9);
+    			append_dev(p, code4);
+    			append_dev(p, t11);
+    			append_dev(p, code5);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(figure);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_13.name,
+    		type: "slot",
+    		source: "(206:12) <Container>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (205:8) <Col>
+    function create_default_slot_12(ctx) {
+    	let container;
+    	let current;
+
+    	container = new Container({
+    			props: {
+    				$$slots: { default: [create_default_slot_13] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(container.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(container, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const container_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				container_changes.$$scope = { dirty, ctx };
+    			}
+
+    			container.$set(container_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(container.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(container.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(container, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_12.name,
+    		type: "slot",
+    		source: "(205:8) <Col>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (204:4) <Row class="text-center">
+    function create_default_slot_11(ctx) {
+    	let col;
+    	let current;
+
+    	col = new Col({
+    			props: {
+    				$$slots: { default: [create_default_slot_12] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(col.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(col, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const col_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				col_changes.$$scope = { dirty, ctx };
+    			}
+
+    			col.$set(col_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(col.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(col.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(col, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_11.name,
+    		type: "slot",
+    		source: "(204:4) <Row class=\\\"text-center\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (220:8) <Col>
+    function create_default_slot_10(ctx) {
+    	let h3;
+    	let t1;
+    	let h5;
+    	let t3;
+    	let h6;
+
+    	const block = {
+    		c: function create() {
+    			h3 = element("h3");
+    			h3.textContent = "Integracion API education-expenditures y la propia";
+    			t1 = space();
+    			h5 = element("h5");
+    			h5.textContent = "Se utiliza un proxy para acceder a la API education-expenditures";
+    			t3 = space();
+    			h6 = element("h6");
+    			h6.textContent = "Libreria ApexCharts";
+    			add_location(h3, file$1, 220, 12, 7671);
+    			attr_dev(h5, "class", "mb-3");
+    			add_location(h5, file$1, 221, 12, 7744);
+    			add_location(h6, file$1, 222, 12, 7844);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h3, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, h5, anchor);
+    			insert_dev(target, t3, anchor);
+    			insert_dev(target, h6, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h3);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(h5);
+    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(h6);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_10.name,
+    		type: "slot",
+    		source: "(220:8) <Col>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (219:4) <Row class="text-center mt-2">
+    function create_default_slot_9(ctx) {
+    	let col;
+    	let current;
+
+    	col = new Col({
+    			props: {
+    				$$slots: { default: [create_default_slot_10] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(col.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(col, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const col_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				col_changes.$$scope = { dirty, ctx };
+    			}
+
+    			col.$set(col_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(col.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(col.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(col, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_9.name,
+    		type: "slot",
+    		source: "(219:4) <Row class=\\\"text-center mt-2\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (228:12) <Container>
+    function create_default_slot_8(ctx) {
+    	let figure;
+    	let div;
+    	let t0;
+    	let p;
+    	let t1;
+    	let code0;
+    	let t3;
+    	let code1;
+    	let t5;
+
+    	const block = {
+    		c: function create() {
+    			figure = element("figure");
+    			div = element("div");
+    			t0 = space();
+    			p = element("p");
+    			t1 = text("Se muestra la relación entre los ");
+    			code0 = element("code");
+    			code0.textContent = "créditos aprobados";
+    			t3 = text(" y el ");
+    			code1 = element("code");
+    			code1.textContent = "gasto en educación";
+    			t5 = text(" de 2016.");
+    			attr_dev(div, "id", "myChart");
+    			add_location(div, file$1, 229, 20, 8045);
+    			add_location(code0, file$1, 231, 57, 8196);
+    			add_location(code1, file$1, 231, 94, 8233);
+    			attr_dev(p, "class", "highcharts-description text-center");
+    			add_location(p, file$1, 230, 20, 8091);
+    			attr_dev(figure, "class", "highcharts-figure");
+    			add_location(figure, file$1, 228, 16, 7989);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, figure, anchor);
+    			append_dev(figure, div);
+    			append_dev(figure, t0);
+    			append_dev(figure, p);
+    			append_dev(p, t1);
+    			append_dev(p, code0);
+    			append_dev(p, t3);
+    			append_dev(p, code1);
+    			append_dev(p, t5);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(figure);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_8.name,
+    		type: "slot",
+    		source: "(228:12) <Container>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (227:8) <Col>
+    function create_default_slot_7(ctx) {
+    	let container;
+    	let current;
+
+    	container = new Container({
+    			props: {
+    				$$slots: { default: [create_default_slot_8] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(container.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(container, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const container_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				container_changes.$$scope = { dirty, ctx };
+    			}
+
+    			container.$set(container_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(container.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(container.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(container, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_7.name,
+    		type: "slot",
+    		source: "(227:8) <Col>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (226:4) <Row class="text-center">
+    function create_default_slot_6(ctx) {
+    	let col;
+    	let current;
+
+    	col = new Col({
+    			props: {
+    				$$slots: { default: [create_default_slot_7] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	const block = {
+    		c: function create() {
+    			create_component(col.$$.fragment);
+    		},
+    		m: function mount(target, anchor) {
+    			mount_component(col, target, anchor);
+    			current = true;
+    		},
+    		p: function update(ctx, dirty) {
+    			const col_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				col_changes.$$scope = { dirty, ctx };
+    			}
+
+    			col.$set(col_changes);
+    		},
+    		i: function intro(local) {
+    			if (current) return;
+    			transition_in(col.$$.fragment, local);
+    			current = true;
+    		},
+    		o: function outro(local) {
+    			transition_out(col.$$.fragment, local);
+    			current = false;
+    		},
+    		d: function destroy(detaching) {
+    			destroy_component(col, detaching);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_6.name,
+    		type: "slot",
+    		source: "(226:4) <Row class=\\\"text-center\\\">",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (240:8) <Col>
+    function create_default_slot_5(ctx) {
+    	let h3;
+    	let t1;
+    	let h5;
+    	let t3;
+    	let h6;
+
+    	const block = {
+    		c: function create() {
+    			h3 = element("h3");
+    			h3.textContent = "Integracion API mh-stats y la propia";
+    			t1 = space();
+    			h5 = element("h5");
+    			h5.textContent = "Se utiliza un proxy para acceder a la API mh-stats";
+    			t3 = space();
+    			h6 = element("h6");
+    			h6.textContent = "Librería Tui Chart";
+    			add_location(h3, file$1, 240, 12, 8442);
+    			attr_dev(h5, "class", "mb-3");
+    			add_location(h5, file$1, 241, 12, 8501);
+    			add_location(h6, file$1, 242, 12, 8587);
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, h3, anchor);
+    			insert_dev(target, t1, anchor);
+    			insert_dev(target, h5, anchor);
+    			insert_dev(target, t3, anchor);
+    			insert_dev(target, h6, anchor);
+    		},
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(h3);
+    			if (detaching) detach_dev(t1);
+    			if (detaching) detach_dev(h5);
+    			if (detaching) detach_dev(t3);
+    			if (detaching) detach_dev(h6);
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
+    		id: create_default_slot_5.name,
+    		type: "slot",
+    		source: "(240:8) <Col>",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    // (239:4) <Row class="text-center">
     function create_default_slot_4(ctx) {
     	let col;
     	let current;
@@ -30399,14 +31138,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_4.name,
     		type: "slot",
-    		source: "(111:4) <Row class=\\\"text-center\\\">",
+    		source: "(239:4) <Row class=\\\"text-center\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (119:12) <Container>
+    // (248:12) <Container>
     function create_default_slot_3(ctx) {
     	let figure;
     	let div;
@@ -30417,13 +31156,6 @@ var app = (function () {
     	let t3;
     	let code1;
     	let t5;
-    	let code2;
-    	let t7;
-    	let code3;
-    	let t9;
-    	let code4;
-    	let t11;
-    	let code5;
 
     	const block = {
     		c: function create() {
@@ -30431,36 +31163,21 @@ var app = (function () {
     			div = element("div");
     			t0 = space();
     			p = element("p");
-    			t1 = text("Se muestra la evolución de de contagios de ");
+    			t1 = text("Se muestra la relación entre los ");
     			code0 = element("code");
-    			code0.textContent = "COVID19";
-    			t3 = text("\r\n                        en la ciudad de ");
+    			code0.textContent = "créditos aprobados";
+    			t3 = text(" y los ");
     			code1 = element("code");
-    			code1.textContent = "Londres";
-    			t5 = text(", el ");
-    			code2 = element("code");
-    			code2.textContent = "sueldo";
-    			t7 = text(" de trabajos de TI\r\n                        en ");
-    			code3 = element("code");
-    			code3.textContent = "Londres";
-    			t9 = text(" y los ");
-    			code4 = element("code");
-    			code4.textContent = "creditos";
-    			t11 = text(" aprobados en la ");
-    			code5 = element("code");
-    			code5.textContent = "ETSII";
-    			attr_dev(div, "id", "container");
-    			add_location(div, file$1, 120, 20, 4078);
-    			add_location(code0, file$1, 122, 67, 4241);
-    			add_location(code1, file$1, 123, 40, 4303);
-    			add_location(code2, file$1, 123, 65, 4328);
-    			add_location(code3, file$1, 124, 27, 4394);
-    			add_location(code4, file$1, 124, 54, 4421);
-    			add_location(code5, file$1, 124, 92, 4459);
+    			code1.textContent = "casos de ansiedad";
+    			t5 = text(" en España de ese año.");
+    			attr_dev(div, "id", "chart-2");
+    			add_location(div, file$1, 249, 20, 8797);
+    			add_location(code0, file$1, 251, 57, 8948);
+    			add_location(code1, file$1, 251, 95, 8986);
     			attr_dev(p, "class", "highcharts-description text-center");
-    			add_location(p, file$1, 121, 20, 4126);
+    			add_location(p, file$1, 250, 20, 8843);
     			attr_dev(figure, "class", "highcharts-figure");
-    			add_location(figure, file$1, 119, 16, 4022);
+    			add_location(figure, file$1, 248, 16, 8741);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, figure, anchor);
@@ -30472,13 +31189,6 @@ var app = (function () {
     			append_dev(p, t3);
     			append_dev(p, code1);
     			append_dev(p, t5);
-    			append_dev(p, code2);
-    			append_dev(p, t7);
-    			append_dev(p, code3);
-    			append_dev(p, t9);
-    			append_dev(p, code4);
-    			append_dev(p, t11);
-    			append_dev(p, code5);
     		},
     		d: function destroy(detaching) {
     			if (detaching) detach_dev(figure);
@@ -30489,14 +31199,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_3.name,
     		type: "slot",
-    		source: "(119:12) <Container>",
+    		source: "(248:12) <Container>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (118:8) <Col>
+    // (247:8) <Col>
     function create_default_slot_2$1(ctx) {
     	let container;
     	let current;
@@ -30544,14 +31254,14 @@ var app = (function () {
     		block,
     		id: create_default_slot_2$1.name,
     		type: "slot",
-    		source: "(118:8) <Col>",
+    		source: "(247:8) <Col>",
     		ctx
     	});
 
     	return block;
     }
 
-    // (117:4) <Row class="text-center">
+    // (246:4) <Row class="text-center mb-5 mt-2">
     function create_default_slot_1$1(ctx) {
     	let col;
     	let current;
@@ -30599,24 +31309,32 @@ var app = (function () {
     		block,
     		id: create_default_slot_1$1.name,
     		type: "slot",
-    		source: "(117:4) <Row class=\\\"text-center\\\">",
+    		source: "(246:4) <Row class=\\\"text-center mb-5 mt-2\\\">",
     		ctx
     	});
 
     	return block;
     }
 
-    // (110:0) <Container class="mt-4">
+    // (197:0) <Container class="mt-4">
     function create_default_slot$1(ctx) {
     	let row0;
-    	let t;
+    	let t0;
     	let row1;
+    	let t1;
+    	let row2;
+    	let t2;
+    	let row3;
+    	let t3;
+    	let row4;
+    	let t4;
+    	let row5;
     	let current;
 
     	row0 = new Row({
     			props: {
     				class: "text-center",
-    				$$slots: { default: [create_default_slot_4] },
+    				$$slots: { default: [create_default_slot_14] },
     				$$scope: { ctx }
     			},
     			$$inline: true
@@ -30625,6 +31343,42 @@ var app = (function () {
     	row1 = new Row({
     			props: {
     				class: "text-center",
+    				$$slots: { default: [create_default_slot_11] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	row2 = new Row({
+    			props: {
+    				class: "text-center mt-2",
+    				$$slots: { default: [create_default_slot_9] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	row3 = new Row({
+    			props: {
+    				class: "text-center",
+    				$$slots: { default: [create_default_slot_6] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	row4 = new Row({
+    			props: {
+    				class: "text-center",
+    				$$slots: { default: [create_default_slot_4] },
+    				$$scope: { ctx }
+    			},
+    			$$inline: true
+    		});
+
+    	row5 = new Row({
+    			props: {
+    				class: "text-center mb-5 mt-2",
     				$$slots: { default: [create_default_slot_1$1] },
     				$$scope: { ctx }
     			},
@@ -30634,13 +31388,29 @@ var app = (function () {
     	const block = {
     		c: function create() {
     			create_component(row0.$$.fragment);
-    			t = space();
+    			t0 = space();
     			create_component(row1.$$.fragment);
+    			t1 = space();
+    			create_component(row2.$$.fragment);
+    			t2 = space();
+    			create_component(row3.$$.fragment);
+    			t3 = space();
+    			create_component(row4.$$.fragment);
+    			t4 = space();
+    			create_component(row5.$$.fragment);
     		},
     		m: function mount(target, anchor) {
     			mount_component(row0, target, anchor);
-    			insert_dev(target, t, anchor);
+    			insert_dev(target, t0, anchor);
     			mount_component(row1, target, anchor);
+    			insert_dev(target, t1, anchor);
+    			mount_component(row2, target, anchor);
+    			insert_dev(target, t2, anchor);
+    			mount_component(row3, target, anchor);
+    			insert_dev(target, t3, anchor);
+    			mount_component(row4, target, anchor);
+    			insert_dev(target, t4, anchor);
+    			mount_component(row5, target, anchor);
     			current = true;
     		},
     		p: function update(ctx, dirty) {
@@ -30658,22 +31428,66 @@ var app = (function () {
     			}
 
     			row1.$set(row1_changes);
+    			const row2_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				row2_changes.$$scope = { dirty, ctx };
+    			}
+
+    			row2.$set(row2_changes);
+    			const row3_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				row3_changes.$$scope = { dirty, ctx };
+    			}
+
+    			row3.$set(row3_changes);
+    			const row4_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				row4_changes.$$scope = { dirty, ctx };
+    			}
+
+    			row4.$set(row4_changes);
+    			const row5_changes = {};
+
+    			if (dirty & /*$$scope*/ 1) {
+    				row5_changes.$$scope = { dirty, ctx };
+    			}
+
+    			row5.$set(row5_changes);
     		},
     		i: function intro(local) {
     			if (current) return;
     			transition_in(row0.$$.fragment, local);
     			transition_in(row1.$$.fragment, local);
+    			transition_in(row2.$$.fragment, local);
+    			transition_in(row3.$$.fragment, local);
+    			transition_in(row4.$$.fragment, local);
+    			transition_in(row5.$$.fragment, local);
     			current = true;
     		},
     		o: function outro(local) {
     			transition_out(row0.$$.fragment, local);
     			transition_out(row1.$$.fragment, local);
+    			transition_out(row2.$$.fragment, local);
+    			transition_out(row3.$$.fragment, local);
+    			transition_out(row4.$$.fragment, local);
+    			transition_out(row5.$$.fragment, local);
     			current = false;
     		},
     		d: function destroy(detaching) {
     			destroy_component(row0, detaching);
-    			if (detaching) detach_dev(t);
+    			if (detaching) detach_dev(t0);
     			destroy_component(row1, detaching);
+    			if (detaching) detach_dev(t1);
+    			destroy_component(row2, detaching);
+    			if (detaching) detach_dev(t2);
+    			destroy_component(row3, detaching);
+    			if (detaching) detach_dev(t3);
+    			destroy_component(row4, detaching);
+    			if (detaching) detach_dev(t4);
+    			destroy_component(row5, detaching);
     		}
     	};
 
@@ -30681,7 +31495,7 @@ var app = (function () {
     		block,
     		id: create_default_slot$1.name,
     		type: "slot",
-    		source: "(110:0) <Container class=\\\"mt-4\\\">",
+    		source: "(197:0) <Container class=\\\"mt-4\\\">",
     		ctx
     	});
 
@@ -30767,11 +31581,9 @@ var app = (function () {
     		}
 
     		dataGithubParsed = dataGithubParsed.sort();
-    		let dataAPI = await getAllRecords();
+    		let dataAPI = await (await fetch("/api/v2/performances-by-degrees-us/?limit=5&center=ETSII&field-of-knowledge=Computer-Science&offset=0")).json();
 
     		// Remove not ETSII and Computer-Science data
-    		dataAPI = dataAPI.filter(o => o.center === "ETSII" && o["field-of-knowledge"] === "Computer-Science");
-
     		let yAxisValues = dataAPI.map(o => [Date.parse(o["year"]), o["credits-passed"]]);
 
     		highcharts.chart("container", {
@@ -30785,10 +31597,15 @@ var app = (function () {
     			},
     			yAxis: [
     				{ title: { text: "Nuevos casos" }, min: 0 },
-    				{ title: { text: "Salario TI" }, min: 0 },
+    				{
+    					title: { text: "Salario TI" },
+    					min: 0,
+    					opposite: true
+    				},
     				{
     					title: { text: "Creditos aprobados en la ETSII" },
-    					min: 0
+    					min: 0,
+    					opposite: true
     				}
     			],
     			tooltip: {
@@ -30802,6 +31619,7 @@ var app = (function () {
     			series: [
     				{
     					name: "Nuevos casos",
+    					yAxis: 0,
     					data: dataLondonParsed,
     					tooltip: {
     						headerFormat: "<b>{series.name}</b><br>",
@@ -30810,6 +31628,7 @@ var app = (function () {
     				},
     				{
     					name: "Salario de TI",
+    					yAxis: 1,
     					data: dataGithubParsed,
     					tooltip: {
     						headerFormat: "<b>{series.name}</b><br>",
@@ -30818,6 +31637,7 @@ var app = (function () {
     				},
     				{
     					name: "Creditos aprobados en la ETSII",
+    					yAxis: 2,
     					data: yAxisValues,
     					tooltip: {
     						headerFormat: "<b>{series.name}</b><br>",
@@ -30826,6 +31646,93 @@ var app = (function () {
     				}
     			]
     		});
+
+    		// SOS Integration
+    		await fetch("/dansesben/proxyRequest/education-expenditures/loadInitialDataReduced");
+
+    		let educationExpeditures = await (await fetch("/dansesben/proxyRequest/education-expenditures/reduced?c=Spain")).json();
+    		educationExpeditures = [...new Map(educationExpeditures.map(item => [item["year"], item])).values()];
+    		let educationValue2016 = 0;
+
+    		educationExpeditures.forEach(o => {
+    			if (o.year === 2016) educationValue2016 = o["education_expenditure_per_millions"];
+    		});
+
+    		let dataAPI2 = await (await fetch("/api/v2/performances-by-degrees-us/")).json();
+    		let creditosAprobados = 0;
+
+    		dataAPI2.forEach(o => {
+    			creditosAprobados = creditosAprobados + o["credits-passed"];
+    		});
+
+    		let options2 = {
+    			chart: { type: "treemap" },
+    			series: [
+    				{
+    					data: [
+    						{
+    							x: "Gasto en educacion en 2016",
+    							y: educationValue2016
+    						},
+    						{
+    							x: "Creditos aprobados en la US en total",
+    							y: creditosAprobados
+    						}
+    					]
+    				}
+    			]
+    		};
+
+    		let chart3 = new ApexCharts(document.querySelector("#myChart"), options2);
+    		chart3.render();
+    		await fetch("/dansesben/proxyRequest/mh-stats/loadInitialData");
+    		let mhStats = await (await fetch("/dansesben/proxyRequest/mh-stats/")).json();
+    		mhStats = mhStats.filter(o => o.country === "Spain");
+
+    		//mhStats = mhStats.map(o => [Date.parse(o.year), parseFloat(o.anxdaly)]);
+    		let mhStatsYears = mhStats.map(o => o.year);
+
+    		let mhStatsValues = mhStats.map(o => o.anxdaly);
+    		let apiValues = [];
+
+    		for (let i in mhStatsYears) {
+    			let found = false;
+
+    			for (let x in dataAPI) {
+    				if (mhStatsYears[i] == dataAPI[x].year) {
+    					apiValues.push(dataAPI[x]["credits-passed"]);
+    					found = true;
+    				}
+    			}
+
+    			if (!found) apiValues.push(0);
+    		}
+
+    		const el = document.getElementById("chart-2");
+
+    		const data = {
+    			categories: mhStatsYears,
+    			series: [
+    				{
+    					name: "Casos de ansiedad",
+    					data: mhStatsValues
+    				},
+    				{
+    					name: "Creditos aprobados",
+    					data: apiValues
+    				}
+    			]
+    		};
+
+    		const options = {
+    			chart: {
+    				title: "Casos de ansiedad vs Creditos aprobados en Ingenieria Informatica en la ETSII",
+    				width: 900,
+    				height: 400
+    			}
+    		};
+
+    		toastui.Chart.barChart({ el, data, options });
     	});
 
     	const writable_props = [];
@@ -30834,15 +31741,7 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== "$$") console.warn(`<Integrations> was created with unknown prop '${key}'`);
     	});
 
-    	$$self.$capture_state = () => ({
-    		onMount,
-    		Col,
-    		Container,
-    		Row,
-    		Highcharts: highcharts,
-    		getAllRecords
-    	});
-
+    	$$self.$capture_state = () => ({ onMount, Col, Container, Row, Highcharts: highcharts });
     	return [];
     }
 
