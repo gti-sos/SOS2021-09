@@ -23,14 +23,14 @@ async function loadIntegration() {
 
 	// Tratamiento de datos
 	let centers_budgetsChart1_2018 = budgetsChar1.filter(o => o["year"] == 2018).map(o => o["center"]);
-	console.log(centers_budgetsChart1_2018);
+	// console.log(centers_budgetsChart1_2018);
 
 	let spain_childrenChar1_2018 = childrenChar1.filter(o => o["year"] == 2018 && o["country"] == "Spain")
 		.map(o => o["children_out_school_total"]);
-	console.log(spain_childrenChar1_2018);
+	// console.log(spain_childrenChar1_2018);
 
 	let budgets_budgetsChart1_2018 = budgetsChar1.filter(o => o["year"] == 2018);
-	console.log(budgets_budgetsChart1_2018);
+	// console.log(budgets_budgetsChart1_2018);
 
 	let children_series = budgets_budgetsChart1_2018.map(function(obj){
             var rObj = {};
@@ -39,7 +39,7 @@ async function loadIntegration() {
             return rObj;
         });
 	console.log(children_series);
-	console.log(Array.isArray(children_series))
+	// console.log(Array.isArray(children_series))
 
 	let budgets_series = budgets_budgetsChart1_2018.map(function(obj){
             var rObj = {};
@@ -48,7 +48,7 @@ async function loadIntegration() {
             return rObj;
         });
 	console.log(budgets_series);
-	console.log(centers_budgetsChart1_2018[0]);
+	// console.log(centers_budgetsChart1_2018[0]);
 
 
 	// Gráfico

@@ -18,8 +18,8 @@
         await fetch("/api/v2/budgets-by-centers-us/loadInitialData");
         let budgetsChar2 = await(await fetch("/api/v2/budgets-by-centers-us/budgets")).json();
 
-        console.log(anxiety_stats_Char2);
-        console.log(budgetsChar2);
+        // console.log(anxiety_stats_Char2);
+        // console.log(budgetsChar2);
 
         
         // Tratamiento de datos
@@ -37,10 +37,10 @@
                 rObj["label"] = obj["country"];
                 return rObj;
             });
-        console.log(anxiety_series);
-        console.log(budgets_series);
+        // console.log(anxiety_series);
+        // console.log(budgets_series);
         let budgets_anxiety_series = budgets_series.concat(anxiety_series);
-        console.log(budgets_anxiety_series);
+        // console.log(budgets_anxiety_series);
 
 
 
