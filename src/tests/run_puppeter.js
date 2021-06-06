@@ -13,14 +13,15 @@ if (!fs.existsSync("e2e_screenshots")){
     const page = await browser.newPage();
     await page.setViewport({ width: 1366, height: 768});
 
-    /*
+
+        /*
         Dansesben Tests
      */
 
     /*
         Test 1 - Page loads
      */
-
+        console.log("----------------------- Dansesben Tests -----------------------");
     console.log("Test 1 - Page loads")
 
     await page.goto('http://127.0.0.1:3000/dansesben/');
@@ -216,6 +217,240 @@ if (!fs.existsSync("e2e_screenshots")){
 
     /*
     End of Dansesben Tests
+    */
+
+////////////////////////////////////////////////
+
+    /*
+        ----------------------- BudgetsAPI Tests -----------------------
+    */
+
+        console.log("\n\n----------------------- BudgetsAPI Tests -----------------------");
+    //   -------- Test 1 - PageBudgetsAPI loads 
+
+
+    console.log("-- Test 1 - PageBudgetsAPI loads");
+
+    await page.goto('http://127.0.0.1:3000/budgetsAPI/');
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_01.png' });
+
+    console.log("Test 1 - Finished\n-----------------");
+
+    
+
+    //  -------- Test 2 - The charging data, deleting data works and the table too?.
+
+    console.log("-- Test 2 - The loadInitialData works and the table too?");
+    await page.click("#link-to-budgetstable",
+        { waitUntil: "networkidle0" });
+
+    page.on('dialog', async dialog => {
+        dialog.accept();
+    });
+    
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_02.png' });
+    console.log("   The table works...");
+    
+
+    let rowInitialCount = (await page.$$('#budgetsTable > tbody > tr')).length;
+    
+
+    if(rowInitialCount == 1) {
+        console.log("   Checking charging data...");
+        await page.click("#loadBudgetsButton");
+        await page.waitForTimeout(1000);
+
+        let rowLoadedCount = (await page.$$('#budgetsTable > tbody > tr')).length;
+        console.log("Amounts loaded:" + rowLoadedCount);
+        
+        if(rowLoadedCount == rowInitialCount) {
+            console.log("Charging data doesn´t work. Exiting.");
+            process.exit(1);
+        }
+        
+        await page.screenshot({ path: './e2e_screenshots/budgets_api_02_1.png' });
+        console.log(    "- OK");
+
+        console.log("   Checking deleting data...");
+        await page.click("#deleteBudgetsButton");
+        await page.waitForTimeout(1000);
+        let rowErasedCount = (await page.$$('#budgetsTable > tbody > tr')).length;
+        if(rowErasedCount != 1) {
+            console.log("Deleting data doesn´t work. Exiting.");
+            process.exit(1);
+        }
+        await page.screenshot({ path: './e2e_screenshots/budgets_api_02_2.png' });
+        console.log(    "- OK");
+
+    } else  {
+        console.log("   Checking deleting data...");
+        await page.click("#deleteBudgetsButton");
+
+        await page.waitForTimeout(1000);
+        let rowErasedCount = (await page.$$('#budgetsTable > tbody > tr')).length;
+        if(rowErasedCount != 1) {
+            console.log("Deleting data doesn´t work. Exiting.");
+            process.exit(1);
+        }
+        await page.screenshot({ path: './e2e_screenshots/budgets_api_02_2_2.png' });
+        console.log(    "- OK");
+
+        console.log("   Checking charging data...");
+        await page.click("#loadBudgetsButton");
+
+        await page.waitForTimeout(1000);
+
+        let rowLoadedCount = (await page.$$('#budgetsTable > tbody > tr')).length;
+        
+        if(rowLoadedCount == rowErasedCount) {
+            console.log("Charging data doesn´t work. Exiting.");
+            process.exit(1);
+        }
+        await page.screenshot({ path: './e2e_screenshots/budgets_api_02_1_2.png' });
+        console.log(    "- OK");
+    }
+    
+    // Return to a normal state.
+    console.log("   Returning to a normal state");
+    await page.click("#deleteBudgetsButton");
+    await page.waitForTimeout(1000);
+    let return_normal_1 = (await page.$$('#budgetsTable > tbody > tr')).length;
+
+    if(return_normal_1 != 1) {
+        console.log("Return to a normal state (delete) failed.")
+        process.exit(1);
+    }
+    console.log("- Delete OK");
+    await page.waitForTimeout(1000);
+    await page.click("#loadBudgetsButton");
+    await page.waitForTimeout(1000);
+    let return_normal_2 = (await page.$$('#budgetsTable > tbody > tr')).length;
+
+    if(return_normal_2 == 1) {
+        console.log("Return to a normal state (load) failed.")
+        process.exit(1);
+    }
+    console.log("- Load OK");
+    console.log("Test 2 - Finished\n-----------------");
+
+
+    //  -------- Test 3 - Adding specific data.
+    console.log("-- Test 3 - Adding specific data");
+
+    let ActualRowsTest3 = (await page.$$('#budgetsTable > tbody > tr')).length;
+
+    // Typing an object.
+    console.log("   Adding element...");
+    await page.type('#center_AddingBudget', 'PUPPETEERADDED');
+    await page.type('#year_AddingBudget', '201');
+    await page.type('#fixedfees_AddingBudget', '12004.22');
+    await page.type('#amountsbyetc_AddingBudget', '23100.3');
+    await page.type('#amountsbyprof_AddingBudget', '36434.2');
+    await page.type('#total_AddingBudget', '123556.2');
+    await page.waitForTimeout(500);
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_03_1.png' });
+    await page.click("#addBudgetButton");
+    await page.waitForTimeout(1000);
+    console.log("   Counting if the elements are +1");
+    let AddedElementRowsTest3 = (await page.$$('#budgetsTable > tbody > tr')).length;
+
+    if(AddedElementRowsTest3 != ActualRowsTest3 + 1) {
+        console.log("Adding data doesn´t work. Exiting.");
+        process.exit(1);
+    }
+    console.log("- OK");
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_03_2.png',
+        fullPage: true});
+    console.log("Test 3 - Finished\n-----------------");
+
+    //  -------- Test 4 - Editing specific data.
+
+    console.log("-- Test 4 - Editing specific data.");
+
+    let idEdit =  await page.$eval('#center_PUPPETEERADDED_Budget_201', e => e.innerText);
+    let budgets_valueBeforeEdit =  await page.$eval('#year_PUPPETEERADDED_Budget_201', e => e.innerText);
+
+    console.log("   Accesing to the element..." + idEdit);
+    await page.click("#center_PUPPETEERADDED_Budget_201");
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_04_1.png' });
+    await page.waitForTimeout(1000);
+
+    console.log("   Editing the year of element..." + idEdit);
+    await page.type('#year_editBduget', '6');
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_04_2.png' });
+
+    await page.click("#button_editBduget");
+    await page.waitForTimeout(1000);
+
+    let budgets_valueAfterEdit =  await page.$eval('#year_PUPPETEERADDED_Budget_2016', 
+    e => e.innerText);
+    
+    if(budgets_valueBeforeEdit == budgets_valueAfterEdit) {
+        console.log("Editing specific data doesn´t work. Exiting.");
+        process.exit(1);
+    }
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_04_3.png',
+        fullPage: true});
+
+    console.log("- OK");
+
+    console.log("Test 4 - Finished\n-----------------");
+
+        //  -------- Test 5 - Deleting specific data.
+    console.log("-- Test 5 - Deleting specific data");
+
+    let RowsTest5 = (await page.$$('#budgetsTable > tbody > tr')).length;
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_05_1.png',
+        fullPage: true});
+    console.log("   Editing the year of element..." + "PUPPETEERADDED");
+    await page.click('#deleteBudgetButton_PUPPETEERADDED_Budget_2016');
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_05_2.png',
+        fullPage: true});
+
+    let ElementDeletedRowsTest5 = (await page.$$('#budgetsTable > tbody > tr')).length;
+    console.log("   Counting if the elements are -1");
+    if(ElementDeletedRowsTest5 != RowsTest5 - 1) {
+        console.log("Deleting specific data doesn´t work. Exiting.");
+        process.exit(1);
+    }
+    console.log("- OK");
+    console.log("Test 5 - Finished\n-----------------");
+
+        //   -------- Test 6 - BudgetGraphs loads 
+
+    console.log("-- Test 1 - PageBudgetsAPI loads");
+
+    await page.goto('http://127.0.0.1:3000/budgetsAPI/');
+    await page.waitForTimeout(1000);
+    await page.click("#link-to-budgetsgraphs");
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_06_1.png',
+        fullPage: true});
+
+    console.log("- OK");
+    console.log("Test 6 - Finished\n-----------------");
+
+    console.log("Cleaning up...");
+
+    // Delete all elements
+    await page.goto('http://127.0.0.1:3000/budgetsAPI/');
+    await page.click("#link-to-budgetstable");
+    await page.waitForTimeout(2000);
+    await page.click("#deleteBudgetsButton");
+    await page.waitForTimeout(2000);
+    await page.screenshot({ path: './e2e_screenshots/budgets_api_07.png' });
+
+    console.log("All BUDGETS TESTS OK.");
+    
+
+    /*
+    End of BudgetsApi Tests
     */
 
     await browser.close();

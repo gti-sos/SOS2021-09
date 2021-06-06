@@ -83,7 +83,7 @@
 </script>
 <main>
     <h3>Editar Presupuesto <strong>{params.center}</strong></h3>
-        <Table bordered>
+        <Table id= "editBudgetsTable" bordered>
             <thead>
                 <tr>
                     <td>Centro</td>
@@ -98,12 +98,12 @@
             <tbody>
                 <tr>
                     <td>{updatedCenter}</td>
-                    <td><input bind:value="{updatedYear}"></td>
-                    <td><input bind:value="{updatedFixedFees}"></td>
-                    <td><input bind:value="{updatedAmountByECTS}"></td>
-                    <td><input bind:value="{updatedAmountByProff}"></td>
-                    <td><input bind:value="{updatedTotal}"></td>
-                    <td> <Button outline  color="primary" on:click={updateBudget}>Actualizar</Button> </td>
+                    <td><input id= "year_editBduget" bind:value="{updatedYear}"></td>
+                    <td><input id= "fixed_fees_editBduget" bind:value="{updatedFixedFees}"></td>
+                    <td><input id= "amount_ects_editBduget" bind:value="{updatedAmountByECTS}"></td>
+                    <td><input id= "amount_proff_editBduget" bind:value="{updatedAmountByProff}"></td>
+                    <td><input id= "total_editBduget" bind:value="{updatedTotal}"></td>
+                    <td> <Button id= "button_editBduget" outline  color="primary" on:click={updateBudget}>Actualizar</Button> </td>
                 </tr>
         </tbody>
         </Table>

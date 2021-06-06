@@ -142,11 +142,6 @@ import { get } from 'svelte/store';
     async function loadBudgets() {
         console.log("Loading initial data...");
         const res = await fetch("/api/v2/budgets-by-centers-us/loadInitialData");
-        // const res = await fetch("/api/v1/budgets-by-centers-us/loadInitialData",
-        //                     {
-        //                         method: "GET"
-        //                     }
-        //                    );
         if(res.status === 201) {
             window.alert("Presupuestos cargados");
         }
@@ -162,7 +157,7 @@ import { get } from 'svelte/store';
         <Col>
             <InputGroupAddon addonType="prepend">
                 <InputGroupText>Elementos por página</InputGroupText>
-                <Button on:click={loadBudgets}>Cargar Presupuestos</Button>
+                <Button id= "loadBudgetsButton" on:click={loadBudgets}>Cargar Presupuestos</Button>
                 <a href="#/budgets/search"><button type="button">Buscar Presupuesto</button></a>
             </InputGroupAddon>
 
@@ -176,7 +171,7 @@ import { get } from 'svelte/store';
             </Input>
         </Col>
     </Row>
-    <Table bordered>
+    <Table id= "budgetsTable" bordered>
         <thead>
             <tr>
                 <td>Centro</td>
@@ -190,28 +185,28 @@ import { get } from 'svelte/store';
         </thead>
         <tbody>
             <tr>
-                <td><input placeholder="Ej: ETSII" bind:value="{newBudget.center}"></td>
-                <td><input placeholder="Ej: 2021" bind:value= {newBudget.year}></td>
-                <td><input placeholder="Ej: 3553.1" bind:value="{newBudget.fixed_fees}"></td>
-                <td><input placeholder="Ej: 13569.1" bind:value="{newBudget.amounts_by_number_of_etc}"></td>
-                <td><input placeholder="Ej: 5647.3" bind:value="{newBudget.amounts_by_number_of_proffessors}"></td>
-                <td><input placeholder="Ej: 465675.2" bind:value="{newBudget.total}"></td>
-                <td><Button on:click={insertBudget}>Añadir</Button></td>
+                <td><input id= "center_AddingBudget" placeholder="Ej: ETSII" bind:value="{newBudget.center}"></td>
+                <td><input id= "year_AddingBudget" placeholder="Ej: 2021" bind:value= {newBudget.year}></td>
+                <td><input id= "fixedfees_AddingBudget" placeholder="Ej: 3553.1" bind:value="{newBudget.fixed_fees}"></td>
+                <td><input id= "amountsbyetc_AddingBudget" placeholder="Ej: 13569.1" bind:value="{newBudget.amounts_by_number_of_etc}"></td>
+                <td><input id= "amountsbyprof_AddingBudget" placeholder="Ej: 5647.3" bind:value="{newBudget.amounts_by_number_of_proffessors}"></td>
+                <td><input id= "total_AddingBudget" placeholder="Ej: 465675.2" bind:value="{newBudget.total}"></td>
+                <td><Button id= "addBudgetButton" on:click={insertBudget}>Añadir</Button></td>
             </tr>
             {#each budgets as budget}
                 <tr>
-                    <td><a href="#/budgets/{budget.center}/{budget.year}">{budget.center}</a></td>
-                    <td>{budget.year}</td>
-                    <td>{budget.fixed_fees}</td>
-                    <td>{budget.amounts_by_number_of_etc}</td>
-                    <td>{budget.amounts_by_number_of_proffessors}</td>
-                    <td>{budget.total}</td>
-                    <td><Button on:click={deleteBudget(budget.center, budget.year)}>Borrar</Button></td>
+                    <td><a id="center_{budget.center}_Budget_{budget.year}" href="#/budgets/{budget.center}/{budget.year}">{budget.center}</a></td>
+                    <td id="year_{budget.center}_Budget_{budget.year}">{budget.year}</td>
+                    <td id="fixedfees_{budget.center}_Budget_{budget.year}">{budget.fixed_fees}</td>
+                    <td id="numberofetc_{budget.center}_Budget_{budget.year}">{budget.amounts_by_number_of_etc}</td>
+                    <td id="numberofproff_{budget.center}_Budget_{budget.year}">{budget.amounts_by_number_of_proffessors}</td>
+                    <td id="total_{budget.center}_Budget_{budget.year}">{budget.total}</td>
+                    <td><Button id= "deleteBudgetButton_{budget.center}_Budget_{budget.year}" on:click={deleteBudget(budget.center, budget.year)}>Borrar</Button></td>
                 </tr>
             {/each}
         </tbody>
     </Table>
-    <Button on:click={deleteBudgets}>Borrar Presupuestos</Button>
+    <Button id= "deleteBudgetsButton" on:click={deleteBudgets}>Borrar Presupuestos</Button>
 
     <div class="float-right">
         <InputGroup>
