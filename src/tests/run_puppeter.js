@@ -14,7 +14,7 @@ if (!fs.existsSync("e2e_screenshots")){
     await page.setViewport({ width: 1366, height: 768});
 
     
-        /*
+    /*
         Dansesben Tests
      */
 
@@ -482,10 +482,6 @@ if (!fs.existsSync("e2e_screenshots")){
     await page.click("#link-to-cutstable",
         { waitUntil: "networkidle0" });
 
-    page.on('dialog', async dialog => {
-        dialog.accept();
-    });
-    
     await page.waitForTimeout(1000);
     await page.screenshot({ path: './e2e_screenshots/cuts_api_02.png' });
     console.log("   The table works...");
@@ -622,6 +618,7 @@ if (!fs.existsSync("e2e_screenshots")){
 
     // Delete all elements
     await page.goto('http://127.0.0.1:3000/fraferbla1/');
+    await page.waitForTimeout(2000);
     await page.click("#link-to-cutstable");
     await page.waitForTimeout(2000);
     await page.click("#deleteCutsButton");
