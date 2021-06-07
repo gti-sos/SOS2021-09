@@ -2,7 +2,6 @@
     import Highcharts from 'highcharts';
     import {Container} from 'sveltestrap';
     import { onMount } from 'svelte';
-    import ApexCharts from 'apexcharts'
 
 
     async function getBudgets(){
@@ -339,7 +338,7 @@
         }
         };
 
-        var chart_awesome = new ApexCharts(document.querySelector("#chart_awesome"), options);
+        let chart_awesome = new ApexCharts(document.querySelector("#chart_awesome"), options);
         chart_awesome.render();
     });
 

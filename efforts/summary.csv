@@ -28,8 +28,15 @@ SOS2021-09,,#155 Implementar Front-End en Svelte que permita una forma de editar
 SOS2021-09,,#163 Tener código actualizado | gr. p3,00:30:00
 SOS2021-09,,#164 Implementar Gráfica de mi API,01:00:00
 SOS2021-09,,#165 Implementar Gráfica de mi API,17:15:00
-SOS2021-09,,#169 Implementación proxy,00:02:18
+SOS2021-09,,#169 Implementación proxy,01:44:31
 SOS2021-09,,#170 Implementación widget Biblioteca Highcharts,01:26:15
+SOS2021-09,,#171 Implementación vista con awsome-charting,04:59:26
+SOS2021-09,,"#172 Integración con la api 1, children-out-school (SOS)",04:06:46
+SOS2021-09,,"#173 Integración con la api 2, anxiety-stats (SOS)",01:56:36
+SOS2021-09,,"#174 Integración con la api 3, international-tourisms (SOS)",02:03:52
+SOS2021-09,,"#175 Integración con la api 4, Google Searchs (Ext)",01:50:33
+SOS2021-09,,"#176 Integración con la api 5, Love Calculator (Ext)",01:05:27
+SOS2021-09,,#178 Implementación pruebas e2e,06:45:52
 SOS2021-09,,"#18 Revisar integraciones, instalación y datos rellenados.",00:01:16
 SOS2021-09,,#20 Preparar servidor web,03:00:41
 SOS2021-09,,#23 Instalar Postman,00:09:00
@@ -85,6 +92,7 @@ SOS2021-09,,Hacer pruebas de la implementación del servidor web,01:42:31
 SOS2021-09,,Implementar API | pr. p5,02:25:00
 SOS2021-09,,Implementar búsquedas por todos los campos del recurso. | pr. p2,01:00:00
 SOS2021-09,,Implementar frontend #149,06:20:00
+SOS2021-09,,Implementar gráfica API propia,00:30:00
 SOS2021-09,,Instalar Postman,00:38:00
 SOS2021-09,,Integracion #168,04:21:04
 SOS2021-09,,"Organizando GitHub, y probando la integración con Goorm y Toggl",00:45:00
@@ -94,6 +102,7 @@ SOS2021-09,,Organizando las issues de Github para F04,00:45:00
 SOS2021-09,,Organizando las issues de Github para F06,01:06:00
 SOS2021-09,,Preparar issues F07,00:05:36
 SOS2021-09,,Preparar issues F08,00:13:00
+SOS2021-09,,Puppeteer support #168,03:02:08
 SOS2021-09,,"Realizando las tareas para el la sesión de Feedback F01 (issues 4, 8 12 y 16)",01:27:32
 SOS2021-09,,Rellenar ficha de datos,00:45:00
 SOS2021-09,,Revisar el buen uso del error 400 | pr. p12,00:15:00
@@ -105,6 +114,15 @@ SOS2021-09,,Revisar los identificadores de recursos | pr. p10,00:15:00
 SOS2021-09,,Revisar Piazza,00:31:15
 SOS2021-09,,Revisar Tracking de tiempo en Toggl que se corresponda a cada issue,00:19:00
 SOS2021-09,,Tareas para F01,00:30:10
+SOS2021-09,,Tener código actualizado,00:30:00
 SOS2021-09,,Tener el repositorio actualizado,00:29:00
 SOS2021-09,,Tener mi API en el archivo index dentro de la carpeta public del equipo | gr. p4,01:00:00
+SOS2021-09,,Trabajo investigación API F12,03:00:00
 SOS2021-09,,Trabajo Investigación APIs F12,03:07:44
+,,#155 Implementar Front-End en Svelte que permita una forma de editar recursos concretos | pr. p1b5,02:30:00
+,,Implementar API #95,09:29:00
+,,Implementar frontend #142,06:20:00
+,,Investigacion APIs,04:13:28
+,,Mejorar frontend #156,06:21:00
+,,Revisar Tracking de tiempo en Toggl que se corresponda a cada issue,00:12:00
+,,Tareas extra F05,04:12:02
