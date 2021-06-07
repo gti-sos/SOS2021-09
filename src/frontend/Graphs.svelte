@@ -58,20 +58,21 @@
         let res_data2 = await res2.json();
 
         res_data2.forEach((data) => {
-
             if(data.year == 2017){
-                arrayFran.push(res_data2.cut_off_mark);
+                arrayFran.push(data.cut_off_mark);
             }
             if(data.year == 2018){
-                arrayFran.push(res_data2.cut_off_mark);
+                arrayFran.push(data.cut_off_mark);
             }
             if(data.year == 2019){
-                arrayFran.push(res_data2.cut_off_mark);
+                arrayFran.push(data.cut_off_mark);
             }
             if(data.year == 2020){
-                arrayFran.push(res_data2.cut_off_mark);
+                arrayFran.push(data.cut_off_mark);
             }
         });
+
+        console.log(arrayFran)
 
 
         Highcharts.chart('container', {
@@ -196,10 +197,12 @@
                 data: yAxisValuesBudgets,
                 tooltip: {
                     valueSuffix: ' cuantía total'
-                },
-                axis: 1,
+                }
+                },{
+                axis: 2,
                 name: 'Nota corte Ing. informática',
-                data: yAxisValuesCuts
+                data: arrayFran
+                
             }]
         });
     });
