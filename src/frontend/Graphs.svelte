@@ -47,16 +47,31 @@
         // Y Axis
         let yAxisValuesDansesben = dataDansesben.map(o => o["credits-passed"]);
 
-        console.log(yAxisValuesDansesben)
-
         // ADRI
         // Y Axis
         let yAxisValuesBudgets = dataBudgets.map(o => o["total"]);
 
         // FRAN
         let res2 = await fetch('/api/v2/cut-off-marks-by-degrees-us/cuts?degree=Computer-Science');
+        let arrayFran = [];
 
         let res_data2 = await res2.json();
+
+        res_data2.forEach((data) => {
+
+            if(data.year == 2017){
+                arrayFran.push(res_data2.cut_off_mark);
+            }
+            if(data.year == 2018){
+                arrayFran.push(res_data2.cut_off_mark);
+            }
+            if(data.year == 2019){
+                arrayFran.push(res_data2.cut_off_mark);
+            }
+            if(data.year == 2020){
+                arrayFran.push(res_data2.cut_off_mark);
+            }
+        });
 
 
         Highcharts.chart('container', {
@@ -184,10 +199,7 @@
                 },
                 axis: 1,
                 name: 'Nota corte Ing. informática',
-                data: yAxisValuesCuts,
-                tooltip: {
-                    valueSuffix: ''
-                }
+                data: yAxisValuesCuts
             }]
         });
     });
