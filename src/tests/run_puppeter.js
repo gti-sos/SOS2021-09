@@ -458,6 +458,243 @@ if (!fs.existsSync("e2e_screenshots")){
     End of BudgetsApi Tests
     */
 
+    /*
+        ----------------------- CutsAPI Tests -----------------------
+    */
+
+        console.log("\n\n----------------------- CutsAPI Tests -----------------------");
+    //   -------- Test 1 - PageCutsAPI loads 
+
+
+    console.log("-- Test 1 - PageCutsAPI loads");
+
+    await page.goto('http://127.0.0.1:3000/fraferbla1/');
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_01.png' });
+
+    console.log("-- Test 1 - Finished\n-----------------");
+
+    
+
+    //  -------- Test 2 - The charging data, deleting data works and the table too?.
+
+    console.log("-- Test 2 - The loadInitialData works and the table too?");
+    await page.click("#link-to-cutstable",
+        { waitUntil: "networkidle0" });
+
+    page.on('dialog', async dialog => {
+        dialog.accept();
+    });
+    
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_02.png' });
+    console.log("   The table works...");
+    
+
+    let rowInitialCount = (await page.$$('#cutsTable > tbody > tr')).length;
+    
+
+    if(rowInitialCount == 1) {
+        console.log("   Checking charging data...");
+        await page.click("#loadCutsButton");
+        await page.waitForTimeout(1000);
+
+        let rowLoadedCount = (await page.$$('#cutsTable > tbody > tr')).length;
+        console.log("Amounts loaded:" + rowLoadedCount);
+        
+        if(rowLoadedCount == rowInitialCount) {
+            console.log("Charging data doesn´t work. Exiting.");
+            process.exit(1);
+        }
+        
+        await page.screenshot({ path: './e2e_screenshots/cuts_api_02_1.png' });
+        console.log(    "- OK");
+
+        console.log("   Checking deleting data...");
+        await page.click("#deleteCutsButton");
+        await page.waitForTimeout(1000);
+        let rowErasedCount = (await page.$$('#cutsTable > tbody > tr')).length;
+        if(rowErasedCount != 1) {
+            console.log("Deleting data doesn´t work. Exiting.");
+            process.exit(1);
+        }
+        await page.screenshot({ path: './e2e_screenshots/cuts_api_02_2.png' });
+        console.log(    "- OK");
+
+    } else  {
+        console.log("   Checking deleting data...");
+        await page.click("#deleteCutsButton");
+
+        await page.waitForTimeout(1000);
+        let rowErasedCount = (await page.$$('#cutsTable > tbody > tr')).length;
+        if(rowErasedCount != 1) {
+            console.log("Deleting data doesn´t work. Exiting.");
+            process.exit(1);
+        }
+        await page.screenshot({ path: './e2e_screenshots/cuts_api_02_2_2.png' });
+        console.log(    "- OK");
+
+        console.log("   Checking charging data...");
+        await page.click("#loadCutsButton");
+
+        await page.waitForTimeout(1000);
+
+        let rowLoadedCount = (await page.$$('#cutsTable > tbody > tr')).length;
+        
+        if(rowLoadedCount == rowErasedCount) {
+            console.log("Charging data doesn´t work. Exiting.");
+            process.exit(1);
+        }
+        await page.screenshot({ path: './e2e_screenshots/cuts_api_02_1_2.png' });
+        console.log(    "- OK");
+    }
+    
+    // Return to a normal state.
+    console.log("   Returning to a normal state");
+    await page.click("#deleteCutsButton");
+    await page.waitForTimeout(1000);
+    let return_normal_1 = (await page.$$('#cutsTable > tbody > tr')).length;
+
+    if(return_normal_1 != 1) {
+        console.log("Return to a normal state (delete) failed.")
+        process.exit(1);
+    }
+    console.log("- Delete OK");
+    await page.waitForTimeout(1000);
+    await page.click("#loadCutsButton");
+    await page.waitForTimeout(1000);
+    let return_normal_2 = (await page.$$('#cutsTable > tbody > tr')).length;
+
+    if(return_normal_2 == 1) {
+        console.log("Return to a normal state (load) failed.")
+        process.exit(1);
+    }
+    console.log("- Load OK");
+    console.log("-- Test 2 - Finished\n-----------------");
+
+
+    //  -------- Test 3 - Adding specific data.
+    console.log("-- Test 3 - Adding specific data");
+
+    let ActualRowsTest3 = (await page.$$('#cutsTable > tbody > tr')).length;
+
+    // Typing an object.
+    console.log("   Adding element...");
+    await page.type('#degree_AddingCut', 'PUPPETEERADDED');
+    await page.type('#year_AddingCut', '2018');
+    await page.type('#cutoff_AddingCut', '7.22');
+    await page.type('#selectpresented_AddingCut', '10000');
+    await page.type('#price_AddingCut', '852.2');
+    await page.type('#faculty_AddingCut', 'FPETER');
+    await page.waitForTimeout(500);
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_03_1.png' });
+    await page.click("#addCutButton");
+    await page.waitForTimeout(1000);
+    console.log("   Counting if the elements are +1");
+    let AddedElementRowsTest3 = (await page.$$('#cutsTable > tbody > tr')).length;
+
+    if(AddedElementRowsTest3 != ActualRowsTest3 + 1) {
+        console.log("Adding data doesn´t work. Exiting.");
+        process.exit(1);
+    }
+    console.log("- OK");
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_03_2.png',
+        fullPage: true});
+    console.log("-- Test 3 - Finished\n-----------------");
+
+    //  -------- Test 4 - Editing specific data.
+
+    console.log("-- Test 4 - Editing specific data.");
+
+    let idEdit =  await page.$eval('#degree_PUPPETEERADDED_Cut_2018', e => e.innerText);
+    let cuts_valueBeforeEdit =  await page.$eval('#year_PUPPETEERADDED_Cut_2018', e => e.innerText);
+
+    console.log("   Accesing to the element..." + idEdit);
+    await page.click("#degree_PUPPETEERADDED_Cut_2018");
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_04_1.png' });
+    await page.waitForTimeout(1000);
+
+    console.log("   Editing the year of element..." + idEdit);
+    await page.type('#year_editCut', '6');
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_04_2.png' });
+
+    await page.click("#button_editCut");
+    await page.waitForTimeout(1000);
+
+    let cuts_valueAfterEdit =  await page.$eval('#year_PUPPETEERADDED_Cut_2016', 
+    e => e.innerText);
+    
+    if(cuts_valueBeforeEdit == cuts_valueAfterEdit) {
+        console.log("Editing specific data doesn´t work. Exiting.");
+        process.exit(1);
+    }
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_04_3.png',
+        fullPage: true});
+
+    console.log("- OK");
+
+    console.log("-- Test 4 - Finished\n-----------------");
+
+        //  -------- Test 5 - Deleting specific data.
+    console.log("-- Test 5 - Deleting specific data");
+
+    let RowsTest5 = (await page.$$('#cutsTable > tbody > tr')).length;
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_05_1.png',
+        fullPage: true});
+    console.log("   Editing the year of element..." + "PUPPETEERADDED");
+    await page.click('#deleteCutButton_PUPPETEERADDED_Cut_2016');
+    await page.waitForTimeout(1000);
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_05_2.png',
+        fullPage: true});
+
+    let ElementDeletedRowsTest5 = (await page.$$('#cutsTable > tbody > tr')).length;
+    console.log("   Counting if the elements are -1");
+    if(ElementDeletedRowsTest5 != RowsTest5 - 1) {
+        console.log("Deleting specific data doesn´t work. Exiting.");
+        process.exit(1);
+    }
+    console.log("- OK");
+    console.log("-- Test 5 - Finished\n-----------------");
+
+        //   -------- Test 6 - CutGraphs loads 
+
+    console.log("-- Test 6 - PageCutsAPI loads");
+
+    await page.goto('http://127.0.0.1:3000/fraferbla1/#/graphs');
+    await page.waitForTimeout(1000);
+    await page.click("#link-to-cutsgraph");
+    await page.waitForTimeout(1500);
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_06_1.png',
+        fullPage: true});
+
+    console.log("- OK");
+    console.log("-- Test 6 - Finished\n-----------------");
+
+    console.log("Cleaning up...");
+
+    // Delete all elements
+    await page.goto('http://127.0.0.1:3000/cutsAPI/');
+    await page.click("#link-to-cutstable");
+    await page.waitForTimeout(2000);
+    await page.click("#deleteCutsButton");
+    await page.waitForTimeout(2000);
+    let ActualRowsTest7 = (await page.$$('#cutsTable > tbody > tr')).length;
+    if(ActualRowsTest7 != 1) {
+        console.log("Cleaning up doesn´t work... Exiting")
+        process.exit(1);
+    }
+    await page.screenshot({ path: './e2e_screenshots/cuts_api_07.png' });
+
+    console.log("-- All CUTS TESTS OK.");
+    
+
+    /*
+    End of CutsAPI Tests
+    */
+
     await browser.close();
     app.close();
 })();

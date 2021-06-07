@@ -84,11 +84,11 @@
             <tbody>
                 <tr>
                     <td>{updatedDegree}</td>
-                    <td><input bind:value="{updatedYear}"></td>
+                    <td><input id= "year_editCut" bind:value="{updatedYear}"></td>
                     <td><input bind:value="{updatedCutOffs}"></td>
                     <td><input bind:value="{updatedSelectPresented}"></td>
                     <td><input bind:value="{updatedPriceAdmision}"></td>
-                    <td><input bind:value="{updatedFaculty}"></td>
+                    <td><input id= "button_editCut" bind:value="{updatedFaculty}"></td>
                     <td> <Button outline  color="primary" on:click={updatecut}>Actualizar</Button> </td>
                 </tr>
         </tbody>

@@ -143,7 +143,7 @@ import { get } from 'svelte/store';
         <Col>
             <InputGroupAddon addonType="prepend">
                 <InputGroupText>Elementos por página</InputGroupText>
-                <Button on:click={loadcuts}>Cargar Datos</Button>
+                <Button id= "loadCutsButton" on:click={loadcuts}>Cargar Datos</Button>
                 <a href="#/cuts/search"><button type="button">Buscar Dato</button></a>
             </InputGroupAddon>
 
@@ -157,7 +157,7 @@ import { get } from 'svelte/store';
             </Input>
         </Col>
     </Row>
-    <Table bordered>
+    <Table id="cutsTable" bordered>
         <thead>
             <tr>
                 <td>Grado</td>
@@ -171,13 +171,13 @@ import { get } from 'svelte/store';
         </thead>
         <tbody>
             <tr>
-                <td><input placeholder="Ej: Geography" bind:value="{newCut.degree}"></td>
-                <td><input placeholder="Ej: 2021" bind:value= {newCut.year}></td>
-                <td><input placeholder="Ej: 3553.1" bind:value="{newCut.cut_off_mark}"></td>
-                <td><input placeholder="Ej: 13569.1" bind:value="{newCut.selectivity_presented_seville}"></td>
-                <td><input placeholder="Ej: 5647.3" bind:value="{newCut.price_admision}"></td>
-                <td><input placeholder="Ej: FHISTRY" bind:value="{newCut.faculty}"></td>
-                <td><Button on:click={insertCut}>Añadir</Button></td>
+                <td><input id= "degree_AddingCut" placeholder="Ej: Geography" bind:value="{newCut.degree}"></td>
+                <td><input id= "year_AddingCut" placeholder="Ej: 2021" bind:value= {newCut.year}></td>
+                <td><input id= "cutoff_AddingCut" placeholder="Ej: 3553.1" bind:value="{newCut.cut_off_mark}"></td>
+                <td><input id= "selectpresented_AddingCut" placeholder="Ej: 13569.1" bind:value="{newCut.selectivity_presented_seville}"></td>
+                <td><input id= "price_AddingCut" placeholder="Ej: 5647.3" bind:value="{newCut.price_admision}"></td>
+                <td><input id= "faculty_AddingCut" placeholder="Ej: FHISTRY" bind:value="{newCut.faculty}"></td>
+                <td><Button id= "addCutButton" on:click={insertCut}>Añadir</Button></td>
             </tr>
             {#each cuts as cut}
                 <tr>
@@ -192,7 +192,7 @@ import { get } from 'svelte/store';
             {/each}
         </tbody>
     </Table>
-    <Button on:click={deletecuts}>Borrar Datos</Button>
+    <Button id= "deleteCutsButton" on:click={deletecuts}>Borrar Datos</Button>
 
     <div class="float-right">
         <InputGroup>

@@ -4,7 +4,7 @@
 
     <a href="/fraferbla1/#/cuts/graficas">Gráfica con la librería Highcharts</a>
     <br>
-    <a href="/fraferbla1/#/cuts/graficav2">Gráfica con la librería Quickchart</a>
+    <a id= "link-to-cutsgraph" href="/fraferbla1/#/cuts/graficav2">Gráfica con la librería Quickchart</a>
     <br>
 
 </main>

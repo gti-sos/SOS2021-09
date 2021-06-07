@@ -47,9 +47,17 @@
         // Y Axis
         let yAxisValuesDansesben = dataDansesben.map(o => o["credits-passed"]);
 
+        console.log(yAxisValuesDansesben)
+
         // ADRI
         // Y Axis
         let yAxisValuesBudgets = dataBudgets.map(o => o["total"]);
+
+        // FRAN
+        let res2 = await fetch('/api/v2/cut-off-marks-by-degrees-us/cuts?degree=Computer-Science');
+
+        let res_data2 = await res2.json();
+
 
         Highcharts.chart('container', {
             title: {
@@ -173,6 +181,12 @@
                 data: yAxisValuesBudgets,
                 tooltip: {
                     valueSuffix: ' cuantía total'
+                },
+                axis: 1,
+                name: 'Nota corte Ing. informática',
+                data: yAxisValuesCuts,
+                tooltip: {
+                    valueSuffix: ''
                 }
             }]
         });
