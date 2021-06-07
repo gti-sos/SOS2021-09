@@ -6,12 +6,14 @@
 	import NotFound from './NotFound.svelte';
 	import Graphs from './Graphs.svelte';
 	import Integrations from './Integrations.svelte';
+	import About from './About.svelte';
 
 	const routes = {
         "/": LandingPage,
 		"/info": info,
 		"/analytics": Graphs,
 		"/integrations": Integrations,
+		"/about": About,
 		"*": NotFound 
 	};
 

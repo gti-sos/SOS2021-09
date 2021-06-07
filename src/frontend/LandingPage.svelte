@@ -10,5 +10,7 @@
 		<a href="#/analytics">Click aquí para ver las graficas de nuestro grupo</a>
 		<br>
 		<a href="#/integrations">Click aquí para ver las integraciones de nuestro grupo</a>
+		<br>
+		<a href="#/about">Click aquí para ver los videos de nuestro grupo</a>
 	</main>
 </Container>
