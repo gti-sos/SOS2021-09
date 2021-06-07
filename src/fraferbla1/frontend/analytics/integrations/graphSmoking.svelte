@@ -1,6 +1,7 @@
 <script>
     async function loadData() {
         let res1 = await fetch('https://sos2021-11.herokuapp.com/api/v2/smoking_stats/');
+        await fetch('https://sos2021-11.herokuapp.com/api/v2/smoking_stats/loadInitialData');
         let res2 = await fetch('/api/v2/cut-off-marks-by-degrees-us/cuts?degree=Computer-Science')
         
         let res_data1 = await res1.json()
