@@ -1,7 +1,6 @@
 # SOS2021-09
 [![Known Vulnerabilities](https://snyk.io/test/github/gti-sos/SOS2021-09/badge.svg)](https://snyk.io/test/github/gti-sos/SOS2021-09)
 [![codecov](https://codecov.io/gh/gti-sos/SOS2021-09/branch/main/graph/badge.svg)](https://codecov.io/gh/gti-sos/SOS2021-09)
-
 <h2>Información del Grupo</h2>
 <ul>
     <li>
