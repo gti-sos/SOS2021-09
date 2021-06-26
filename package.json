@@ -30,7 +30,7 @@
     "chart.js": "^3.2.1",
     "chartkick": "^4.0.4",
     "express": "^4.17.1",
-    "highcharts": "^9.1.0",
+    "highcharts": "^9.1.1",
     "nedb": "^1.8.0",
     "puppeteer": "^10.0.0",
     "request": "^2.88.2",
