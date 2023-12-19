@@ -32,7 +32,7 @@
     "express": "^4.17.1",
     "highcharts": "^9.1.0",
     "nedb": "^1.8.0",
-    "puppeteer": "^10.0.0",
+    "puppeteer": "^21.3.7",
     "request": "^2.88.2",
     "rollup": "^2.3.4",
     "rollup-plugin-css-only": "^3.1.0",
