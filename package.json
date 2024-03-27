@@ -29,7 +29,7 @@
     "apexcharts": "^3.26.3",
     "chart.js": "^3.2.1",
     "chartkick": "^4.0.4",
-    "express": "^4.17.1",
+    "express": "^4.19.2",
     "highcharts": "^9.1.0",
     "nedb": "^1.8.0",
     "puppeteer": "^10.0.0",
